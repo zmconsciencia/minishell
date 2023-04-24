@@ -1,0 +1,28 @@
+*** LINKS UTEIS ***
+
+readline:
+	https://web.mit.edu/gnu/doc/html/rlman_2.html
+
+history (from readline?):
+	https://man7.org/linux/man-pages/man3/history.3.html
+	- ver se ha videos sobre isto
+
+bash reference manual:
+	https://www.gnu.org/software/bash/manual/bash.html
+
+writting a parser/interpreter:
+	https://www.toptal.com/scala/writing-an-interpreter
+
+*** TODO ***
+
+	- fazer split da linha --- DONE
+		- adicionar a linha à history --- DONE
+		- tokens / linked list?
+		- se optar por linked list, ao adicionar a lista vou fazendo parsing
+		  e dando um identificador de file / cmd / flag / ...
+	- se for ficheiro (ter operator antes) fazer dele um fd in
+	- se for program ver se tem access 
+	- ((fazer uma nova lista so com os comandos, e sem ficheiros?))
+	- passar a lista para o pipex
+
+	- ver como ler as teclas pressionadas atraves de um programa c: library? --- DONE
