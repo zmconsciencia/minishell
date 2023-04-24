@@ -26,3 +26,6 @@ writting a parser/interpreter:
 	- passar a lista para o pipex
 
 	- ver como ler as teclas pressionadas atraves de um programa c: library? --- DONE
+	- signals estao mal, fazer uma funcao dedicada e dividir entre heredoc e whatever.
+	- fazer uma funcao "get_token".
+	- fazer builtins
