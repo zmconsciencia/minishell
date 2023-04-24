@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/04/24 15:48:56 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:08:53 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*g_line;
 
-int	check_type(char *split)
-{
-	if (split[0] == '<' || split[0] == '>')
-		return (OPERATOR);
-	if (split[0] == '-')
-		return (FLAG);
-	if (split[0] == '|')
-		return (PIPE);
-	if (strcmp(split, "echo") || strcmp(split, "cd") || strcmp(split, "pwd") \
-		|| strcmp(split, "export") || strcmp(split, "unset") || \
-		strcmp(split, "env") || strcmp(split, "exit"))
-		return (BUILTIN);
-}
+// int	check_type(char *split)
+// {
+// 	if (split[0] == '<' || split[0] == '>')
+// 		return (OPERATOR);
+// 	if (split[0] == '-')
+// 		return (FLAG);
+// 	if (split[0] == '|')
+// 		return (PIPE);
+// 	if (strcmp(split, "echo") || strcmp(split, "cd") || strcmp(split, "pwd") \
+// 		|| strcmp(split, "export") || strcmp(split, "unset") || \
+// 		strcmp(split, "env") || strcmp(split, "exit"))
+// 		return (BUILTIN);
+// }
 
 void	parse_split(char **split, t_program	**list)
 {
@@ -38,16 +38,16 @@ void	parse_split(char **split, t_program	**list)
 	while (split[++i])
 	{
 		if (check_type(split[i]) == BUILTIN)
-			run_builtin(split);
-		else
-		{
-			node = malloc(sizeof(t_program));
-			node->type = check_type(split[i]);
-			if (node->type == OPERATOR)
-				align_file(&node);
-			if (node->type == PROGRAM)
-				get_flags(&node);
-		}
+			program().type = ;
+		// else
+		// {
+		// 	node = malloc(sizeof(t_program));
+		// 	node->type = check_type(split[i]);
+		// 	if (node->type == OPERATOR)
+		// 		align_file(&node);
+		// 	if (node->type == PROGRAM)
+		// 		get_flags(&node);
+		// }
 	}
 }
 
@@ -58,25 +58,25 @@ void	go_function(char *g_line)
 	int					i;
 
 	i = -1;
-	split = ft_split(g_line, ' ');
+	split = ft_split(g_line, '|');
 	while (split[++i])
 		printf("%s\n", split[i]);
 	// parse_split(split, &list);
 }
 
-// t_program	*program(void)
-// {
-// 	static t_program	program;
+t_program	*program(void)
+{
+	static t_program	program;
 
-// 	return (&program);
-// }
+	return (&program);
+}
 
 int	main(void) //como enviar char **envp sem os av/ac
 {
 	signal(SIGINT, SIG_DFL); // corrigir ^C
 	signal(SIGQUIT, SIG_DFL); //falta tratar do ^D
 	g_line = 0;
-	g_line = readline("levishell> ");
+	g_line = readline("minishell> ");
 	while (g_line)
 	{
 		if (g_line[0] != 0)
@@ -85,7 +85,7 @@ int	main(void) //como enviar char **envp sem os av/ac
 			go_function(g_line);
 		}
 		free (g_line);
-		g_line = readline("levishell> ");
+		g_line = readline("minishell> ");
 	}
 	return (0);
 }
