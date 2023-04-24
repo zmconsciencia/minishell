@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/04/24 15:30:02 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:44:11 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,3 +89,6 @@ int	main(void) //como enviar char **envp sem os av/ac
 	}
 	return (0);
 }
+
+
+CCCCONNNNAAAAAAA
