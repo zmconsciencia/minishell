@@ -1,0 +1,38 @@
+minishell> <Makefile cat | echo "cat | wc"
+<Makefile
+cat
+echo
+"cat | wc"
+minishell> < Makefile cat | echo "cat | wc"
+<
+Makefile
+cat
+echo
+"cat | wc"
+minishell> < Makefile $cat | echo "cat | wc"
+<
+Makefile
+$cat
+echo
+"cat | wc"
+minishell> < Makefile $ cat | echo "cat | wc"
+<
+Makefile
+$
+cat
+echo
+"cat | wc"
+minishell> infile < Makefile $ cat | echo "cat | wc"
+infile
+<
+Makefile
+$
+cat
+echo
+"cat | wc"
+minishell> infile<Makefile $ cat | echo "cat | wc"
+infile<Makefile
+$
+cat
+echo
+"cat | wc"

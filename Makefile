@@ -2,8 +2,24 @@ NAME = $(shell basename $(CURDIR))
 
 SRCS	= SRCS/minishell.c \
 		SRCS/handle/sighandler.c \
-		SRCS/handle/sighandler2.c \
-		SRCS/utils/ft_split.c
+		SRCS/parse/fill_dollar.c \
+		SRCS/parse/fill_pot.c \
+		SRCS/parse/fill_red.c \
+		SRCS/parse/has_redirect.c \
+		SRCS/parse/parse_nodes.c \
+		SRCS/utils/free_lines.c \
+		SRCS/utils/count_strings.c \
+		SRCS/utils/ft_split.c \
+		SRCS/utils/ft_strncmp.c \
+		SRCS/utils/get_curr_prog.c \
+		SRCS/builtins/check_builtin.c \
+		SRCS/builtins/is_builtin.c \
+		SRCS/builtins/my_cd.c \
+		SRCS/builtins/my_echo.c \
+		SRCS/builtins/my_env.c \
+		SRCS/builtins/my_export.c \
+		SRCS/builtins/my_pwd.c \
+		SRCS/builtins/my_export.c
 
 OBJ		= ${SRCS:.c=.o}
 
