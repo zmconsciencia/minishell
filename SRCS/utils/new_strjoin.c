@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   new_strjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 10:33:51 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 10:23:12 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/05/03 10:23:29 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/03 10:36:06 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-//junta duas strings
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*new_strjoin(char op, char const *s2)
 {
 	char	*s3;
-	char	*s3start;
+	int		i;
+	int		j;
 
-	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	i = 0;
+	j = 1;
+	s3 = (char *)malloc(sizeof(char) * (1 + ft_strlen(s2) + 1));
 	if (s3 == 0)
 		return (0);
-	s3start = s3;
-	while (*s1)
+	s3[0] = op;
+	while (s2[i])
 	{
-		*s3 = *s1;
-		s1++;
-		s3++;
+		s3[j] = s2[i];
+		i++;
+		j++;
 	}
-	while (*s2)
-	{
-		*s3 = *s2;
-		s2++;
-		s3++;
-	}
-	*s3 = 0;
-	return (s3start);
+	s3[j] = 0;
+	return (s3);
 }
-
-// int	main(void)
-// {
-// 	printf("%s\n", ft_strjoin("bruno", "levi"));
-// }
