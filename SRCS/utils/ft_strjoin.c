@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_red.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 19:50:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 09:49:03 by bde-seic         ###   ########.fr       */
+/*   Created: 2022/10/20 10:33:51 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/03 09:22:49 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	*retrieve_word(char *token)
+//junta duas strings
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
+	char	*s3;
+	char	*s3start;
 
-	i = 0;
-	while (token[i])
-		i++;
-	while (token[i] != '<' || token[i] != '>')
-		i--;
+	s3 = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (s3 == 0)
+		return (0);
+	s3start = s3;
+	while (*s1)
+	{
+		*s3 = *s1;
+		s1++;
+		s3++;
+	}
+	while (*s2)
+	{
+		*s3 = *s2;
+		s2++;
+		s3++;
+	}
+	*s3 = 0;
+	return (s3start);
 }
 
-void	fill_red(char *token, int id)
-{
-	t_program	*curr;
-	char		*operator;
-	int			i;
-
-	i = 0;
-	curr = get_curr_prog(id);
-	curr->red.operator = get_operator(token);
-	curr->red.file_name = retrieve_word(token);
-}
+// int	main(void)
+// {
+// 	printf("%s\n", ft_strjoin("bruno", "levi"));
+// }

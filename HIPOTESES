@@ -50,4 +50,4 @@ tratar red:
 
 -	Makefile<
 
-- infile<Makefileinfile<Makefile
+- ls -l infile<Makefileinfile<Makefile

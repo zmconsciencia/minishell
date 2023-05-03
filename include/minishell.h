@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 07:21:18 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/03 09:23:22 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ typedef struct s_pot{
 typedef struct s_red{
 	char	*operator;
 	char	*file_name;
+	int		fd[2];
 }	t_red;
 
 typedef struct s_program{
 	int					node_id;
 	struct s_pot		pot;
 	struct s_red		red;
-	int					fd[2];
 	struct s_program	*next;
 }	t_program;
 
@@ -55,16 +55,17 @@ void	sighandler2(int signum);
 
 //utils
 int			count_strings(char **strings);
-char		**ft_split(char const *s, char c);
 void		free_lines(char	**lines);
 int			ft_is_space(char c);
+char		**ft_split(char const *s, char c);
+char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 t_program	*get_curr_prog(int id);
 
 //parse
 void	fill_dollar(char *token, int id);
 void	fill_pot(char *token, int id);
-void	fill_red(char *token, char *nxt_token, int id);
+void	fill_red(char *token, int id);
 int		has_redirect(char *token);
 void	parse_nodes(char **tokens, int node_id);
 
