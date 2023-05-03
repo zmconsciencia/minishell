@@ -48,6 +48,36 @@ tratar red:
 
 -	<<EOF
 
--	Makefile<
+-	Makefile
 
 - ls -l infile<Makefileinfile<Makefile
+
+HAS REDIRECT:
+
+- infile<Makefile --> fill red2 / split infile and makefile / manda fill pot infile / fill red makefile
+
+- < Makefile
+
+- <Makefile
+
+- <Makefile<outro
+
+- <Makefile>outro
+	Makefile>outro
+
+- > Makefile
+
+- >Makefile
+
+- >Makefile<outro
+
+- >Makefile>outro
+
+
+- <<Makefile
+
+- infile<Makefile<outro
+
+- infile<<Makefile
+
+- infile<<Makefile<<outro
