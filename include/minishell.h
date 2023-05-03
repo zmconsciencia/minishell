@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/04/27 20:56:31 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/03 07:21:18 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_program{
 	struct s_program	*next;
 }	t_program;
 
+t_program	*program(void);
+
 //handle
 void	sighandler(int signum);
 void	sighandler2(int signum);
@@ -55,6 +57,7 @@ void	sighandler2(int signum);
 int			count_strings(char **strings);
 char		**ft_split(char const *s, char c);
 void		free_lines(char	**lines);
+int			ft_is_space(char c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 t_program	*get_curr_prog(int id);
 

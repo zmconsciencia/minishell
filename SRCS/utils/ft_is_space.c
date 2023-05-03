@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_dollar.c                                      :+:      :+:    :+:   */
+/*   ft_is_space.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 19:41:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 06:55:46 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/05/03 07:15:01 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/03 07:16:04 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// void	fill_dollar(char *token, int id)
-// {
-// 	t_program	*curr;
-
-// 	curr = get_curr_prog(id);
-// 	// guardar no pot o valor da variavel
-// }
+int	ft_is_space(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
+}

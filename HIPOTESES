@@ -36,3 +36,18 @@ $
 cat
 echo
 "cat | wc"
+
+tratar red:
+
+-	infile<Makefile
+
+-	<
+-	Makefile
+
+-	<Makefile
+
+-	<<EOF
+
+-	Makefile<
+
+- infile<Makefileinfile<Makefile

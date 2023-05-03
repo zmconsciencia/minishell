@@ -7,8 +7,9 @@ SRCS	= SRCS/minishell.c \
 		SRCS/parse/fill_red.c \
 		SRCS/parse/has_redirect.c \
 		SRCS/parse/parse_nodes.c \
-		SRCS/utils/free_lines.c \
 		SRCS/utils/count_strings.c \
+		SRCS/utils/free_lines.c \
+		SRCS/utils/ft_is_space.c \
 		SRCS/utils/ft_split.c \
 		SRCS/utils/ft_strncmp.c \
 		SRCS/utils/get_curr_prog.c \
