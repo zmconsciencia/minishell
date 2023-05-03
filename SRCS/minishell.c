@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 07:31:19 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:44:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ int	main(int ac, char **av, char **envp)
 		g_line = readline("minishell> ");
 		while (g_line)
 		{
-			if (g_line[0] != 0)
+			if (check_syntax(g_line))
 			{
-				add_history(g_line);
-				go_function(g_line); // mandar envp ou usar global variable
+				if (g_line[0] != 0)
+				{
+					add_history(g_line);
+					go_function(g_line); // mandar envp ou usar global variable
+				}
 			}
 			free (g_line);
 			g_line = readline("minishell> ");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 11:11:15 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:44:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_program	*get_curr_prog(int id);
 char		*new_strjoin(char op, char const *s2);
 
 //parse
+int			check_syntax(char *g_line);
 void		fill_dollar(char *token, int id);
 void		fill_pot(char *token, int id);
 void		fill_red(char *token, int id);

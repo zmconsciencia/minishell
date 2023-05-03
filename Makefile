@@ -2,6 +2,7 @@ NAME = $(shell basename $(CURDIR))
 
 SRCS	= SRCS/minishell.c \
 		SRCS/handle/sighandler.c \
+		SRCS/parse/check_syntax.c \
 		SRCS/parse/fill_dollar.c \
 		SRCS/parse/fill_pot.c \
 		SRCS/parse/fill_red.c \

@@ -24,8 +24,7 @@ echo
 "cat | wc"
 minishell> infile < Makefile $ cat | echo "cat | wc"
 infile
-<
-Makefile
+< Makefile
 $
 cat
 echo
