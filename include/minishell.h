@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 09:27:36 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:18:24 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,16 @@ typedef struct s_red{
 }	t_red;
 
 typedef struct s_program{
-	int					tmp_infiles;
-	int					node_id;
+	int					program_id;
 	struct s_pot		pot;
 	struct s_red		red;
 	struct s_program	*next;
 }	t_program;
 
-
+typedef struct s_meta{
+	struct s_program	*head;
+	struct s_program	*tail;
+}	t_meta;
 
 t_program	*program(void);
 

@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 11:01:13 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:16:36 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ void	go_function(char *g_line)
 	// execute()
 }
 
-t_program	*program(void)
+t_meta	*meta(void)
 {
-	static t_program	program;
+	static t_meta	meta;
 
-	return (&program);
+	return (&meta);
 }
 
 int	main(int ac, char **av, char **envp)
