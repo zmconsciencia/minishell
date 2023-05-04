@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 10:26:03 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/04 09:27:36 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ typedef struct s_pot{
 }	t_pot;
 
 typedef struct s_red{
-	char	operator;
-	int		double_operator;
-	char	*file_name;
+	int		fd_in;
+	int		fd_out;
 	int		fd[2];
 }	t_red;
 
@@ -49,6 +48,8 @@ typedef struct s_program{
 	struct s_red		red;
 	struct s_program	*next;
 }	t_program;
+
+
 
 t_program	*program(void);
 

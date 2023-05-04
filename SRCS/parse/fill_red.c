@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_red.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:50:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 10:54:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:03:17 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,44 +49,45 @@ void	fill_red2(char *token, int node_id)
 	free_lines(tab);
 }
 
-void	handle_infiles(char **tab)
+void	handle_infiles(char **tab, int node_id)
 {
-	int	i;
-	int	fd;
+	int			i;
+	t_program	*curr;
+
 
 	i = 0;
-	fd = 0;
+	curr = get_curr_prog(node_id);
 	while (tab[i])
 	{
-		if (fd)
-			close(fd);
-		fd = open(tab[i], O_RDONLY);
+		if (curr->red.fd_in)
+			close(curr->red.fd_in);
+		curr->red.fd_in = open(tab[i], O_RDONLY);
 		i++;
 	}
-	if (fd == -1)
+	if (curr->red.fd_in == -1)
 	{
-		perror(tab);
-		fd = open("tmp", O_CREAT, 0644);
-		program()->tmp_infiles++;
+		perror(tab[i]);
+		// curr->red.fd_in = open("tmp", O_CREAT, 0644);
+		// program()->tmp_infiles++;
 	}
 }
 
-void	handle_outfiles(char **tab)
+void	handle_outfiles(char **tab, int node_id)
 {
-	int	i;
-	int	fd;
+	int			i;
+	t_program	*curr;
 
 	i = 0;
-	fd = 0;
+	curr = get_curr_prog(node_id);
 	while (tab[i])
 	{
-		if (fd)
-			close(fd);
-		fd = open(tab[i], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		if (curr->red.fd_out)
+			close(curr->red.fd_out);
+		curr->red.fd_out = open(tab[i], O_CREAT | O_RDWR | O_TRUNC, 0644);
 		i++;
 	}
-	if (fd == -1)
-		perror(tab);
+	if (curr->red.fd_out == -1)
+		perror(tab[i]);
 }
 
 void	fill_red(char *token, int id)
@@ -99,23 +100,24 @@ void	fill_red(char *token, int id)
 
 	i = 0;
 	curr = get_curr_prog(id);
-	operator = token[0];
 	if (count_op_type(token))
 	{
 		infiles = ft_split(token, '<');
+		handle_infiles(infiles, id);
 		outfiles = ft_split(token, '>');
+		handle_outfiles(outfiles, id);
 	}
 	else
 	{	
 		if (token[0] == '<')
+		{
 			infiles = ft_split(token, '<');
+			handle_infiles(infiles, id);
+		}
 		else if (token[0] == '>')
+		{
 			outfiles = ft_split(token, '>');
+			handle_outfiles(outfiles, id);
+		}
 	}
-	if (infiles)
-		handle_infiles(infiles);
-	if (outfiles)
-		handle_outfiles(outfiles);
 }
-// curr->red.operator = get_operator(token);
-// curr->red.file_name = retrieve_word(token);

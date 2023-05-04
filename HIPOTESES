@@ -49,7 +49,7 @@ tratar red:
 
 -	Makefile
 
-- ls -l infile<Makefileinfile<Makefile
+- ls -l infile<Makefileinfile<     Makefile >olasfo  <conaaaaa | yxvasvtyv
 
 HAS REDIRECT:
 
@@ -60,9 +60,11 @@ HAS REDIRECT:
 - <Makefile
 
 - <Makefile<outro
+	0makefile
+	1outro
 
 - <Makefile>outro
-	Makefile>outro
+	Makefile>outro>out
 
 - > Makefile
 

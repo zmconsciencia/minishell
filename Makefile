@@ -17,6 +17,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/ft_strlen.c \
 		SRCS/utils/ft_strncmp.c \
 		SRCS/utils/get_curr_prog.c \
+		SRCS/utils/new_strjoin.c \
 		SRCS/builtins/check_builtin.c \
 		SRCS/builtins/is_builtin.c \
 		SRCS/builtins/my_cd.c \
