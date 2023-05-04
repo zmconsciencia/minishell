@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 11:18:24 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:39:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int			count_strings(char **strings);
 void		free_lines(char	**lines);
 int			ft_is_space(char c);
 char		**ft_split(char const *s, char c);
+char		*ft_strcpy(char *dest, const char *src);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -78,7 +79,7 @@ void		fill_red(char *token, int id);
 void		fill_red2(char *token, int node_id);
 int			has_redirect(char *token);
 void		parse_nodes(char **tokens, int node_id);
-void		treat_redirect(char *token, int node_id);
+char		*treat_redirect(char *token, int node_id);
 
 //builtins
 int			check_builtin(char	**quoted_line);

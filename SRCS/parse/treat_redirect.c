@@ -3,64 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   treat_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 10:10:39 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:32:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	is_append(char *token)
+int	desired_len(char *str, char op)
 {
 	int	i;
 
 	i = 0;
-	while (token[i])
-		if (token[i] == '>' && token[++i] == '>')
-			return (1);
-	return (0);
+	while (str[i] == op || ft_is_space(str[i]))
+		i++;
+	return (ft_strlen(str) - i);
 }
 
-int	is_heredoc(char *token)
+char	*get_filename(char *token)
 {
-	int	i;
+	char	*file_name;
+	int		i;
+	int		j;
 
-	i = 0;
-	while (token[i])
-		if (token[i] == '<' && token[++i] == '<')
-			return (1);
-	return (0);
+	i = 1;
+	j = 0;
+	file_name = malloc(sizeof(char) * desired_len(token, token[0]) + 1);
+	while (ft_is_space(token[i]) || token[i] == token[0])
+		i++;
+	while ((token[i] != '\0') || ft_is_space(token[i]))
+		file_name[j++] = token[i++];
+	file_name[j] = '\0';
+	return (file_name);
 }
 
-int	is_ready(char *token)
+char	*get_op(char *token)
 {
-	if (token[0] == '<' || token[0] == '>')
-		return (1);
-	return (0);
+	int		i;
+	int		j;
+	char	*op;
+
+	i = 1;
+	j = 0;
+	while (token[i] == token[0])
+		i++;
+	op = malloc(sizeof(char) * i + 1);
+	while (j < i)
+	{
+		op[j] = token[0];
+		j++;
+	}
+	op[j] = '\0';
+	return (op);
 }
 
-void	treat_redirect(char *token, int node_id)
+char	*treat_redirect(char *token, int node_id)
 {
-	(void)token;
-	(void)node_id;
-	// if (is_heredoc(token))
-	// {
-	// 	if (is_ready(token))
-	// 		// fillheredoc
-	// 	// else
-	// 		// fillheredoc2
-	// }
-	// if (is_append(token))
-	// {
-	// 	if (is_ready(token))
-	// 		// fillappend
-	// 	// else
-	// 		// fillappend2
-	// }
-	// else if (is_ready(token))
-	// 	fill_red(token, node_id);
-	// else
-	// 	fill_red2(token, node_id);
+	int		fd;
+	char	*op;
+	char	*file_name;
+
+	op = get_op(token);
+	file_name = get_filename(token);
+	if (op == "<")
+	{
+		if (fd)
+			close (fd);
+		fd = open(file_name, O_RDONLY);
+	}
 }

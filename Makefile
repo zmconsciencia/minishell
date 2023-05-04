@@ -13,6 +13,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/free_lines.c \
 		SRCS/utils/ft_is_space.c \
 		SRCS/utils/ft_split.c \
+		SRCS/utils/ft_strcpy.c \
 		SRCS/utils/ft_strjoin.c \
 		SRCS/utils/ft_strlen.c \
 		SRCS/utils/ft_strncmp.c \
