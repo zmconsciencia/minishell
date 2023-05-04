@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 19:44:19 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/04 10:26:03 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_red{
 }	t_red;
 
 typedef struct s_program{
+	int					tmp_infiles;
 	int					node_id;
 	struct s_pot		pot;
 	struct s_red		red;
