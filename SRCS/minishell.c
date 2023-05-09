@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 11:16:36 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:30:49 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	go_function(char *g_line)
 		while (tokens[++j])
 			printf("%s\n", tokens[j]);
 		// parse_nodes(tokens, i);
-		// free_tokens
+		// free_tokens -> cada token pode ser freed no parse, e fica so a faltar o free da lista tokens
 	}
 	// free_nodes
 	// execute()
@@ -95,8 +95,10 @@ int	main(int ac, char **av, char **envp)
 {
 	char	*g_line;
 	(void)av;
+	// (void)ac;
 	(void)envp;
 
+	meta()->envp = envp;
 	if (ac == 1)
 	{
 		signal(SIGINT, SIG_DFL);

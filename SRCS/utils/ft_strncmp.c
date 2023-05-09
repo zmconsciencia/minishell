@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:04:27 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/04/26 16:36:13 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:04:13 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //compara dois strings ate ao size e retorna
 //a diferenca do caracter onde deixarem de ser iguais.
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 
@@ -29,3 +29,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
+
+// int	main(void)
+// {
+// 	printf("%d\n", ft_strncmp("USER=levi", "USER", 19));
+// 	printf("%d\n", strncmp("USER=levi", "USER", 19));
+// }

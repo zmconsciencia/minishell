@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 11:18:24 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:46:38 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ typedef struct s_program{
 }	t_program;
 
 typedef struct s_meta{
+	char				**envp;
 	struct s_program	*head;
 	struct s_program	*tail;
 }	t_meta;
 
-t_program	*program(void);
+t_meta		*meta(void);
 
 //handle
 void		sighandler(int signum);
@@ -66,12 +67,14 @@ int			ft_is_space(char c);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlen(const char *s);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strncmp(char *s1, char *s2, size_t n);
+char		*ft_strnstr(char *big, char *little, size_t n);
 t_program	*get_curr_prog(int id);
 char		*new_strjoin(char op, char const *s2);
 
 //parse
 int			check_syntax(char *g_line);
+char		*expanded_dollar(char *input);
 void		fill_dollar(char *token, int id);
 void		fill_pot(char *token, int id);
 void		fill_red(char *token, int id);

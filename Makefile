@@ -3,6 +3,7 @@ NAME = $(shell basename $(CURDIR))
 SRCS	= SRCS/minishell.c \
 		SRCS/handle/sighandler.c \
 		SRCS/parse/check_syntax.c \
+		SRCS/parse/expanded_dollar.c \
 		SRCS/parse/fill_dollar.c \
 		SRCS/parse/fill_pot.c \
 		SRCS/parse/fill_red.c \
@@ -16,6 +17,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/ft_strjoin.c \
 		SRCS/utils/ft_strlen.c \
 		SRCS/utils/ft_strncmp.c \
+		SRCS/utils/ft_strnstr.c \
 		SRCS/utils/get_curr_prog.c \
 		SRCS/utils/new_strjoin.c \
 		SRCS/builtins/check_builtin.c \
