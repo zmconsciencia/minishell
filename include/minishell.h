@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 14:46:38 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:48:37 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			count_strings(char **strings);
 void		free_lines(char	**lines);
 int			ft_is_space(char c);
 char		**ft_split(char const *s, char c);
+char		*ft_strchr(const char *s, int c);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
