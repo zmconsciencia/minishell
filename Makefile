@@ -32,7 +32,7 @@ OBJ		= ${SRCS:.c=.o}
 
 CC		= cc
 
-CFLAGS	= -Wall -Werror -Wextra -g3 -O3 -fsanitize=address 
+CFLAGS	= -Wall -Werror -Wextra -g3 -O3 #-fsanitize=address 
 
 LDLIBS = -lreadline
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_curr_prog.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:40:47 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/04/27 20:42:02 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:14:31 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_program	*get_curr_prog(int id)
 {
-	t_program	*curr;
+	t_program	*curr = NULL;
 
-	curr = program();
+	// curr = program();
 	while (curr->node_id != id)
 		curr = curr->next;
 	return (curr);

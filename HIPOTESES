@@ -82,3 +82,10 @@ HAS REDIRECT:
 - infile<<Makefile
 
 - infile<<Makefile<<outro
+
+
+<<ola "cat $path" whatever
+
+"cat $path"
+<<ola
+whatever

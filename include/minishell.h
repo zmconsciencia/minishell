@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 18:39:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:13:14 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_red{
 }	t_red;
 
 typedef struct s_program{
-	int					program_id;
+	int					node_id;
 	struct s_pot		pot;
 	struct s_red		red;
 	struct s_program	*next;
@@ -73,10 +73,13 @@ char		*new_strjoin(char op, char const *s2);
 
 //parse
 int			check_syntax(char *g_line);
+int			desired_len(char *str, char op);
 void		fill_dollar(char *token, int id);
 void		fill_pot(char *token, int id);
 void		fill_red(char *token, int id);
 void		fill_red2(char *token, int node_id);
+char		*get_filename(char *token);
+char		*get_op(char *token);
 int			has_redirect(char *token);
 void		parse_nodes(char **tokens, int node_id);
 char		*treat_redirect(char *token, int node_id);

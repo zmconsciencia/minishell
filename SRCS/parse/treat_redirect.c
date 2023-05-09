@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 19:32:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:48:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_filename(char *token)
 	while ((token[i] != '\0') || ft_is_space(token[i]))
 		file_name[j++] = token[i++];
 	file_name[j] = '\0';
-	return (file_name);
+	return (file_name); //malloc
 }
 
 char	*get_op(char *token)
@@ -59,18 +59,64 @@ char	*get_op(char *token)
 	return (op);
 }
 
-char	*treat_redirect(char *token, int node_id)
+void	treat_infiles(char *file_name, int node_id)
 {
-	int		fd;
-	char	*op;
-	char	*file_name;
+	int	fd;
 
-	op = get_op(token);
+	fd = open(file_name, O_RDONLY);
+	(void)node_id;
+	if (fd == -1)
+		printf("INFILE: no such file or directory\n");
+	else
+		printf("INFILE: %s\n", file_name);
+	close(fd);
+}
+
+void	treat_outfiles(char *file_name)
+{
+	int	fd;
+
+	fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (fd == -1)
+		perror(file_name);
+	else
+		printf("OUTFILE: %s\n", file_name);
+	close(fd);
+}
+
+void	treat_heredoc(char *file_name)
+{
+	printf("EOF: %s\n", file_name);
+}
+
+void	treat_append(char *file_name)
+{
+	printf("APPEND: %s\n", file_name);
+}
+
+void	fill_red(char *token, int id)
+{
+	char	*file_name;
+	char	*op;
+
+	(void)id;
 	file_name = get_filename(token);
-	if (op == "<")
+	op = get_op(token);
+	if (ft_strlen(op) == 1)
 	{
-		if (fd)
-			close (fd);
-		fd = open(file_name, O_RDONLY);
+		if (ft_strncmp(op, "<", 1) == 0)
+			treat_infiles(file_name, id);
+		else
+			treat_outfiles(file_name);
 	}
+	else if (ft_strlen(op) == 2)
+	{
+		if (ft_strncmp(op, "<", 1) == 0)
+			treat_heredoc(file_name);
+		else
+			treat_append(file_name);
+	}
+	free(token);
+	free(op);
+	free(file_name);
 }

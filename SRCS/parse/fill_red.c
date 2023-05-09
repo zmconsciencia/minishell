@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_red.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:50:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/04 11:06:22 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:07:24 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,20 @@ int	count_op_type(char *token)
 	return (0);
 }
 
-void	fill_red2(char *token, int node_id)
-{
-	char		**tab;
-	char		operator;
-	int			i;
+// void	fill_red2(char *token, int node_id)
+// {
+// 	char		**tab;
+// 	char		operator;
+// 	int			i;
 
-	i = 0;
-	operator = get_operator(token);
-	tab = ft_split(token, operator);
-	fill_pot(tab[0], node_id);
-	while (tab[i])
-		fill_red(new_strjoin(operator, tab[i++]), node_id);
-	free_lines(tab);
-}
+// 	i = 0;
+// 	operator = get_operator(token);
+// 	tab = ft_split(token, operator);
+// 	fill_pot(tab[0], node_id);
+// 	while (tab[i])
+// 		fill_red(new_strjoin(operator, tab[i++]), node_id);
+// 	free_lines(tab);
+// }
 
 void	handle_infiles(char **tab, int node_id)
 {
@@ -90,34 +90,34 @@ void	handle_outfiles(char **tab, int node_id)
 		perror(tab[i]);
 }
 
-void	fill_red(char *token, int id)
-{
-	t_program	*curr;
-	char		operator;
-	int			i;
-	char		**infiles;
-	char		**outfiles;
+// void	fill_red(char *token, int id)
+// {
+// 	t_program	*curr;
+// 	char		operator;
+// 	int			i;
+// 	char		**infiles;
+// 	char		**outfiles;
 
-	i = 0;
-	curr = get_curr_prog(id);
-	if (count_op_type(token))
-	{
-		infiles = ft_split(token, '<');
-		handle_infiles(infiles, id);
-		outfiles = ft_split(token, '>');
-		handle_outfiles(outfiles, id);
-	}
-	else
-	{	
-		if (token[0] == '<')
-		{
-			infiles = ft_split(token, '<');
-			handle_infiles(infiles, id);
-		}
-		else if (token[0] == '>')
-		{
-			outfiles = ft_split(token, '>');
-			handle_outfiles(outfiles, id);
-		}
-	}
-}
+// 	i = 0;
+// 	curr = get_curr_prog(id);
+// 	if (count_op_type(token))
+// 	{
+// 		infiles = ft_split(token, '<');
+// 		handle_infiles(infiles, id);
+// 		outfiles = ft_split(token, '>');
+// 		handle_outfiles(outfiles, id);
+// 	}
+// 	else
+// 	{	
+// 		if (token[0] == '<')
+// 		{
+// 			infiles = ft_split(token, '<');
+// 			handle_infiles(infiles, id);
+// 		}
+// 		else if (token[0] == '>')
+// 		{
+// 			outfiles = ft_split(token, '>');
+// 			handle_outfiles(outfiles, id);
+// 		}
+// 	}
+// }
