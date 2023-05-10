@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 15:51:31 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:31:58 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parse_nodes(char **tokens, int id)
 	{
 		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<')) //bruno -> ><
 			treat_redirect(tokens[i], id); //ze
-		else if (ft_strchr(tokens[i], '\"')) //ze
+		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
 		{
 			if (!ft_strchr(tokens[i], '$'))
 				fill_pot(treat_quotes(tokens[i], 1), id); //bruno
@@ -53,3 +53,8 @@ void	parse_nodes(char **tokens, int id)
 }
 
 //ter atencao caso haja dollar dentro de aspas
+
+//tratar EOF e appe <<>>
+//se tiver $ a meio do token, e fazer string join com var expandida
+
+//
