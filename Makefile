@@ -12,6 +12,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/count_strings.c \
 		SRCS/utils/free_lines.c \
 		SRCS/utils/ft_is_space.c \
+		SRCS/utils/ft_putstr_fd.c \
 		SRCS/utils/ft_split.c \
 		SRCS/utils/ft_strcpy.c \
 		SRCS/utils/ft_strjoin.c \
@@ -26,7 +27,9 @@ SRCS	= SRCS/minishell.c \
 		SRCS/builtins/my_env.c \
 		SRCS/builtins/my_export.c \
 		SRCS/builtins/my_pwd.c \
-		SRCS/builtins/my_export.c
+		SRCS/builtins/my_export.c \
+		SRCS/gnl/get_next_line_utils.c \
+		SRCS/gnl/get_next_line.c
 
 OBJ		= ${SRCS:.c=.o}
 

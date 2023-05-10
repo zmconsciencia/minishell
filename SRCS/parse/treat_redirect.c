@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 13:48:46 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:51:48 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,45 @@ void	treat_outfiles(char *file_name)
 	close(fd);
 }
 
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	return (NULL);
+}
+
 void	treat_heredoc(char *file_name)
 {
-	printf("EOF: %s\n", file_name);
+	char	*str;
+	char	*limiter;
+	int		fd;
+
+	write(1, "> ", 2);
+	fd = open(file_name, O_RDWR, O_CREAT, 0644);
+	limiter = ft_strjoin(file_name, "\n");
+	str = get_next_line(0);
+	while (str)
+	{
+		write(1, "> ", 2);
+		if (ft_strchr(str, *limiter) \
+			&& (!ft_strncmp(ft_strchr(str, *limiter), \
+				limiter, ft_strlen(limiter))))
+			break ;
+		ft_putstr_fd(str, fd);
+		free(str);
+		str = get_next_line(0);
+	}
+	if (str)
+		free(str);
 }
 
 void	treat_append(char *file_name)

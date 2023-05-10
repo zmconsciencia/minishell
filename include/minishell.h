@@ -6,19 +6,14 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 14:13:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/10 11:52:25 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-# define MINISHELL_H
-# define BUILTIN 1
-# define OPERATOR 2
-# define PIPE 3
-# define FILENAME 4
-# define PROGRAM 5
-# define FLAG 6
-# define OTHER 7
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -63,6 +58,7 @@ void		sighandler2(int signum);
 int			count_strings(char **strings);
 void		free_lines(char	**lines);
 int			ft_is_space(char c);
+void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
 char		*ft_strcpy(char *dest, const char *src);
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -93,5 +89,11 @@ int			my_echo(char **quoted_line);
 // int		my_export(char *quoted_line);
 int			my_pwd(char **quoted_line);
 // int		my_unset(char *quoted_line);
+
+//gnl
+size_t		ft_strlen_gnl(const char *str);
+char		*ft_strjoin_gnl(char *str1, char *str2);
+int			clearstack(char *stack);
+char		*get_next_line(int fd);
 
 #endif

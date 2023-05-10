@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 13:29:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/10 10:45:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char	*treat_and_replace(char *g_line)
 		if (g_line[i] == '<' || g_line[i] == '>')
 		{
 			g_line = add_three(g_line, i++);
+			while (g_line[i] == '<' || g_line[i] == '>')
+				i++;
 			while (ft_is_space(g_line[++i]) && \
 				(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
 				;
