@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 15:48:37 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:23:44 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_pot{
 
 typedef struct s_red{
 	int		fd_in;
-	int		fd_out;
 	int		fd[2];
 }	t_red;
 
@@ -83,6 +82,7 @@ void		fill_red2(char *token, int node_id);
 int			has_redirect(char *token);
 void		parse_nodes(char **tokens, int node_id);
 void		treat_redirect(char *token, int node_id);
+char		*treat_and_replace(char *g_line);
 
 //builtins
 int			check_builtin(char	**quoted_line);

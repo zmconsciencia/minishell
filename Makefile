@@ -10,6 +10,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/parse/has_redirect.c \
 		SRCS/parse/parse_nodes.c \
 		SRCS/parse/treat_redirect.c \
+		SRCS/parse/treat_and_replace.c \
 		SRCS/utils/count_strings.c \
 		SRCS/utils/free_lines.c \
 		SRCS/utils/ft_is_space.c \

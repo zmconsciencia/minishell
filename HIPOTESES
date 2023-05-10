@@ -82,3 +82,43 @@ HAS REDIRECT:
 - infile<<Makefile
 
 - infile<<Makefile<<outro
+
+
+minishell> aisdb "aosdj  $USER sdfuiygdsf" sdfibdf
+aisdb
+"aosdj  $USER sdfuiygdsf"
+sdfibdf
+minishell> 
+
+minishell> asdhv"asidb"
+asdhv"asidb"
+
+minishell git:(master) ✗ echo"ola"
+zsh: command not found: echoola
+
+adsjfhv$USER
+
+minishell> bla bla "asdhb"
+bla
+bla
+"asdhb"
+minishell> bla bla "asdhb $asdjb"
+bla
+bla
+"asdhb $asdjb"
+minishell> bla bla "asdhb $asdjb" askdjbn$asdkjb
+bla
+bla
+"asdhb $asdjb"
+askdjbn$asdkjb
+minishell> bla bla "asdhb $asdjb" askdjbn$asdkjb $alsdhb
+bla
+bla
+"asdhb $asdjb"
+askdjbn$asdkjb
+$alsdhb
+
+
+brXuXnoX
+
+b
