@@ -11,6 +11,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/parse/parse_nodes.c \
 		SRCS/parse/treat_redirect.c \
 		SRCS/parse/treat_and_replace.c \
+		SRCS/parse/treat_quotes.c \
 		SRCS/utils/count_strings.c \
 		SRCS/utils/free_lines.c \
 		SRCS/utils/ft_is_space.c \
@@ -21,6 +22,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/ft_strncmp.c \
 		SRCS/utils/ft_strnstr.c \
 		SRCS/utils/get_curr_prog.c \
+		SRCS/utils/is_alpha_num.c \
 		SRCS/utils/new_strjoin.c \
 		SRCS/builtins/check_builtin.c \
 		SRCS/builtins/is_builtin.c \
@@ -35,7 +37,7 @@ OBJ		= ${SRCS:.c=.o}
 
 CC		= cc
 
-CFLAGS	= -Wall -Werror -Wextra -g3 -O3 -fsanitize=address 
+CFLAGS	= -Wall -Werror -Wextra -g3 -O3 -fsanitize=address -g
 
 LDLIBS = -lreadline
 

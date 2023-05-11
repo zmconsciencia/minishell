@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/03 19:44:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:04:14 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

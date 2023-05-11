@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   is_alpha_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 11:04:38 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/10 14:32:12 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/05/11 14:09:43 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/11 14:10:35 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-//procura na string um elemento c, e retorna
-//o ponteiro para onde foi encontrado.
-char	*ft_strchr(const char *s, int c)
+int	is_alpha_num(char c)
 {
-	while (*s)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	if (*s == (char)c)
-		return ((char *)s);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || \
+		(c >= '0' && c <= '9'))
+		return (1);
 	return (0);
 }
-
-/* 
-int main(void)
-{
-	char s[] = "teste";
-	printf("%s", ft_strchr("", 97));
-	return(0);
-}
- */

@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/10 13:23:44 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:11:14 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ size_t		ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_strnstr(char *big, char *little, size_t n);
 t_program	*get_curr_prog(int id);
+int			is_alpha_num(char c);
 char		*new_strjoin(char op, char const *s2);
 
 //parse
@@ -83,6 +84,7 @@ int			has_redirect(char *token);
 void		parse_nodes(char **tokens, int node_id);
 void		treat_redirect(char *token, int node_id);
 char		*treat_and_replace(char *g_line);
+char		*treat_quotes(char *token);
 
 //builtins
 int			check_builtin(char	**quoted_line);
