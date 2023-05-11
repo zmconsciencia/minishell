@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 14:11:14 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:14:35 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_pot{
 
 typedef struct s_red{
 	int		fd_in;
+	int		fd_out;
 	int		fd[2];
 }	t_red;
 
@@ -78,11 +79,9 @@ int			check_syntax(char *g_line);
 char		*expanded_dollar(char *input);
 void		fill_dollar(char *token, int id);
 void		fill_pot(char *token, int id);
-void		fill_red(char *token, int id);
-void		fill_red2(char *token, int node_id);
 int			has_redirect(char *token);
 void		parse_nodes(char **tokens, int node_id);
-void		treat_redirect(char *token, int node_id);
+void		treat_redirect(char *token, t_program *node);
 char		*treat_and_replace(char *g_line);
 char		*treat_quotes(char *token);
 

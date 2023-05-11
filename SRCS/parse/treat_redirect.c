@@ -3,64 +3,134 @@
 /*                                                        :::      ::::::::   */
 /*   treat_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 15:32:33 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:16:42 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// int	is_append(char *token)
-// {
-// 	int	i;
+int	desired_len(char *str, char op)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (token[i])
-// 		if (token[i] == '>' && token[++i] == '>')
-// 			return (1);
-// 	return (0);
+	i = 0;
+	while (str[i] == op || ft_is_space(str[i]))
+		i++;
+	return (ft_strlen(str) - i);
+}
+
+char	*get_filename(char *token)
+{
+	char	*file_name;
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	file_name = malloc(sizeof(char) * desired_len(token, token[0]) + 1);
+	while (ft_is_space(token[i]) || token[i] == token[0])
+		i++;
+	while ((token[i] != '\0') || ft_is_space(token[i]))
+		file_name[j++] = token[i++];
+	file_name[j] = '\0';
+	return (file_name); //malloc
+}
+
+char	*get_op(char *token)
+{
+	int		i;
+	int		j;
+	char	*op;
+
+	i = 1;
+	j = 0;
+	while (token[i] == token[0])
+		i++;
+	op = malloc(sizeof(char) * i + 1);
+	while (j < i)
+	{
+		op[j] = token[0];
+		j++;
+	}
+	op[j] = '\0';
+	return (op);
+}
+
+void	treat_infiles(char *file_name, t_program *node)
+{
+	node->red.fd_in = open(file_name, O_RDONLY);
+	if (node->red.fd_in == -1)
+		printf("INFILE: no such file or directory\n");
+	else
+		printf("INFILE: %s\n", file_name);
+	close(node->red.fd_in);
+}
+
+void	treat_outfiles(char *file_name, t_program *node)
+{
+	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (node->red.fd_out == -1)
+		perror(file_name);
+	else
+		printf("OUTFILE: %s\n", file_name);
+	close(node->red.fd_out);
+}
+
+// void	treat_heredoc(char *file_name, t_program node)
+// {
+// 	char	*str;
+// 	char	*limiter;
+// 	int		fd;
+
+// 	write(1, "> ", 2);
+// 	fd = open(file_name, O_RDWR, O_CREAT, 0644);
+// 	limiter = ft_strjoin(file_name, "\n");
+// 	str = get_next_line(0);
+// 	while (str)
+// 	{
+// 		write(1, "> ", 2);
+// 		if (ft_strchr(str, *limiter)
+// 			&& (!ft_strncmp(ft_strchr(str, *limiter),
+// 				limiter, ft_strlen(limiter))))
+// 			break ;
+// 		ft_putstr_fd(str, fd);
+// 		free(str);
+// 		str = get_next_line(0);
+// 	}
+// 	if (str)
+// 		free(str);
 // }
 
-// int	is_heredoc(char *token)
+// void	treat_append(char *file_name, t_program *node)
 // {
-// 	int	i;
-
-// 	i = 0;
-// 	while (token[i])
-// 		if (token[i] == '<' && token[++i] == '<')
-// 			return (1);
-// 	return (0);
+// 	printf("APPEND: %s\n", file_name);
 // }
 
-// int	is_ready(char *token)
-// {
-// 	if (token[0] == '<' || token[0] == '>')
-// 		return (1);
-// 	return (0);
-// }
+void	treat_redirect(char *token, t_program *node)
+{
+	char	*file_name;
+	char	*op;
 
-// void	treat_redirect(char *token, int node_id)
-// {
-// 	(void)token;
-// 	(void)node_id;
-// 	// if (is_heredoc(token))
-// 	// {
-// 	// 	if (is_ready(token))
-// 	// 		// fillheredoc
-// 	// 	// else
-// 	// 		// fillheredoc2
-// 	// }
-// 	// if (is_append(token))
-// 	// {
-// 	// 	if (is_ready(token))
-// 	// 		// fillappend
-// 	// 	// else
-// 	// 		// fillappend2
-// 	// }
-// 	// else if (is_ready(token))
-// 	// 	fill_red(token, node_id);
-// 	// else
-// 	// 	fill_red2(token, node_id);
-// }
+	file_name = get_filename(token);
+	op = get_op(token);
+	if (ft_strlen(op) == 1)
+	{
+		if (ft_strncmp(op, "<", 1) == 0)
+			treat_infiles(file_name, node);
+		else
+			treat_outfiles(file_name, node);
+	}
+	// else if (ft_strlen(op) == 2)
+	// {
+	// 	if (ft_strncmp(op, "<", 1) == 0)
+	// 		treat_heredoc(file_name, node);
+	// 	else
+	// 		treat_append(file_name, node);
+	// }
+	free(token);
+	free(op);
+	free(file_name);
+}

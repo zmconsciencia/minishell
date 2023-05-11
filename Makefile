@@ -6,8 +6,6 @@ SRCS	= SRCS/minishell.c \
 		SRCS/parse/expanded_dollar.c \
 		SRCS/parse/fill_dollar.c \
 		SRCS/parse/fill_pot.c \
-		SRCS/parse/fill_red.c \
-		SRCS/parse/has_redirect.c \
 		SRCS/parse/parse_nodes.c \
 		SRCS/parse/treat_redirect.c \
 		SRCS/parse/treat_and_replace.c \
