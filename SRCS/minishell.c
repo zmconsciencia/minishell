@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 11:52:43 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:12:15 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	go_function(char *g_line)
 	int		i;
 
 	i = -1;
-	treated = treat_and_replace(g_line); // expandir variaveis
-	// printf("terminei e a g_line e: %s\n", treated);
+	treated = treat_and_replace(g_line);
 	nodes = ft_split(treated, 2);
 	while (nodes[++i] != 0)
 	{
