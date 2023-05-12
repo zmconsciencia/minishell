@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_dollar.c                                      :+:      :+:    :+:   */
+/*   free_program.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 19:41:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 06:55:46 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/05/12 10:27:02 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/12 10:27:39 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// void	fill_dollar(char *token, int id)
-// {
-// 	t_program	*curr;
+void	free_program(t_program	*node)
+{
+	int	i;
 
-// 	curr = get_curr_prog(id);
-// 	// guardar no pot o valor da variavel
-// }
+	i = 0;
+	
+}

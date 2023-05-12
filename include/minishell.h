@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/12 09:50:55 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:18:36 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ char		*new_strjoin(char op, char const *s2);
 //parse
 int			check_syntax(char *g_line);
 char		*expanded_dollar(char *input);
-void		fill_dollar(char *token, int id);
-void		fill_pot(char *token, int id);
+void		fill_pot(char *token, t_program *node);
 void		parse_nodes(char **tokens, int node_id);
 void		treat_redirect(char *token, t_program *node);
 char		*treat_and_replace(char *g_line);

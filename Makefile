@@ -4,7 +4,6 @@ SRCS	= SRCS/minishell.c \
 		SRCS/handle/sighandler.c \
 		SRCS/parse/check_syntax.c \
 		SRCS/parse/expanded_dollar.c \
-		SRCS/parse/fill_dollar.c \
 		SRCS/parse/fill_pot.c \
 		SRCS/parse/parse_nodes.c \
 		SRCS/parse/treat_redirect.c \
