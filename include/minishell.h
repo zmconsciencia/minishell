@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/12 11:18:36 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/15 00:15:46 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_red{
 }	t_red;
 
 typedef struct s_program{
-	int					program_id;
+	int					node_id;
 	struct s_pot		pot;
 	struct s_red		red;
 	struct s_program	*next;
@@ -50,11 +50,16 @@ typedef struct s_program{
 
 typedef struct s_meta{
 	char				**envp;
+	// int					fd_last;
 	struct s_program	*head;
 	struct s_program	*tail;
 }	t_meta;
 
 t_meta		*meta(void);
+
+//execute
+void		execute(int node_id);
+void		clear_last(void);
 
 //handle
 void		sighandler(int signum);
@@ -84,13 +89,13 @@ char		*treat_and_replace(char *g_line);
 char		*treat_quotes(char *token);
 
 //builtins
-int			check_builtin(char	**quoted_line);
+int			check_builtin(t_program *curr);
 int			is_builtin(char	*builtin, char *quoted_line);
 // int		my_cd(char **quoted_line);
-int			my_echo(char **quoted_line);
+int			my_echo(char **flags);
 // int		my_env(char **quoted_line);
 // int		my_export(char *quoted_line);
-int			my_pwd(char **quoted_line);
+int			my_pwd(void);
 // int		my_unset(char *quoted_line);
 
 #endif

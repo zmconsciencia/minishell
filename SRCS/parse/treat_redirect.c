@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 19:16:42 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/14 19:58:11 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	treat_infiles(char *file_name, t_program *node)
 		printf("INFILE: no such file or directory\n");
 	else
 		printf("INFILE: %s\n", file_name);
-	close(node->red.fd_in);
+	close(node->red.fd_in); // o fd_in e fd_out ficou com o mesmo valor !
 }
 
 void	treat_outfiles(char *file_name, t_program *node)
@@ -130,7 +130,7 @@ void	treat_redirect(char *token, t_program *node)
 	// 	else
 	// 		treat_append(file_name, node);
 	// }
-	free(token);
-	free(op);
+	// free(token); --> tirar
+	free(op); // --> talvez nao seja preciso ??
 	free(file_name);
 }

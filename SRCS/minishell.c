@@ -6,13 +6,13 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/12 11:39:16 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/15 02:46:05 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	go_function(char *g_line)
+void	start_function(char *g_line)
 {
 	char	*treated;
 	char	**nodes;
@@ -26,10 +26,11 @@ void	go_function(char *g_line)
 	{
 		tokens = ft_split(nodes[i], 3);
 		parse_nodes(tokens, i);
-		free_lines(tokens);
+		// free_lines(tokens);
+		execute(i);
+		// clear_last();
 	}
 	// // free_nodes
-	// // execute()
 }
 
 t_meta	*meta(void)
@@ -56,8 +57,9 @@ int	main(int ac, char **av, char **envp)
 			if (g_line[0] /* && check_syntax(g_line) */)
 			{
 				add_history(g_line);
-				go_function(g_line);
+				start_function(g_line);
 			}
+			// clear_last();<
 			// free (g_line); // ao fazer free na treat ja nao preciso fazer aqui, ou vice versa
 			g_line = readline("minishell> ");
 		}

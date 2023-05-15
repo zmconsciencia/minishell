@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 19:12:03 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 21:19:24 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/02/24 15:37:38 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/03/06 10:13:21 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../include/pipex.h"
 
-int	my_pwd(void)
+int	ft_strlen(char *s)
 {
-	char	*buf;
+	int	i;
 
-	buf = 0;
-	printf("%s\n", getcwd(buf, 0));
-	return (1);
+	i = 0;
+	if (s)
+	{
+		while (s[i] != '\0' && s[i] != '\n')
+			i++;
+		if (s[i] == '\n')
+			i++;
+	}
+	return (i);
 }

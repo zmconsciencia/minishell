@@ -1,6 +1,8 @@
 NAME = $(shell basename $(CURDIR))
 
 SRCS	= SRCS/minishell.c \
+		SRCS/execute/execute.c \
+		SRCS/execute/clear_last.c \
 		SRCS/handle/sighandler.c \
 		SRCS/parse/check_syntax.c \
 		SRCS/parse/expanded_dollar.c \

@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_echo.c                                          :+:      :+:    :+:   */
+/*   check_access.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 22:22:24 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/03/06 11:37:32 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/09 14:22:07 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/pipex.h"
 
-int	my_echo(char **flags)
+char	*check_access(char **paths, char *arg)
 {
-	int	i;
+	int		i;
+	char	*temp;
 
-	i = 1;
-	if (flags[i])
+	i = 0;
+	temp = join_path(paths[i], arg);
+	while (paths[i] && access(temp, F_OK))
 	{
-		if (!ft_strncmp(flags[i], "-n\0", 2))
-			i = 2;
-		while (flags[i])
-		{
-			printf("%s", flags[i]);
-			if (flags[++i])
-				printf(" ");
-		}
-		if (ft_strncmp(flags[1], "-n\0", 2))
-			printf("\n");
+		free(temp);
+		i++;
+		temp = join_path(paths[i], arg);
 	}
-	else
-		printf("\n");
-	return (1); //o original retorna 0 em sucesso
+	if (access(temp, F_OK))
+	{
+		perror ("Program not found");
+		exit (0);
+	}
+	i = 0;
+	while (paths[i])
+		free(paths[i++]);
+	free (paths);
+	return (temp);
 }

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 19:12:03 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 21:19:24 by bde-seic         ###   ########.fr       */
+/*   Created: 2022/10/25 15:14:22 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/03/08 11:41:14 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../include/pipex.h"
 
-int	my_pwd(void)
+/* escreve a str no ficheiro para onde aponta o fd 
+ */
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*buf;
+	int	i;
 
-	buf = 0;
-	printf("%s\n", getcwd(buf, 0));
-	return (1);
+	i = 0;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }

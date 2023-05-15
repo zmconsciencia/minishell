@@ -1,0 +1,13 @@
+- acrescentei a pasta pipex a geral
+- alterei no minishell.c o nome go function para start function
+- pus a trabalhar o treat treat_redirect (descomentei no parse)
+- comentario no close do treat_redirect
+- retirei um free tokens do treat_redirect porque damos free noutro sitio
+- melhorei o treat_and_replace caso nao feche as aspas antes de pipe
+- criei pasta e ficheiro execute para começar a pensar em builtin e pipex
+- alterei program_id para node_id no .h e todos os ficheiros
+- rever o add_to_list que esta a funcinar mal --> a partida esta ok
+- dentro do execute, ao chamar a segunda linha, ele repete a primeira
+	talvez seja preciso fazer um clear_last
+	andar com o curr ate ao ultimo prog
+	por causa disto, tenho clear_last em minishell, start_function e execute para acertar onde e

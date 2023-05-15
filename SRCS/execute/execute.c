@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_echo.c                                          :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 22:22:24 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/15 00:17:52 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	my_echo(char **flags)
+void	execute(int node_id)
 {
-	int	i;
-
-	i = 1;
-	if (flags[i])
+	t_program	*curr;
+	
+	(void)node_id;
+	curr = meta()->head;
+	// curr = get_curr_prog(node_id);
+	printf("passei por aqui\n");
+	while (curr)
 	{
-		if (!ft_strncmp(flags[i], "-n\0", 2))
-			i = 2;
-		while (flags[i])
+		printf("vou procurar por: %s\n", curr->pot.program);
+		if (!check_builtin(curr))
 		{
-			printf("%s", flags[i]);
-			if (flags[++i])
-				printf(" ");
+			printf("vou entrar no pipex\n");
+			//pipex(curr)
 		}
-		if (ft_strncmp(flags[1], "-n\0", 2))
-			printf("\n");
+		curr = curr->next;
 	}
-	else
-		printf("\n");
-	return (1); //o original retorna 0 em sucesso
+	// clear_last();
+	// apagar programas
 }

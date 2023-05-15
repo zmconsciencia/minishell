@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_echo.c                                          :+:      :+:    :+:   */
+/*   clear_last.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 22:22:24 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/05/14 23:35:28 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/14 23:39:27 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	my_echo(char **flags)
+void	clear_last(void)
 {
-	int	i;
+	t_program	*curr;
 
-	i = 1;
-	if (flags[i])
+	curr = meta()->head;
+	while (curr->next)
 	{
-		if (!ft_strncmp(flags[i], "-n\0", 2))
-			i = 2;
-		while (flags[i])
-		{
-			printf("%s", flags[i]);
-			if (flags[++i])
-				printf(" ");
-		}
-		if (ft_strncmp(flags[1], "-n\0", 2))
-			printf("\n");
+		meta()->head = curr->next;
+		free(curr);
+		curr = meta()->head;
 	}
-	else
-		printf("\n");
-	return (1); //o original retorna 0 em sucesso
+	// meta().fd_last = curr->red.fd_out;
+	free(curr);
 }

@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_echo.c                                          :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 22:22:24 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/03/06 10:12:02 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/05/09 10:51:24 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/pipex.h"
 
-int	my_echo(char **flags)
+char	**get_path(char **envp)
 {
-	int	i;
+	int		i;
+	char	*env_var;
+	char	**paths;
 
-	i = 1;
-	if (flags[i])
+	i = 0;
+	env_var = envp[i];
+	paths = 0;
+	while (!ft_strnstr(env_var, "PATH=", 5))
+		env_var = envp[i++];
+	if (!env_var)
 	{
-		if (!ft_strncmp(flags[i], "-n\0", 2))
-			i = 2;
-		while (flags[i])
-		{
-			printf("%s", flags[i]);
-			if (flags[++i])
-				printf(" ");
-		}
-		if (ft_strncmp(flags[1], "-n\0", 2))
-			printf("\n");
+		perror ("PATH not found");
+		exit (0);
 	}
-	else
-		printf("\n");
-	return (1); //o original retorna 0 em sucesso
+	env_var = trim_path(env_var);
+	paths = ft_split(env_var, ':');
+	free (env_var);
+	return (paths);
 }
