@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 00:15:46 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:34:09 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_meta{
 t_meta		*meta(void);
 
 //execute
-void		execute(int node_id);
+void		execute(void);
 void		clear_last(void);
 
 //handle
@@ -91,11 +91,11 @@ char		*treat_quotes(char *token);
 //builtins
 int			check_builtin(t_program *curr);
 int			is_builtin(char	*builtin, char *quoted_line);
-// int		my_cd(char **quoted_line);
+int			my_cd(char **path);
 int			my_echo(char **flags);
-// int		my_env(char **quoted_line);
+int			my_env(void);
 // int		my_export(char *quoted_line);
-int			my_pwd(void);
+int			my_pwd(char	**flags);
 // int		my_unset(char *quoted_line);
 
 #endif

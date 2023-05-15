@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 23:16:25 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:55:05 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	parse_nodes(char **tokens, int id)
 			fill_pot(tokens[i], node);
 		// printf("%s\n", tokens[i]); --> tirar
 	}
-	add_to_list(node);
+	add_to_list(node); 
 	// print_program(node); // --> tirar
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
 } 
