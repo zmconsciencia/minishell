@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 19:16:42 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:45:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,29 @@ void	treat_outfiles(char *file_name, t_program *node)
 	close(node->red.fd_out);
 }
 
-// void	treat_heredoc(char *file_name, t_program node)
-// {
-// 	char	*str;
-// 	char	*limiter;
-// 	int		fd;
+void	treat_heredoc(char *file_name)
+{
+	char	*str;
+	char	*limiter;
 
-// 	write(1, "> ", 2);
-// 	fd = open(file_name, O_RDWR, O_CREAT, 0644);
-// 	limiter = ft_strjoin(file_name, "\n");
-// 	str = get_next_line(0);
-// 	while (str)
-// 	{
-// 		write(1, "> ", 2);
-// 		if (ft_strchr(str, *limiter)
-// 			&& (!ft_strncmp(ft_strchr(str, *limiter),
-// 				limiter, ft_strlen(limiter))))
-// 			break ;
-// 		ft_putstr_fd(str, fd);
-// 		free(str);
-// 		str = get_next_line(0);
-// 	}
-// 	if (str)
-// 		free(str);
-// }
+	limiter = ft_strjoin(file_name, "\n");
+	while (1)
+	{
+		ft_putstr_fd("> ", 2);
+		str = get_next_line(0);
+		if (!str)
+			break ;
+		if (!ft_strncmp(str, limiter, ft_strlen(limiter)))
+			break ;
+		if (str)
+		{
+			ft_putstr_fd(str, 1);
+			free(str);
+		}
+	}
+	if (str)
+		free(str);
+}
 
 // void	treat_append(char *file_name, t_program *node)
 // {
