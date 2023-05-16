@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_nodes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 14:21:52 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:49:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,21 @@ void	add_to_list(t_program *node)
 void	parse_nodes(char **tokens, int id)
 {
 	int			i;
-	// t_program	*node;
+	t_program	*node;
 
 	(void)id;
 	i = -1;
-	// node = malloc(sizeof(t_program));
-	// node->program_id = id;
+	node = malloc(sizeof(t_program));
+	node->program_id = id;
 	while (tokens[++i])
 	{
-		// if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
-		// 	treat_redirect(tokens[i], node);
-		/* else */ if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
-						tokens[i] = treat_quotes(tokens[i]);
+		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
+			treat_redirect(tokens[i], node);
+		if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
+			tokens[i] = treat_quotes(tokens[i]);
 			// fill_pot(treat_quotes(tokens[i]), node);
 		// else
 		// 	fill_pot(tokens[i], node);
-		printf("%s\n", tokens[i]);
 	}
 	// add_to_list(node);
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red

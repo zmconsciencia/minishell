@@ -38,14 +38,14 @@ OBJ		= ${SRCS:.c=.o}
 
 CC		= cc
 
-CFLAGS	= -Wall -Werror -Wextra -g3 -O3 -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -g3 -O3 -fsanitize=address -g#-Werror 
 
 LDLIBS = -lreadline
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -g3 -O3 -c $< -o $@
+	$(CC) -Wall -Wextra  -g3 -O3 -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDLIBS)

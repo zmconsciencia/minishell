@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/16 13:45:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:10:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,19 @@ void	treat_outfiles(char *file_name, t_program *node)
 	close(node->red.fd_out);
 }
 
-void	treat_heredoc(char *file_name)
+int	treat_heredoc(char *file_name, t_program *node)
 {
 	char	*str;
 	char	*limiter;
+	int		here_fds[2];
 
+	(void)node;
 	limiter = ft_strjoin(file_name, "\n");
+	if (pipe(here_fds) == -1)
+		perror("");
 	while (1)
 	{
-		ft_putstr_fd("> ", 2);
+		ft_putstr_fd("> ", 1);
 		str = get_next_line(0);
 		if (!str)
 			break ;
@@ -95,23 +99,30 @@ void	treat_heredoc(char *file_name)
 			break ;
 		if (str)
 		{
-			ft_putstr_fd(str, 1);
+			ft_putstr_fd(str, here_fds[1]);
 			free(str);
 		}
 	}
 	if (str)
 		free(str);
+	node->red.fd_in = here_fds[0];
 }
 
-// void	treat_append(char *file_name, t_program *node)
-// {
-// 	printf("APPEND: %s\n", file_name);
-// }
+void	treat_append(char *file_name, t_program *node)
+{
+	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
+	if (node->red.fd_out == -1)
+		perror(file_name);
+	else
+		printf("OUTFILE: %s\n", file_name);
+	close(node->red.fd_out);
+}
 
 void	treat_redirect(char *token, t_program *node)
 {
 	char	*file_name;
 	char	*op;
+	int		fd;
 
 	file_name = get_filename(token);
 	op = get_op(token);
@@ -122,14 +133,13 @@ void	treat_redirect(char *token, t_program *node)
 		else
 			treat_outfiles(file_name, node);
 	}
-	// else if (ft_strlen(op) == 2)
-	// {
-	// 	if (ft_strncmp(op, "<", 1) == 0)
-	// 		treat_heredoc(file_name, node);
-	// 	else
-	// 		treat_append(file_name, node);
-	// }
-	free(token);
+	else if (ft_strlen(op) == 2)
+	{
+		if (ft_strncmp(op, "<", 1) == 0)
+			fd = treat_heredoc(file_name, node);
+		else
+			treat_append(file_name, node);
+	}
 	free(op);
 	free(file_name);
 }
