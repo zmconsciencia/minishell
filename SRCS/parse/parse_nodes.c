@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 22:42:54 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:13:21 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ void	parse_nodes(char **tokens, int id)
 			fill_pot(tokens[i], node);
 	}
 	if (node->red.here_doc)
+	{
 		run_heredoc(node->red.limiter, node);
+		free(node->red.limiter);
+	}
 	// add_to_list(node);
 	print_program(node); // --> tirar
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red

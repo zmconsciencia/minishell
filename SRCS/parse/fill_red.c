@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:47:58 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/18 22:35:19 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:14:10 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	fill_red(char *token, t_program *node)
 		else
 			treat_append(file_name, node);
 	}
+	if (!node->red.here_doc)
+		free(file_name);
 	free(op);
-	// free(file_name); //coment para funcionar o heredoc
 }
