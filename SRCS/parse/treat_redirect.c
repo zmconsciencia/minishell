@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 19:58:11 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:22:05 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,40 +79,50 @@ void	treat_outfiles(char *file_name, t_program *node)
 	close(node->red.fd_out);
 }
 
-// void	treat_heredoc(char *file_name, t_program node)
-// {
-// 	char	*str;
-// 	char	*limiter;
-// 	int		fd;
+int	treat_heredoc(char *file_name, t_program *node)
+{
+	char	*str;
+	char	*limiter;
+	int		here_fds[2];
 
-// 	write(1, "> ", 2);
-// 	fd = open(file_name, O_RDWR, O_CREAT, 0644);
-// 	limiter = ft_strjoin(file_name, "\n");
-// 	str = get_next_line(0);
-// 	while (str)
-// 	{
-// 		write(1, "> ", 2);
-// 		if (ft_strchr(str, *limiter)
-// 			&& (!ft_strncmp(ft_strchr(str, *limiter),
-// 				limiter, ft_strlen(limiter))))
-// 			break ;
-// 		ft_putstr_fd(str, fd);
-// 		free(str);
-// 		str = get_next_line(0);
-// 	}
-// 	if (str)
-// 		free(str);
-// }
+	(void)node;
+	limiter = ft_strjoin(file_name, "\n");
+	if (pipe(here_fds) == -1)
+		perror("");
+	while (1)
+	{
+		ft_putstr_fd("> ", 1);
+		str = get_next_line(0);
+		if (!str)
+			break ;
+		if (!ft_strncmp(str, limiter, ft_strlen(limiter)))
+			break ;
+		if (str)
+		{
+			ft_putstr_fd(str, here_fds[1]);
+			free(str);
+		}
+	}
+	if (str)
+		free(str);
+	node->red.fd_in = here_fds[0];
+}
 
-// void	treat_append(char *file_name, t_program *node)
-// {
-// 	printf("APPEND: %s\n", file_name);
-// }
+void	treat_append(char *file_name, t_program *node)
+{
+	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
+	if (node->red.fd_out == -1)
+		perror(file_name);
+	else
+		printf("OUTFILE: %s\n", file_name);
+	close(node->red.fd_out);
+}
 
 void	treat_redirect(char *token, t_program *node)
 {
 	char	*file_name;
 	char	*op;
+	int		fd;
 
 	file_name = get_filename(token);
 	op = get_op(token);
@@ -123,14 +133,13 @@ void	treat_redirect(char *token, t_program *node)
 		else
 			treat_outfiles(file_name, node);
 	}
-	// else if (ft_strlen(op) == 2)
-	// {
-	// 	if (ft_strncmp(op, "<", 1) == 0)
-	// 		treat_heredoc(file_name, node);
-	// 	else
-	// 		treat_append(file_name, node);
-	// }
-	// free(token); --> tirar
-	free(op); // --> talvez nao seja preciso ??
+	else if (ft_strlen(op) == 2)
+	{
+		if (ft_strncmp(op, "<", 1) == 0)
+			fd = treat_heredoc(file_name, node);
+		else
+			treat_append(file_name, node);
+	}
+	free(op);
 	free(file_name);
 }

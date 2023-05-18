@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 15:34:09 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:22:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # define PROGRAM 5
 # define FLAG 6
 # define OTHER 7
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -69,6 +73,7 @@ void		sighandler2(int signum);
 int			count_strings(char **strings);
 void		free_lines(char	**lines);
 int			ft_is_space(char c);
+void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -97,5 +102,11 @@ int			my_env(void);
 // int		my_export(char *quoted_line);
 int			my_pwd(char	**flags);
 // int		my_unset(char *quoted_line);
+
+//gnl
+char		*get_next_line(int fd);
+size_t		ft_strlen_gnl(const char *str);
+char		*ft_strjoin_gnl(char *str1, char *str2);
+int			clearstack(char *stack);
 
 #endif

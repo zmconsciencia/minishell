@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_nodes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 14:55:05 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:22:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,21 +89,20 @@ int	count_flags(char **tokens)
 void	parse_nodes(char **tokens, int id)
 {
 	int			i;
-	int			flag_no;
 	t_program	*node;
 
 	i = -1;
-	flag_no = count_flags(tokens);
-	node = new_node(id, flag_no);
+	node = malloc(sizeof(t_program));
+	node->program_id = id;
 	while (tokens[++i])
 	{
 		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
 			treat_redirect(tokens[i], node);
-		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
-			fill_pot(treat_quotes(tokens[i]), node);
-		else
-			fill_pot(tokens[i], node);
-		// printf("%s\n", tokens[i]); --> tirar
+		if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
+			tokens[i] = treat_quotes(tokens[i]);
+			// fill_pot(treat_quotes(tokens[i]), node);
+		// else
+		// 	fill_pot(tokens[i], node);
 	}
 	add_to_list(node); 
 	// print_program(node); // --> tirar
