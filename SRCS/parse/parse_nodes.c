@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 21:24:06 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:36:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_program	*new_node(int id, int flag_no)
 		node->pot.flags[i++] = 0;
 	node->red.fd_in = 0;
 	node->red.fd_out = 0;
+	node->red.here_doc = 0;
+	node->red.limiter = 0;
 	node->red.fd[0] = 0;
 	node->red.fd[1] = 0;
 	node->next = 0;
@@ -57,16 +59,12 @@ void	add_to_list(t_program *node)
 {
 	t_program	*curr;
 
-	if (meta()->head == 0)
-		meta()->head = node;
-	else
-	{
-		curr = meta()->head;
-		while (curr->next != 0)
-			curr = curr->next;
-		curr->next = node;
-	}
-	meta()->tail = node;
+	curr = meta()->head;
+	while (curr->next != 0)
+		curr = curr->next;
+	curr->next = node;
+	if (!curr->next)
+		meta()->tail = node;
 }
 
 int	count_flags(char **tokens)
@@ -89,22 +87,24 @@ int	count_flags(char **tokens)
 void	parse_nodes(char **tokens, int id)
 {
 	int			i;
+	int			flag_no;
 	t_program	*node;
 
 	i = -1;
-	node = malloc(sizeof(t_program));
-	node->node_id = id;
+	flag_no = count_flags(tokens);
+	node = new_node(id, flag_no);
 	while (tokens[++i])
 	{
 		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
-			treat_redirect(tokens[i], node);
-		if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
-			tokens[i] = treat_quotes(tokens[i]);
-			// fill_pot(treat_quotes(tokens[i]), node);
-		// else
-		// 	fill_pot(tokens[i], node);
+			fill_red(tokens[i], node);
+		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
+			fill_pot(treat_quotes(tokens[i]), node);
+		else
+			fill_pot(tokens[i], node);
 	}
-	add_to_list(node); 
-	// print_program(node); // --> tirar
+	if (node->red.here_doc)
+		run_heredoc(node->red.limiter, node);
+	// add_to_list(node);
+	print_program(node); // --> tirar
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
-} 
+}

@@ -3,10 +3,12 @@ NAME = $(shell basename $(CURDIR))
 SRCS	= SRCS/minishell.c \
 		SRCS/execute/execute.c \
 		SRCS/execute/clear_last.c \
+		SRCS/execute/treat_heredoc.c \
 		SRCS/handle/sighandler.c \
 		SRCS/parse/check_syntax.c \
 		SRCS/parse/expanded_dollar.c \
 		SRCS/parse/fill_pot.c \
+		SRCS/parse/fill_red.c \
 		SRCS/parse/parse_nodes.c \
 		SRCS/parse/treat_redirect.c \
 		SRCS/parse/treat_and_replace.c \
@@ -24,6 +26,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/get_curr_prog.c \
 		SRCS/utils/is_alpha_num.c \
 		SRCS/utils/new_strjoin.c \
+		SRCS/utils/red_utils.c \
 		SRCS/builtins/check_builtin.c \
 		SRCS/builtins/is_builtin.c \
 		SRCS/builtins/my_cd.c \
