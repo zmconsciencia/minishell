@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 21:24:06 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:45:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_program	*new_node(int id, int flag_no)
 
 	i = 0;
 	node = malloc(sizeof(t_program));
-	node->node_id = id;
+	node->program_id = id;
 	node->pot.program = 0;
 	node->pot.flags = malloc(sizeof(char *) * flag_no + 1);
 	while (i < flag_no)
@@ -38,7 +38,7 @@ void	print_program(t_program *node)
 
 	i = 0;
 	printf("----------\n");
-	printf("Node id: %d\n", node->node_id);
+	printf("Node id: %d\n", node->program_id);
 	printf("Program: %s\n", node->pot.program);
 	while (node->pot.flags[i] != 0)
 	{
@@ -93,7 +93,7 @@ void	parse_nodes(char **tokens, int id)
 
 	i = -1;
 	node = malloc(sizeof(t_program));
-	node->node_id = id;
+	node->program_id = id;
 	while (tokens[++i])
 	{
 		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
