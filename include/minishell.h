@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 22:22:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 22:42:16 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ typedef struct s_red{
 	int		fd_in;
 	int		fd_out;
 	int		fd[2];
-	int		here_doc;
-	char	*limiter;
+	int		here_doc;  //queres ter estes 2 aqui bruno?
+	char	*limiter; //queres ter estes 2 aqui bruno?
 }	t_red;
 
 typedef struct s_program{
-	int					node_id;
+	int					program_id;
 	struct s_pot		pot;
 	struct s_red		red;
 	struct s_program	*next;
