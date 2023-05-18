@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 21:22:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:24:06 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	parse_nodes(char **tokens, int id)
 
 	i = -1;
 	node = malloc(sizeof(t_program));
-	node->program_id = id;
+	node->node_id = id;
 	while (tokens[++i])
 	{
 		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
