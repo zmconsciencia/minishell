@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 22:44:13 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/18 23:17:03 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_red{
 	int		fd_in;
 	int		fd_out;
 	int		fd[2];
+	int		here_doc;  //queres ter estes 2 aqui bruno?
+	char	*limiter; //queres ter estes 2 aqui bruno?
 }	t_red;
 
 typedef struct s_program{
@@ -64,6 +66,7 @@ t_meta		*meta(void);
 //execute
 void		execute(void);
 void		clear_last(void);
+void		run_heredoc(char *file_name, t_program *node);
 
 //handle
 void		sighandler(int signum);
@@ -71,6 +74,7 @@ void		sighandler2(int signum);
 
 //utils
 int			count_strings(char **strings);
+int			desired_len(char *str, char op);
 void		free_lines(char	**lines);
 int			ft_is_space(char c);
 void		ft_putstr_fd(char *s, int fd);
@@ -81,6 +85,8 @@ size_t		ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_strnstr(char *big, char *little, size_t n);
 t_program	*get_curr_prog(int id);
+char		*get_filename(char *token);
+char		*get_op(char *token);
 int			is_alpha_num(char c);
 char		*new_strjoin(char op, char const *s2);
 
@@ -88,10 +94,13 @@ char		*new_strjoin(char op, char const *s2);
 int			check_syntax(char *g_line);
 char		*expanded_dollar(char *input);
 void		fill_pot(char *token, t_program *node);
+void		fill_red(char *token, t_program *node);
 void		parse_nodes(char **tokens, int node_id);
-void		treat_redirect(char *token, t_program *node);
 char		*treat_and_replace(char *g_line);
 char		*treat_quotes(char *token);
+void		treat_infiles(char *file_name, t_program *node);
+void		treat_outfiles(char *file_name, t_program *node);
+void		treat_append(char *file_name, t_program *node);
 
 //builtins
 int			check_builtin(t_program *curr);

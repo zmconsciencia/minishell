@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 15:51:08 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:28:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	start_function(char *g_line)
 		parse_nodes(tokens, i);
 		// free_lines(tokens);
 	}
-	execute(); // --> tira se quiseres testar nodes
+	//execute(); // --> tira se quiseres testar nodes
 	// // free_nodes
 }
 
@@ -58,7 +58,7 @@ int	main(int ac, char **av, char **envp)
 				add_history(g_line);
 				start_function(g_line);
 			}
-			clear_last();
+			//clear_last();
 			// free (g_line); // ao fazer free na treat ja nao preciso fazer aqui, ou vice versa
 			g_line = readline("minishell> ");
 		}
