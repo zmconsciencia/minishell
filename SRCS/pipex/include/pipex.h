@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:00:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/22 14:54:47 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:02:50 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 
 void	pipex(t_program *program);
 char	**get_path(char **envp);
-char	*ft_strtrim(char *s1, char *set);
 char	*trim_path(char *env_var);
 char	*check_access(char **paths, char *arg);
 char	*join_path(char *path, char *arg);
