@@ -36,13 +36,21 @@ SRCS	= SRCS/minishell.c \
 		SRCS/builtins/my_pwd.c \
 		SRCS/builtins/my_export.c \
 		SRCS/gnl/get_next_line.c \
-		SRCS/gnl/get_next_line_utils.c
+		SRCS/gnl/get_next_line_utils.c \
+		SRCS/pipex/pipex.c \
+		SRCS/pipex/get_path.c \
+		SRCS/pipex/trim_path.c \
+		SRCS/pipex/join_path.c \
+		SRCS/pipex/check_access.c \
+		SRCS/pipex/fill_list.c \
+		SRCS/pipex/set_fd.c \
+		SRCS/pipex/free_my_list.c
 
 OBJ		= ${SRCS:.c=.o}
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -g3 -O3 -fsanitize=address -g#-Werror 
+CFLAGS	= -Wall -Wextra -g3 -O3  -g -Werror #-fsanitize=address
 
 LDLIBS = -lreadline
 

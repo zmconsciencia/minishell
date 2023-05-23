@@ -3,22 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/22 14:55:45 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:28:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../../include/minishell.h"
 
 void	do_child(t_program *curr)
 {
-	set_fd(curr);
-	dup2(curr->red.fd[0], 0);
+	// set_fd(curr);
+	if (curr->red.fd_in)
+		dup2(curr->red.fd_in, 0);
+	else
+		dup2(curr->red.fd[0], 0);
+	if (curr->red.fd_out)
+		dup2(curr->red.fd_out, 1);
+	else if (curr->next)
+		dup2(curr->red.fd[1], 1);
 	close(curr->red.fd[0]);
-	dup2(curr->red.fd[1], 1);
 	close(curr->red.fd[1]);
+	if (curr->red.fd_in)
+		close(curr->red.fd_in);
+	if (curr->red.fd_out)
+		close(curr->red.fd_out);
 }
 
 void	pipex(t_program *program)
@@ -27,24 +37,29 @@ void	pipex(t_program *program)
 	int			pid;
 
 	curr = program;
-	while (curr)
+
+	if (pipe(curr->red.fd) == -1)
+		perror ("Pipe error");
+	pid = fork();
+	if (pid == -1)
+		perror ("Fork error");
+	if (pid == 0)
 	{
-		if (pipe(curr->red.fd) == -1)
-			perror ("Pipe error");
-		pid = fork();
-		if (pid == -1)
-			perror ("Fork error");
-		if (pid == 0)
+		do_child(curr);
+		if (execve(curr->pot.program, curr->pot.flags, meta()->envp) == -1)
 		{
-			do_child(curr);
-			if (execve(curr->pot.program, curr->pot.flags, meta()->envp) == -1)
-				perror("Could not execute\n");
+			perror("Could not execute\n");
+			exit(0);
 		}
-		close(curr->red.fd[1]);
-		curr = curr->next;
 	}
-	waitpid(-1, NULL, WNOHANG);
+	if (curr->next && !curr->next->red.fd_in)
+		curr->next->red.fd_in = dup(curr->red.fd[0]);
+	close(curr->red.fd[0]);
+	close(curr->red.fd[1]);
 }
+
+// fprintf(stderr, "%s %d %d %d %d\n", curr->pot.flags[0],curr->red.fd_in, \
+ curr->red.fd_out, curr->red.fd[0], curr->red.fd[1]);
 
 // void	go_function(int argc, char **argv, char **envp)
 // {

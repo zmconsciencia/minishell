@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 23:17:54 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:28:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,21 @@ void	print_program(t_program *node)
 		print_program(node->next);
 }
 
-
 void	add_to_list(t_program *node)
 {
 	t_program	*curr;
 
 	curr = meta()->head;
-	while (curr->next != 0)
-		curr = curr->next;
-	curr->next = node;
-	if (!curr->next)
-		meta()->tail = node;
+	if (!curr)
+		meta()->head = node;
+	else
+	{
+		while (curr->next != 0)
+			curr = curr->next;
+		curr->next = node;
+		if (!curr->next)
+			meta()->tail = node;
+	}
 }
 
 int	count_flags(char **tokens)
@@ -107,7 +111,6 @@ void	parse_nodes(char **tokens, int id)
 		run_heredoc(node->red.limiter, node);
 		free(node->red.limiter);
 	}
-	// add_to_list(node);
-	print_program(node); // --> tirar
+	add_to_list(node);
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
 }

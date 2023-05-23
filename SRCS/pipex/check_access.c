@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_access.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:37:32 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 14:22:07 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:41:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../../include/minishell.h"
 
 char	*check_access(char **paths, char *arg)
 {
@@ -24,11 +24,6 @@ char	*check_access(char **paths, char *arg)
 		free(temp);
 		i++;
 		temp = join_path(paths[i], arg);
-	}
-	if (access(temp, F_OK))
-	{
-		perror ("Program not found");
-		exit (0);
 	}
 	i = 0;
 	while (paths[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/22 14:53:12 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:33:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # include <signal.h>
 # include <string.h>
 # include <fcntl.h>
-# include "../SRCS/pipex/include/pipex.h"
+# include <sys/wait.h>
 
 typedef struct s_pot{
 	char	*program;
@@ -44,8 +44,8 @@ typedef struct s_red{
 	int		fd_in;
 	int		fd_out;
 	int		fd[2];
-	int		here_doc;  //queres ter estes 2 aqui bruno?
-	char	*limiter; //queres ter estes 2 aqui bruno?
+	int		here_doc;
+	char	*limiter;
 }	t_red;
 
 typedef struct s_program{
@@ -90,6 +90,7 @@ char		*get_filename(char *token);
 char		*get_op(char *token);
 int			is_alpha_num(char c);
 char		*new_strjoin(char op, char const *s2);
+void		print_program(t_program *node);
 
 //parse
 int			check_syntax(char *g_line);
@@ -118,5 +119,16 @@ char		*get_next_line(int fd);
 size_t		ft_strlen_gnl(const char *str);
 char		*ft_strjoin_gnl(char *str1, char *str2);
 int			clearstack(char *stack);
+
+//pipex
+void		pipex(t_program *program);
+char		**get_path(char **envp);
+char		*trim_path(char *env_var);
+char		*check_access(char **paths, char *arg);
+char		*join_path(char *path, char *arg);
+void		fill_list(t_program **list, int argc, char **argv, char **envp);
+void		set_fd(t_program *curr);
+void		free_my_list(t_program *list);
+void		ft_putstr_fd(char *s, int fd);
 
 #endif

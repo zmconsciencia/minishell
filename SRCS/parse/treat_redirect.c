@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 21:54:16 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:34:20 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ void	treat_infiles(char *file_name, t_program *node)
 		close(node->red.fd_in);
 	node->red.fd_in = open(file_name, O_RDONLY);
 	if (node->red.fd_in == -1)
-		printf("INFILE: no such file or directory\n");
-	else
-		printf("INFILE: %s\n", file_name);
+		perror(file_name);
 }
 
 void	treat_outfiles(char *file_name, t_program *node)
@@ -28,9 +26,6 @@ void	treat_outfiles(char *file_name, t_program *node)
 	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (node->red.fd_out == -1)
 		perror(file_name);
-	else
-		printf("OUTFILE: %s\n", file_name);
-	close(node->red.fd_out);
 }
 
 void	treat_append(char *file_name, t_program *node)

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/18 21:28:11 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:29:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	start_function(char *g_line)
 {
-	char	*treated;
-	char	**nodes;
-	char	**tokens;
-	int		i;
+	char		*treated;
+	char		**nodes;
+	char		**tokens;
+	int			i;
 
 	i = -1;
 	treated = treat_and_replace(g_line);
@@ -28,7 +28,7 @@ void	start_function(char *g_line)
 		parse_nodes(tokens, i);
 		// free_lines(tokens);
 	}
-	//execute(); // --> tira se quiseres testar nodes
+	execute(); // --> tira se quiseres testar nodes
 	// // free_nodes
 }
 

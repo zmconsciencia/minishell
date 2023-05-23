@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 15:09:19 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:32:41 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 void	execute(void)
 {
 	t_program	*curr;
+	int			n;
 
 	curr = meta()->head;
-	// printf("passei por aqui\n");
+	n = 0;
 	while (curr)
 	{
-		// printf("vou procurar por: %s\n", curr->pot.program);
 		if (!check_builtin(curr))
 		{
-			printf("vou entrar no pipex\n");
-			//pipex(curr)
+			pipex(curr);
+			n++;
 		}
 		curr = curr->next;
 	}
+	while (n-- > 0)
+		waitpid(-1, 0, 0);
 }

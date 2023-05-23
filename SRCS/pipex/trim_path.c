@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   trim_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:57:58 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/09 14:19:12 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:42:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../../include/minishell.h"
 
 char	*trim_path(char *env_var)
 {

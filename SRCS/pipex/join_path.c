@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   join_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:51:24 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/03/08 13:09:40 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:42:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../../include/minishell.h"
 
 char	*str_trim(char *string)
 {
