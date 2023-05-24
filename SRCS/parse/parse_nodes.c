@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/23 16:28:01 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:18:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ void	parse_nodes(char **tokens, int id)
 		free(node->red.limiter);
 	}
 	add_to_list(node);
+	//print_program(node);
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
 }

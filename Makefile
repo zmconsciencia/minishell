@@ -42,8 +42,6 @@ SRCS	= SRCS/minishell.c \
 		SRCS/pipex/trim_path.c \
 		SRCS/pipex/join_path.c \
 		SRCS/pipex/check_access.c \
-		SRCS/pipex/fill_list.c \
-		SRCS/pipex/set_fd.c \
 		SRCS/pipex/free_my_list.c
 
 OBJ		= ${SRCS:.c=.o}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_and_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 19:59:53 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:35:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ char	*treat_and_replace(char *g_line)
 				;
 		if (g_line[i] == '<' || g_line[i] == '>')
 		{
-			g_line = add_three(g_line, i++);
-			while (g_line[i] == '<' || g_line[i] == '>')
+			g_line = add_three(g_line, i);
+			while (g_line[i++] == '<' || g_line[i] == '>')
 				i++;
 			while (ft_is_space(g_line[++i]) && \
 				(g_line[i + 1] != '<' && g_line[i + 1] != '>'))

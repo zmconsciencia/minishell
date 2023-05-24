@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:50:51 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/18 21:51:21 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:00:51 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_filename(char *token)
 	while ((token[i] != '\0') || ft_is_space(token[i]))
 		file_name[j++] = token[i++];
 	file_name[j] = '\0';
-	return (file_name); //malloc
+	return (file_name);
 }
 
 char	*get_op(char *token)

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:44:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/18 22:31:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:34:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ void	run_heredoc(char *file_name, t_program *node)
 	char	*limiter;
 	int		here_fds[2];
 
-	(void)node;
 	limiter = ft_strjoin(file_name, "\n");
 	if (pipe(here_fds) == -1)
 		perror("");
-	while (1)
+	while (1 && ft_return_putstr_fd("> ", 1))
 	{
-		ft_putstr_fd("> ", 1);
 		str = get_next_line(0);
 		if (!str)
 			break ;
@@ -38,5 +36,7 @@ void	run_heredoc(char *file_name, t_program *node)
 	}
 	if (str)
 		free(str);
-	node->red.fd_in = here_fds[0];
+	node->red.fd_in = dup(here_fds[0]);
+	close(here_fds[1]);
+	close(here_fds[0]);
 }
