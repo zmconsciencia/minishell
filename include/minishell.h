@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/24 15:33:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/25 11:30:06 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_program{
 
 typedef struct s_meta{
 	char				**envp;
-	// int					fd_last;
 	struct s_program	*head;
 	struct s_program	*tail;
 }	t_meta;
@@ -128,8 +127,6 @@ char		*trim_path(char *env_var);
 char		*check_access(char **paths, char *arg);
 char		*join_path(char *path, char *arg);
 void		fill_list(t_program **list, int argc, char **argv, char **envp);
-void		set_fd(t_program *curr);
 void		free_my_list(t_program *list);
-void		ft_putstr_fd(char *s, int fd);
 
 #endif

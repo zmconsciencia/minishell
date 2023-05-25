@@ -14,15 +14,9 @@ nao sai do programa e volta a pedir input!
 
 DIA 24 DE maio
 
-problemas novos -> impletacao das aspas a nao funcionar.
-					nao faz bem por exemplo: make r dentro do minishell
-apaguei file set_fd.
-apaguei file fill_list.
-files com tamanho 1 nao funcionavam ja funcionam
+problemas novos -> impletacao das aspas a nao funcionar. --bruno (<Makefile cat | echo "cat | wc")
+					nao faz bem por exemplo: make r dentro do minishell -fez bem mas testar mais
 no new_node(parse_nodes) deviamos iniciar a struct com calloc
-treat_and_replace estava mal na parte das < mas ja esta a funcionar
-execucao com here_doc ja funciona bem
-nova funcao ft_returnputstr_fd para poupar uma linha
-reports para dentro de uma pasta
+execucao com here_doc ja funciona bem falha quando nao tem comando. --ze
 
 falta testes para outfiles e appends.
