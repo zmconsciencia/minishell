@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_and_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/24 14:35:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:54:37 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char	*treat_and_replace(char *g_line)
 		if (g_line[i] == '$')
 			g_line[i] = 4;
 		if (g_line[i] == '\"')
-			while (g_line[++i] != '\"' && g_line[i] != 0 && g_line[i + 1] != '|') // -> corrigir caso nao tenha fim de aspas
+			while (g_line[++i] != '\"' && g_line[i] != 0/*  && g_line[i + 1] != '|' */) // -> corrigir caso nao tenha fim de aspas
 				if (g_line[i] == '$')
 					g_line[i] = 4;
 		if (g_line[i] == '\'')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_access.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:37:32 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/23 15:41:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:01:02 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*check_access(char **paths, char *arg)
 	{
 		free(temp);
 		i++;
+		if (!paths[i])
+			return (arg);
 		temp = join_path(paths[i], arg);
 	}
 	i = 0;
