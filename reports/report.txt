@@ -1,16 +1,11 @@
-- acrescentei a pasta pipex a geral
-- alterei no minishell.c o nome go function para start function
-- pus a trabalhar o treat treat_redirect (descomentei no parse)
-- comentario no close do treat_redirect
-- retirei um free tokens do treat_redirect porque damos free noutro sitio
-- melhorei o treat_and_replace caso nao feche as aspas antes de pipe
-- criei pasta e ficheiro execute para começar a pensar em builtin e pipex
-- alterei program_id para node_id no .h e todos os ficheiros
-- rever o add_to_list que esta a funcinar mal --> a partida esta ok
-- clear_last a funcionar ok (minishell.c -> main)
+TO do
+	signals
+	builtins
+	check_syntax
 
-- no minishell.h, acrescentei um int na meta, caso seja preciso guardar o fd anterior
-
-SE QUISERES TESTAR, COMENTA O EXECUTE() E O add_to_list() E DESCOMENTA O print_program().
-
-estou  a brincar com os builtins
+ERROS
+	- nao sendo programa, mandar erro para fd 2
+	- reformular check builtin e mudar de program para flags
+	- cat /dev/random | head > out
+	- erro no append
+	- cat | ls
