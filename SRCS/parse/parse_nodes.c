@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_nodes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/24 15:18:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:37:56 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	parse_nodes(char **tokens, int id)
 	node = new_node(id, flag_no);
 	while (tokens[++i])
 	{
-		if (ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
+		if ((ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<')) && !ft_strchr(tokens[i], '\"'))
 			fill_red(tokens[i], node);
 		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
 			fill_pot(treat_quotes(tokens[i]), node);
