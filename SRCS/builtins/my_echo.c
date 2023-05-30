@@ -6,31 +6,31 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/14 22:22:24 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:45:08 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	my_echo(char **flags)
+int	my_echo(t_program *curr)
 {
 	int	i;
 
 	i = 1;
-	if (flags[i])
+	if (curr->pot.flags[i])
 	{
-		if (!ft_strncmp(flags[i], "-n\0", 2))
+		if (!ft_strncmp(curr->pot.flags[i], "-n\0", 2))
 			i = 2;
-		while (flags[i])
+		while (curr->pot.flags[i])
 		{
-			printf("%s", flags[i]);
-			if (flags[++i])
-				printf(" ");
+			ft_putstr_fd(curr->pot.flags[i], curr->red.fd_out);
+			if (curr->pot.flags[++i])
+				ft_putstr_fd(" ", curr->red.fd_out);
 		}
-		if (ft_strncmp(flags[1], "-n\0", 2))
-			printf("\n");
+		if (ft_strncmp(curr->pot.flags[1], "-n\0", 2))
+			ft_putstr_fd("\n", curr->red.fd_out);
 	}
 	else
-		printf("\n");
+		ft_putstr_fd("\n", curr->red.fd_out);
 	return (1); //o original retorna 0 em sucesso
 }

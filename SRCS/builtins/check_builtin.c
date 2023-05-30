@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:53:33 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 15:36:23 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:42:37 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_builtin(t_program *curr)
 	if (is_builtin("cd", curr->pot.program))
 		return (my_cd(curr->pot.flags));
 	else if (is_builtin("echo", curr->pot.program))
-		return (my_echo(curr->pot.flags)); //nao funcionou com $USER
+		return (my_echo(curr)); //nao funcionou com $USER
 	else if (is_builtin("env", curr->pot.program))
 		return (my_env());
 	else if (is_builtin("exit", curr->pot.program)) //ok!?
