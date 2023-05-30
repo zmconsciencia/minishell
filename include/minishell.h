@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 11:43:32 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:25:59 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void		treat_append(char *file_name, t_program *node);
 
 //builtins
 int			check_builtin(t_program *curr);
+int			do_builtin(t_program *curr);
 int			is_builtin(char	*builtin, char *quoted_line);
 int			my_cd(char **path);
 int			my_echo(t_program *curr);

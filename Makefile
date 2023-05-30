@@ -28,6 +28,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/new_strjoin.c \
 		SRCS/utils/red_utils.c \
 		SRCS/builtins/check_builtin.c \
+		SRCS/builtins/do_builtin.c \
 		SRCS/builtins/is_builtin.c \
 		SRCS/builtins/my_cd.c \
 		SRCS/builtins/my_echo.c \
