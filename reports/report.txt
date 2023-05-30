@@ -9,6 +9,4 @@ ERROS
 	- cat /dev/random | head > out
 	- erro no append -> solved
 	- cat | ls
-	- erro no echo com redirects
-	- nao expande variaveis dentro de heredoc.
-	- temos de executar builtins dentro de forks.
+	- erro no echo com redirects 
