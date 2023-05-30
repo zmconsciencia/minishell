@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/26 17:54:37 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:15:50 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*insert_var(char *g_line, int s, char *var)
 	return (joined);
 }
 
-char	*expand_now(char *g_line)
+char	*expand_now(char *g_line, char a)
 {
 	int		i;
 	char	*var;
@@ -68,9 +68,9 @@ char	*expand_now(char *g_line)
 	i = -1;
 	while (g_line[++i])
 	{
-		while (g_line[i] != 4 && g_line[i])
+		while (g_line[i] != a && g_line[i])
 			i++;
-		if (g_line[i] == 4)
+		if (g_line[i] == a)
 		{
 			var = get_var(g_line, i);
 			if (var)
@@ -133,6 +133,6 @@ char	*treat_and_replace(char *g_line)
 				;
 		}
 	}
-	g_line = expand_now(g_line);
+	g_line = expand_now(g_line, 4);
 	return (g_line);
 }

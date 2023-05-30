@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 11:31:51 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:18:21 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void		print_program(t_program *node);
 //parse
 int			check_syntax(char *g_line);
 char		*expanded_dollar(char *input);
+char		*expand_now(char *g_line, char a);
 void		fill_pot(char *token, t_program *node);
 void		fill_red(char *token, t_program *node);
 void		parse_nodes(char **tokens, int node_id);

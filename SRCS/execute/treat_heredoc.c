@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:44:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/24 15:34:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:16:46 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	run_heredoc(char *file_name, t_program *node)
 			break ;
 		if (str)
 		{
+			str = expand_now(str, '$');
 			ft_putstr_fd(str, here_fds[1]);
 			free(str);
 		}
