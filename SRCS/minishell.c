@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 14:08:01 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:26:40 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av, char **envp)
 				start_function(g_line);
 			}
 			clear_last();
-			free (g_line);
+			// free (g_line);
 			g_line = readline("minishell> ");
 		}
 	}
