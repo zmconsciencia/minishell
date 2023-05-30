@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/25 11:30:06 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:31:51 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <sys/wait.h>
 
 typedef struct s_pot{
+	char	*path_program;
 	char	*program;
 	char	**flags;
 	char	**envp;

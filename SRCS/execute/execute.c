@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/24 15:19:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:28:01 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	execute(void)
 		}
 		curr = curr->next;
 	}
-	while (n-- > 0)
+	while (n > 0)
+	{
 		waitpid(-1, 0, 0);
+		n--;
+	}
 }

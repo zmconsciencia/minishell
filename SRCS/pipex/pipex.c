@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/26 18:05:39 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:32:05 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void	pipex(t_program *program)
 	if (pid == 0)
 	{
 		do_child(curr);
-		if (execve(curr->pot.program, curr->pot.flags, meta()->envp) == -1)
+		if (execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1)
 		{
-			printf("%s\n", curr->pot.program);
-			// perror("Could not execute\n");
+			perror(curr->pot.program);
 			exit(0);
 		}
 	}

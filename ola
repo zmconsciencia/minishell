@@ -1,3 +1,4 @@
+ola
 NAME = $(shell basename $(CURDIR))
 
 SRCS	= SRCS/minishell.c \
