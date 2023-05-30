@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/25 11:30:06 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:54:39 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void		treat_append(char *file_name, t_program *node);
 
 //builtins
 int			check_builtin(t_program *curr);
+int			do_builtin(t_program *curr);
 int			is_builtin(char	*builtin, char *quoted_line);
 int			my_cd(char **path);
 int			my_echo(char **flags);
