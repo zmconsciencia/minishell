@@ -6,11 +6,23 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 11:32:05 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:37:38 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+void	close_all(t_program *curr)
+{
+	if (curr->red.fd[0] > 2)
+		close(curr->red.fd[0]);
+	if (curr->red.fd[0] > 2)
+		close(curr->red.fd[1]);
+	if (curr->red.fd_in > 2)
+		close(curr->red.fd_in);
+	if (curr->red.fd_out > 2)
+		close(curr->red.fd_out);
+}
 
 void	do_child(t_program *curr)
 {
@@ -20,14 +32,7 @@ void	do_child(t_program *curr)
 		dup2(curr->red.fd_out, 1);
 	else if (curr->next)
 		dup2(curr->red.fd[1], 1);
-	if (curr->red.fd[0] > 2)
-		close(curr->red.fd[0]);
-	if (curr->red.fd[0] > 2)
-		close(curr->red.fd[1]);
-	if (curr->red.fd_in > 2)
-		close(curr->red.fd_in);
-	if (curr->red.fd_out > 2)
-		close(curr->red.fd_out);
+	close_all(curr);
 }
 
 void	pipex(t_program *program)
@@ -53,8 +58,7 @@ void	pipex(t_program *program)
 	}
 	if (curr->next && !curr->next->red.fd_in)
 		curr->next->red.fd_in = dup(curr->red.fd[0]);
-	close(curr->red.fd[0]);
-	close(curr->red.fd[1]);
+	close_all(curr);
 }
 
 // fprintf(stderr, "%d %d\n", curr->red.fd[0], curr->red.fd[1]);
