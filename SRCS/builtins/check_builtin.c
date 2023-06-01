@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:53:33 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 15:26:07 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:41:40 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 // mudar is_builtin para ft_strncmp?
 int	check_builtin(t_program *curr)
 {
+	if (!curr->pot.program)
+		return (0);
 	if (is_builtin("cd", curr->pot.program))
 		return (1);
 	else if (is_builtin("echo", curr->pot.program))
-		return (my_echo(curr->pot.flags)); //nao funcionou com $USER
+		return (1); //nao funcionou com $USER
 	else if (is_builtin("env", curr->pot.program))
 		return (1);
-	else if (1) //ok!?
+	else if (is_builtin("exit", curr->pot.program)) //ok!?
 		return (1);
 	else if (is_builtin("export", curr->pot.program))
 		return (1);

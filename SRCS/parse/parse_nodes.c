@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 14:28:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:04:56 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_program	*new_node(int id, int flag_no)
 	node->pot.program = 0;
 	node->pot.path_program = 0;
 	node->pot.flags = malloc(sizeof(char *) * flag_no + 1);
+	node->pot.flags[flag_no] = 0;
 	while (i < flag_no)
 		node->pot.flags[i++] = 0;
 	node->red.fd_in = 0;

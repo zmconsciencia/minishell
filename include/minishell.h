@@ -3,22 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 15:25:59 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:16:53 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# define BUILTIN 1
-# define OPERATOR 2
-# define PIPE 3
-# define FILENAME 4
-# define PROGRAM 5
-# define FLAG 6
-# define OTHER 7
+# define H printf("here\n")
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
@@ -92,6 +86,8 @@ char		*get_op(char *token);
 int			is_alpha_num(char c);
 char		*new_strjoin(char op, char const *s2);
 void		print_program(t_program *node);
+int			lstsize(t_program *curr);
+int			flag_parse(char *flag, char type);
 
 //parse
 int			check_syntax(char *g_line);

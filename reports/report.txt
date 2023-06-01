@@ -4,9 +4,4 @@ TO do
 	check_syntax
 
 ERROS
-	- nao sendo programa, mandar erro para fd 2 ->pode ser perror nomes dos erros nao precisam de ser iguais
-	- reformular check builtin e mudar de program para flags -> adicionado path_program no pot, podemos usar program como estava
-	- cat /dev/random | head > out
-	- erro no append -> solved
-	- cat | ls
-	- erro no echo com redirects 
+	- echo nao funciona com multiplas flags.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:52:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/30 13:54:18 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/01 13:43:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	do_builtin(t_program *curr)
 	if (is_builtin("cd", curr->pot.program))
 		return (my_cd(curr->pot.flags));
 	else if (is_builtin("echo", curr->pot.program))
-		return (my_echo(curr->pot.flags)); //nao funcionou com $USER
+		return (my_echo(curr)); //nao funcionou com $USER
 	else if (is_builtin("env", curr->pot.program))
 		return (my_env());
 	else if (is_builtin("exit", curr->pot.program)) //ok!?
