@@ -35,7 +35,6 @@ SRCS	= SRCS/minishell.c \
 		SRCS/builtins/my_cd.c \
 		SRCS/builtins/my_echo.c \
 		SRCS/builtins/my_env.c \
-		SRCS/builtins/my_export.c \
 		SRCS/builtins/my_pwd.c \
 		SRCS/builtins/my_export.c \
 		SRCS/gnl/get_next_line.c \

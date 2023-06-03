@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 15:16:53 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:20:15 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int			is_builtin(char	*builtin, char *quoted_line);
 int			my_cd(char **path);
 int			my_echo(t_program *curr);
 int			my_env(void);
-// int		my_export(char *quoted_line);
+int			my_export(char **flags);
 int			my_pwd(char	**flags);
 // int		my_unset(char *quoted_line);
 

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:52:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 13:43:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:20:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	do_builtin(t_program *curr)
 		exit(0);
 	}
 	else if (is_builtin("export", curr->pot.program))
-		return (printf("builtin: export\n"));
+		return (my_export(curr->pot.flags));
 	else if (is_builtin("pwd", curr->pot.program)) //ok!?
 		return (my_pwd(curr->pot.flags));
 	else if (is_builtin("unset", curr->pot.program))
