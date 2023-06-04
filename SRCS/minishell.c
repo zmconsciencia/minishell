@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 16:24:33 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/04 02:16:14 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,5 @@ int	main(int ac, char **av, char **envp)
 	}
 	return (0);
 }
+
+//segfaul no empty prompt
