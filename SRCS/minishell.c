@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/04 02:16:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:07:42 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	start_function(char *g_line)
 	i = -1;
 	treated = treat_and_replace(g_line);
 	nodes = ft_split(treated, 2);
+	if (!nodes)
+		return ;
 	while (nodes[++i] != 0)
 	{
 		tokens = ft_split(nodes[i], 3);
@@ -51,6 +53,8 @@ int	main(int ac, char **av, char **envp)
 		signal(SIGQUIT, SIG_DFL);
 		g_line = 0;
 		g_line = readline("minishell> ");
+		if (!g_line[0])
+				g_line = readline("minishell> ");
 		while (g_line)
 		{
 			if (g_line[0] /* && check_syntax(g_line) */)
