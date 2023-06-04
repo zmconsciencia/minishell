@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/03 23:23:23 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/04 01:58:40 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,60 @@
 // 	return (value);
 // }
 
-int	my_export(char **flags)
+void	print_export()
 {
-	int		i;
 	char	**env;
+	int		i;
 	
 	i = 0;
 	env = meta()->envp;
-	if (count_strings(flags) == 1)
+	while(env[i])
 	{
-		while(env[i])
-		{
-			printf("declare -x %s\n", env[i]);
-			i++;
-		}
+		printf("declare -x %s\n", env[i]);
+		i++;
 	}
+}
+
+void	add_var(char *str)
+{
+	char	**env;
+	char	**new_env;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	env = meta()->envp;
+	new_env = malloc(sizeof(char **) * count_strings(meta()->envp) + 2);
+	while(env[i])
+	{
+		new_env[j] = malloc(sizeof(char) * (strlen(env[i]) + 1));
+		strcpy(new_env[j], env[i]);
+		j++;
+		i++;
+	}
+	new_env[j] = malloc(sizeof(char) * (strlen(str) + 1));
+	strcpy(new_env[j++], str);
+	new_env[j] = '\0';
+	meta()->envp = new_env;
+}
+
+int	my_export(char **flags)
+{
+	if (count_strings(flags) == 1)
+		print_export();
+	else if (count_strings(flags) == 2)
+		add_var(flags[1]);
 	return (1);
 }
+
+// falta mudar strcpy para funcoes nossas, falta implementar que a variavel so passa para o env
+// quando depois de ser dada valor (export MY_VAR=BIA) seja sourced com (export MY_VAR), e falta
+// implementar para que e nova variavel criada seja expandida - possivel ser dentro do expanded dollar
+
+// como esta a correr agora:
+// minishell> export MY_VAR=BIA
+// minishell> env | grep BIA
+// MY_VAR=BIA
+// minishell> echo $MY_VAR
+// MY_VAR

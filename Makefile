@@ -50,7 +50,7 @@ OBJ		= ${SRCS:.c=.o}
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -g3 -O3  -g -Werror -fsanitize=address
+CFLAGS	= -Wall -Wextra -g3 -O3  -g -Werror #-fsanitize=address
 
 LDLIBS = -lreadline
 
