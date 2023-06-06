@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 14:07:54 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:21:09 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char	*expand_now(char *g_line, char a)
 	char	*var;
 
 	i = -1;
-	printf("%s\n", g_line);
 	while (g_line[++i])
 	{
 		while (g_line[i] != a && g_line[i])
