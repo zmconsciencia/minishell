@@ -29,6 +29,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/lst_utils.c \
 		SRCS/utils/new_strjoin.c \
 		SRCS/utils/red_utils.c \
+		SRCS/utils/ft_itoa.c \
 		SRCS/builtins/check_builtin.c \
 		SRCS/builtins/do_builtin.c \
 		SRCS/builtins/is_builtin.c \

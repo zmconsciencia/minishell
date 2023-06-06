@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 16:03:31 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:46:20 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_var(char *g_line, int s)
 	v = 0;
 	var_name = 0;
 	i = s;
-	while (is_alpha_num(g_line[++i]))
+	while (ft_isprint(g_line[++i]))
 		;
 	var_name = malloc(sizeof(char) * (i - s) + 2);
 	while (++s < i)
@@ -43,7 +43,7 @@ char	*insert_var(char *g_line, int s, char *var)
 	char	*joined;
 
 	e = s;
-	while (is_alpha_num(g_line[++e]))
+	while (ft_isprint(g_line[++e]))
 		e++;
 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
 	+ ft_strlen(var) + 1);

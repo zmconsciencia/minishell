@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/03 23:20:15 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:48:31 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <limits.h>
 
 typedef struct s_pot{
 	char	*path_program;
@@ -51,6 +52,7 @@ typedef struct s_program{
 }	t_program;
 
 typedef struct s_meta{
+	int					exitcode;
 	char				**envp;
 	struct s_program	*head;
 	struct s_program	*tail;
@@ -88,6 +90,9 @@ char		*new_strjoin(char op, char const *s2);
 void		print_program(t_program *node);
 int			lstsize(t_program *curr);
 int			flag_parse(char *flag, char type);
+char		*ft_itoa(int n);
+int			ft_isprint(int c);
+char		*ft_strdup(const char *s);
 
 //parse
 int			check_syntax(char *g_line);

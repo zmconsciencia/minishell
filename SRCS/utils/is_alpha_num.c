@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_alpha_num.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:09:43 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 14:10:35 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:42:54 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ int	is_alpha_num(char c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || \
 		(c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}
+
+int	ft_isprint(int c)
+{
+	if (32 <= c && c <= 126)
 		return (1);
 	return (0);
 }

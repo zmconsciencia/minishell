@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 15:43:06 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:38:00 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	execute(void)
 	}
 	while (n > 0)
 	{
-		waitpid(-1, 0, 0);
+		waitpid(-1, &(meta()->exitcode), 0);
 		n--;
 	}
 }
