@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_and_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 16:46:20 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/06 14:07:54 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_var(char *g_line, int s)
 	while (ft_isprint(g_line[++i]))
 		;
 	var_name = malloc(sizeof(char) * (i - s) + 2);
-	while (++s < i)
+	while (++s < i && g_line[s] != '\"')
 		var_name[v++] = g_line[s];
 	var_name[v] = '=';
 	var_name[++v] = 0;
@@ -66,6 +66,7 @@ char	*expand_now(char *g_line, char a)
 	char	*var;
 
 	i = -1;
+	printf("%s\n", g_line);
 	while (g_line[++i])
 	{
 		while (g_line[i] != a && g_line[i])
