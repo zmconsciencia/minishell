@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:12:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 17:24:24 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:41:02 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	my_unset(char **flags)
 	i = 0;
 	j = 0;
 	k = 0;
-	while (!ft_strncmp(meta()->envp[i], flags[1], ft_strlen(flags[1])))
+	while (ft_strncmp(meta()->envp[i], flags[1], ft_strlen(flags[1])))
 		i++;
 	if (i < count_strings(meta()->envp))
 	{
@@ -31,9 +31,11 @@ int	my_unset(char **flags)
 		{
 			if (j == i)
 				j++;
-			strcpy(new_env[k], meta()->envp[j]); //alterar
-			k++;
-			j++;
+			if (meta()->envp[j])
+			{
+				new_env[k] = malloc(sizeof(char *) * ft_strlen(meta()->envp[j]) + 1);
+				ft_strlcpy(new_env[k++], meta()->envp[j], ft_strlen(meta()->envp[j++]) + 1);
+			}
 		}
 		new_env[k] = 0;
 		meta()->envp = new_env;

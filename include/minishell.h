@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 16:48:31 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:57:58 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			ft_return_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_strnstr(char *big, char *little, size_t n);
@@ -116,7 +117,7 @@ int			my_echo(t_program *curr);
 int			my_env(void);
 int			my_export(char **flags);
 int			my_pwd(char	**flags);
-// int		my_unset(char *quoted_line);
+int			my_unset(char **flags);
 
 //gnl
 char		*get_next_line(int fd);

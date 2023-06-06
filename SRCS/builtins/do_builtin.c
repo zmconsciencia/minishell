@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:52:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 16:40:46 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:38:45 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	do_builtin(t_program *curr)
 	else if (is_builtin("pwd", curr->pot.program)) //ok!?
 		return (my_pwd(curr->pot.flags));
 	else if (is_builtin("unset", curr->pot.program))
-		return (printf("builtin: unset\n"));
+		return (my_unset(curr->pot.flags));
 	return (0);
 }

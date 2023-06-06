@@ -21,6 +21,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/ft_split.c \
 		SRCS/utils/ft_strchr.c \
 		SRCS/utils/ft_strjoin.c \
+		SRCS/utils/ft_strlcpy.c \
 		SRCS/utils/ft_strlen.c \
 		SRCS/utils/ft_strncmp.c \
 		SRCS/utils/ft_strnstr.c \
@@ -38,6 +39,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/builtins/my_env.c \
 		SRCS/builtins/my_pwd.c \
 		SRCS/builtins/my_export.c \
+		SRCS/builtins/my_unset.c \
 		SRCS/gnl/get_next_line.c \
 		SRCS/gnl/get_next_line_utils.c \
 		SRCS/pipex/pipex.c \
@@ -51,7 +53,7 @@ OBJ		= ${SRCS:.c=.o}
 
 CC		= cc
 
-CFLAGS	= -Wall -Wextra -g3 -O3  -g -Werror #-fsanitize=address
+CFLAGS	= -Wall -Wextra -g3 -O3  -g -Werror -fsanitize=address
 
 LDLIBS = -lreadline
 
