@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 14:21:09 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:23:49 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_var(char *g_line, int s)
 	v = 0;
 	var_name = 0;
 	i = s;
-	while (ft_isprint(g_line[++i]))
+	while (ft_isprint(g_line[++i]) && g_line[i] != ' ')
 		;
 	var_name = malloc(sizeof(char) * (i - s) + 2);
 	while (++s < i && g_line[s] != '\"')
@@ -43,7 +43,7 @@ char	*insert_var(char *g_line, int s, char *var)
 	char	*joined;
 
 	e = s;
-	while (ft_isprint(g_line[++e]))
+	while (ft_isprint(g_line[++e]) && g_line[e] != ' ')
 		e++;
 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
 	+ ft_strlen(var) + 1);
