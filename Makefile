@@ -16,7 +16,9 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/builtin_utils.c \
 		SRCS/utils/count_strings.c \
 		SRCS/utils/free_lines.c \
+		SRCS/utils/ft_atoi.c \
 		SRCS/utils/ft_is_space.c \
+		SRCS/utils/ft_isnum.c \
 		SRCS/utils/ft_putstr_fd.c \
 		SRCS/utils/ft_split.c \
 		SRCS/utils/ft_strchr.c \
@@ -37,8 +39,9 @@ SRCS	= SRCS/minishell.c \
 		SRCS/builtins/my_cd.c \
 		SRCS/builtins/my_echo.c \
 		SRCS/builtins/my_env.c \
-		SRCS/builtins/my_pwd.c \
 		SRCS/builtins/my_export.c \
+		SRCS/builtins/my_exit.c \
+		SRCS/builtins/my_pwd.c \
 		SRCS/builtins/my_unset.c \
 		SRCS/gnl/get_next_line.c \
 		SRCS/gnl/get_next_line_utils.c \

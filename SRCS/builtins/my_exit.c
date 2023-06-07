@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_program.c                                     :+:      :+:    :+:   */
+/*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 10:27:02 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/12 10:27:39 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/06/07 11:36:53 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/06/07 12:10:37 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	free_program(t_program	*node)
+void	my_exit(char **flags)
 {
-	int	i;
+	int	code;
 
-	i = 0;
-	
+	code = 0;
+	meta()->exitcode = 0;
+	clear_last();
+	printf("exit\n");
+	if (ft_isnum(flags[1]))
+	{
+		code = ft_atoi(flags[1]);
+		exit(code);
+	}
+	else
+		exit(meta()->exitcode);
 }

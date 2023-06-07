@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 17:57:58 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/07 12:01:16 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void		sighandler2(int signum);
 int			count_strings(char **strings);
 int			desired_len(char *str, char op);
 void		free_lines(char	**lines);
+int			ft_atoi(const char *nptr);
 int			ft_is_space(char c);
+int			ft_isnum(char *str);
 void		ft_putstr_fd(char *s, int fd);
 int			ft_return_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
@@ -115,6 +117,7 @@ int			is_builtin(char	*builtin, char *quoted_line);
 int			my_cd(char **path);
 int			my_echo(t_program *curr);
 int			my_env(void);
+void		my_exit(char **flags);
 int			my_export(char **flags);
 int			my_pwd(char	**flags);
 int			my_unset(char **flags);

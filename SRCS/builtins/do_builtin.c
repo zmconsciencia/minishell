@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:52:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 17:38:45 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/07 12:09:38 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int	do_builtin(t_program *curr)
 		return (my_env());
 	else if (is_builtin("exit", curr->pot.program)) //ok!?
 	{
-		clear_last();
-		printf("exit\n");
-		exit(0);
+		my_exit(curr->pot.flags);
+		// clear_last();
+		// printf("exit\n");
+		// exit(0);
 	}
 	else if (is_builtin("export", curr->pot.program))
 		return (my_export(curr->pot.flags));
