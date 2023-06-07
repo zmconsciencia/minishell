@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/07 10:23:49 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:35:09 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,15 @@ char	*expand_now(char *g_line, char a)
 			i++;
 		if (g_line[i] == a)
 		{
-			var = get_var(g_line, i);
-			if (var)
-				g_line = insert_var(g_line, i, var);
-			free(var);
+			if (g_line[i + 1] == ' ' || g_line[i + 1] == '\"' || !g_line[i + 1])
+				g_line[i] = '$';
+			else
+			{
+				var = get_var(g_line, i);
+				if (var)
+					g_line = insert_var(g_line, i, var);
+				free(var);
+			}
 		}
 		else if (!g_line[i])
 			break ;
