@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/08 14:03:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:20:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			flag_parse(char *flag, char type);
 char		*ft_itoa(int n);
 int			ft_isprint(int c);
 char		*ft_strdup(const char *s);
+int			has_non_numeric(const char *str);
 
 //parse
 int			check_syntax(char *g_line);
