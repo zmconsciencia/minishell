@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/07 10:35:09 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/08 21:09:36 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ char	*insert_var(char *g_line, int s, char *var)
 	char	*joined;
 
 	e = s;
-	while (ft_isprint(g_line[++e]) && g_line[e] != ' ')
+	if (g_line[e] != '?')
+		while (ft_isprint(g_line[++e]) && g_line[e] != ' ')
+			e++;
+	else
 		e++;
 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
 	+ ft_strlen(var) + 1);
@@ -76,7 +79,13 @@ char	*expand_now(char *g_line, char a)
 				g_line[i] = '$';
 			else
 			{
-				var = get_var(g_line, i);
+				if (g_line[i + 1] == '?')
+				{
+					var = expanded_dollar("?=");
+					i++;
+				}
+				else
+					var = get_var(g_line, i);
 				if (var)
 					g_line = insert_var(g_line, i, var);
 				free(var);
@@ -141,3 +150,57 @@ char	*treat_and_replace(char *g_line)
 	g_line = expand_now(g_line, 4);
 	return (g_line);
 }
+
+
+// char	*insert_var(char *g_line, int s, char *var)
+// {
+// 	int		i;
+// 	int		v;
+// 	int		e;
+// 	char	*joined;
+
+// 	e = s;
+// 	while (ft_isprint(g_line[++e]) && g_line[e] != ' ')
+// 		e++;
+// 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
+// 	+ ft_strlen(var) + 1);
+// 	i = -1;
+// 	while (++i < s)
+// 		joined[i] = g_line[i];
+// 	v = 0;
+// 	while (var[v])
+// 		joined[i++] = var[v++];
+// 	while (g_line[e])
+// 		joined[i++] = g_line[e++];
+// 	joined[i] = 0;
+// 	free(g_line);
+// 	return (joined);
+// }
+
+// char	*expand_now(char *g_line, char a)
+// {
+// 	int		i;
+// 	char	*var;
+
+// 	i = -1;
+// 	while (g_line[++i])
+// 	{
+// 		while (g_line[i] != a && g_line[i])
+// 			i++;
+// 		if (g_line[i] == a)
+// 		{
+// 			if (g_line[i + 1] == ' ' || g_line[i + 1] == '\"' || !g_line[i + 1])
+// 				g_line[i] = '$';
+// 			else
+// 			{
+// 				var = get_var(g_line, i);
+// 				if (var)
+// 					g_line = insert_var(g_line, i, var);
+// 				free(var);
+// 			}
+// 		}
+// 		else if (!g_line[i])
+// 			break ;
+// 	}
+// 	return (g_line);
+// }
