@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 10:27:32 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/07 11:51:56 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:01:27 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 //retorna o primeiro conjunto de numeros encontrados na string como int.
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
-	int	y;
-	int	sign;
+	long long	y;
+	int			sign;
 
 	y = 0;
 	sign = 1;

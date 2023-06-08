@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:36:53 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/07 12:10:37 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:01:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	my_exit(char **flags)
 {
-	int	code;
+	long long	code;
 
 	code = 0;
 	meta()->exitcode = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/07 12:01:16 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:03:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		sighandler2(int signum);
 int			count_strings(char **strings);
 int			desired_len(char *str, char op);
 void		free_lines(char	**lines);
-int			ft_atoi(const char *nptr);
+long long	ft_atoi(const char *nptr);
 int			ft_is_space(char c);
 int			ft_isnum(char *str);
 void		ft_putstr_fd(char *s, int fd);
