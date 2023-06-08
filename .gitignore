@@ -1,2 +1,4 @@
 minishell_tester
 */*/*.o
+*/*.o
+minishell

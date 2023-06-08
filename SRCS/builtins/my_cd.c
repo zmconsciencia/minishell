@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:34 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/03 19:00:53 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:54:48 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@
 // melhorar alguns aspectos
 int	my_cd(char **path)
 {
-	if (path[1] == NULL) // -> melhorar caso seja so cd
+	meta()->exitcode = 0;
+	if (path[1] == NULL)
 		if (chdir("/") == 0)
 			return (1);
 	if (chdir(path[1]) == 0)
 		return (1);
 	else
-		printf("cd: no such file or directory: %s\n", path[0]);
+	{
+		perror(path[1]);
+		meta()->exitcode = 1;
+	}
 	return (-1);
 }
