@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 15:32:23 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:49:07 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	start_function(char *g_line)
 	}
 	execute(); // --> tira se quiseres testar nodes
 	free(treated);
-	// // free_nodes
+	free_lines(nodes);
 }
 
 t_meta	*meta(void)
