@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_last.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:35:28 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/15 15:00:04 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:00:59 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	clear_last(void)
 	t_program	*curr;
 
 	curr = meta()->head;
-	while (curr->next)
+	while (curr)
 	{
 		meta()->head = curr->next;
+		free(curr->pot.program);
+		free(curr->pot.path_program);
+		free_lines(curr->pot.flags);
 		free(curr);
-		// apagar tambem os mallocs la dentro ??
 		curr = meta()->head;
 	}
 	meta()->head = 0;

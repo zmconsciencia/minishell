@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_nodes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 11:46:08 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:16:00 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_program	*new_node(int id, int flag_no)
 	node->program_id = id;
 	node->pot.program = 0;
 	node->pot.path_program = 0;
-	node->pot.flags = malloc(sizeof(char *) * flag_no + 1);
+	node->pot.flags = malloc(sizeof(char *) * (flag_no + 1));
 	node->pot.flags[flag_no] = 0;
 	while (i < flag_no)
 		node->pot.flags[i++] = 0;
@@ -103,6 +103,7 @@ void	parse_nodes(char **tokens, int id)
 {
 	int			i;
 	int			flag_no;
+	char		*temp;
 	t_program	*node;
 
 	i = -1;
@@ -113,7 +114,11 @@ void	parse_nodes(char **tokens, int id)
 		if (ft_strchr(tokens[i], 6) || ft_strchr(tokens[i], 5))
 			fill_red(tokens[i], node);
 		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
-			fill_pot(treat_quotes(tokens[i]), node);
+		{
+			temp = treat_quotes(tokens[i]);
+			fill_pot(temp, node);
+			free(temp);
+		}
 		else
 			fill_pot(tokens[i], node);
 	}
@@ -123,6 +128,7 @@ void	parse_nodes(char **tokens, int id)
 		free(node->red.limiter);
 	}
 	add_to_list(node);
+	free_lines(tokens);
 	//print_program(node);
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
 }

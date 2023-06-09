@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:36:53 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 13:56:39 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/09 14:49:39 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,25 @@ void	my_exit(char **flags)
 	code = 0;
 	meta()->exitcode = 0;
 	// print_double_arr(flags);
-	if (count_strings(flags) > 3)
+	if (count_strings(flags) > 2)
 	{
 		ft_putstr_fd(" too many arguments\n", 2);
 		meta()->exitcode = 1;
 	}
 	else
 	{
-		if (count_strings(flags) == 3 && has_non_numeric(flags[1]))
+		if (count_strings(flags) == 2 && has_non_numeric(flags[1]))
 		{
 			ft_putstr_fd(" numeric argument required\n", 2);
 			meta()->exitcode = 2;
 		}
-		else if (count_strings(flags) == 3)
+		else if (count_strings(flags) == 2)
 		{
 			code = ft_atoi(flags[1]);
 			meta()->exitcode = code;
 		}
-		clear_last();
-		printf("exit\n");
-		exit(meta()->exitcode);
 	}
+	clear_last();
+	printf("exit\n");
+	exit(meta()->exitcode);
 }
