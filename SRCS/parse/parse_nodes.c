@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/08 21:08:49 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:46:08 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,20 @@ int	count_flags(char **tokens)
 	count = 0;
 	while (tokens[i])
 	{
-		if (!ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<'))
+		if (!ft_strchr(tokens[i], 5) || ft_strchr(tokens[i], 6))
 			count++;
 		i++;
 	}
 	return (count);
+}
+
+void	print_double_arr(char **arr)
+{
+	int	i;
+
+	i = -1;
+	while (arr[++i])
+		printf("%s\n", arr[i]);
 }
 
 // A FUNCAO EXPANDED_DOLLAR RETORNA UM MALLOC, QUE VAI PRECISAR SER FREED
@@ -101,7 +110,7 @@ void	parse_nodes(char **tokens, int id)
 	node = new_node(id, flag_no);
 	while (tokens[++i])
 	{
-		if ((ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<')) && !ft_strchr(tokens[i], '\"' && !ft_strchr(tokens[i], '\'')))
+		if (ft_strchr(tokens[i], 6) || ft_strchr(tokens[i], 5))
 			fill_red(tokens[i], node);
 		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
 			fill_pot(treat_quotes(tokens[i]), node);

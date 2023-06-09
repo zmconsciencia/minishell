@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/08 17:20:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:42:49 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,8 @@ char		*check_access(char **paths, char *arg);
 char		*join_path(char *path, char *arg);
 void		fill_list(t_program **list, int argc, char **argv, char **envp);
 void		free_my_list(t_program *list);
+
+//apagar
+void	print_double_arr(char **arr);
 
 #endif

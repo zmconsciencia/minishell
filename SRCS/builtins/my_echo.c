@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 15:29:12 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:44:28 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	my_echo(t_program *curr)
 			i = 2;
 		while (curr->pot.flags[i])
 		{
+			// printf("%p\n", curr->pot.flags[i]);
+			// i++;
 			ft_putstr_fd(curr->pot.flags[i], fd);
 			if (curr->pot.flags[++i])
 				ft_putstr_fd(" ", fd);

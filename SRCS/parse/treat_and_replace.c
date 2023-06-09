@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/08 21:09:36 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/09 13:08:38 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_var(char *g_line, int s)
 	v = 0;
 	var_name = 0;
 	i = s;
-	while (ft_isprint(g_line[++i]) && g_line[i] != ' ')
+	while (ft_isprint(g_line[++i]) && g_line[i] != ' ') //tem que voltar a ser alfa num com restricoes -> perguntar miguel
 		;
 	var_name = malloc(sizeof(char) * (i - s) + 2);
 	while (++s < i && g_line[s] != '\"')
@@ -44,8 +44,8 @@ char	*insert_var(char *g_line, int s, char *var)
 
 	e = s;
 	if (g_line[e] != '?')
-		while (ft_isprint(g_line[++e]) && g_line[e] != ' ')
-			e++;
+		while ((is_alpha_num(g_line[++e]) || g_line[e] == '_') && g_line[e] != ' ') //mudar alfa num
+			;
 	else
 		e++;
 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
@@ -81,7 +81,7 @@ char	*expand_now(char *g_line, char a)
 			{
 				if (g_line[i + 1] == '?')
 				{
-					var = expanded_dollar("?=");
+					var = ft_itoa(meta()->exitcode);
 					i++;
 				}
 				else
@@ -141,7 +141,13 @@ char	*treat_and_replace(char *g_line)
 		{
 			g_line = add_three(g_line, i);
 			while (g_line[++i] == '<' || g_line[i] == '>')
-				i++;
+			{
+				if (g_line[i] == '<')
+					g_line[i] = 5;
+				else if (g_line[i] == '>')
+					g_line[i] = 6;
+				// i++;
+			}
 			while (ft_is_space(g_line[++i]) && \
 				(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
 				;

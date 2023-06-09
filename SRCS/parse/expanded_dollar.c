@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanded_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:10:59 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 17:16:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:55:55 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ char	*expanded_dollar(char *input)
 	int		i;
 
 	i = 0;
-	if (!ft_strncmp(input, "?=", 2))
-	{
-		return (ft_itoa(meta()->exitcode));
-	}
 	while (meta()->envp[i])
 	{
 		if (!ft_strncmp(meta()->envp[i], input, \
