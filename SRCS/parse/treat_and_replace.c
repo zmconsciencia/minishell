@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 15:28:38 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:10:55 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ char	*insert_var(char *g_line, int s, char *var)
 	char	*joined;
 
 	e = s;
-	if (g_line[e] != '?')
+	if (g_line[e + 1] != '?')
 		while ((is_alpha_num(g_line[++e]) || g_line[e] == '_') && g_line[e] != ' ') //mudar alfa num
 			;
 	else
-		e++;
+		e += 2;
 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
 	+ ft_strlen(var) + 1);
 	i = -1;
@@ -82,7 +82,7 @@ char	*expand_now(char *g_line, char a)
 				if (g_line[i + 1] == '?')
 				{
 					var = ft_itoa(meta()->exitcode);
-					i++;
+					// i++;
 				}
 				else
 					var = get_var(g_line, i);
