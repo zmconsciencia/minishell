@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 15:16:00 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:35:07 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	print_program(t_program *node)
 	printf("----------\n");
 	printf("Node id: %d\n", node->program_id);
 	printf("Program: %s\n", node->pot.program);
+	printf("Program: %s\n", node->pot.path_program);
 	while (node->pot.flags[i] != 0)
 	{
 		printf("Flags[%d]: %s\n", i, node->pot.flags[i]);
@@ -129,7 +130,8 @@ void	parse_nodes(char **tokens, int id)
 	}
 	add_to_list(node);
 	free_lines(tokens);
-	//print_program(node);
+	// print_program(node);
+	// exit (0);
 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
 }
 

@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 10:10:55 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:34:12 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,9 +148,12 @@ char	*treat_and_replace(char *g_line)
 					g_line[i] = 6;
 				// i++;
 			}
-			while (ft_is_space(g_line[++i]) && \
-				(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
-				;
+			if (g_line[i] == ' ')
+				while (ft_is_space(g_line[++i]) && \
+					(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
+					;
+			if (g_line[i] == '\"' || g_line[i] == '\'')
+				i--;
 		}
 	}
 	g_line = expand_now(g_line, 4);
