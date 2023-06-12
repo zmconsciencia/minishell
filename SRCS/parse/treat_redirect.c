@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 12:17:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:07:55 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	treat_append(char *file_name, t_program *node)
 	if (node->red.fd_out == -1)
 	{
 		meta()->exitcode = 1;
-		node->red.fd_out = open("temp", O_CREAT, 0644);
 		perror(file_name);
 	}
 }
