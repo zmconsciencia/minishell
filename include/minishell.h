@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 14:43:30 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:53:58 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_program{
 }	t_program;
 
 typedef struct s_meta{
+	int					temp;
 	int					exitcode;
 	char				**envp;
 	struct s_program	*head;
@@ -97,6 +98,7 @@ char		*ft_itoa(int n);
 int			ft_isprint(int c);
 char		*ft_strdup(const char *s);
 int			has_non_numeric(const char *str);
+int			ft_isalpha(char c);
 
 //parse
 int			check_syntax(char *g_line);

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 16:19:35 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:17:02 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,30 @@ void	treat_infiles(char *file_name, t_program *node)
 		close(node->red.fd_in);
 	node->red.fd_in = open(file_name, O_RDONLY);
 	if (node->red.fd_in == -1)
+	{
+		meta()->exitcode = 1;
 		perror(file_name);
+	}
 }
 
 void	treat_outfiles(char *file_name, t_program *node)
 {
+	meta()->exitcode = 0;
 	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (node->red.fd_out == -1)
+	{
+		meta()->exitcode = 1;
 		perror(file_name);
+	}
 }
 
 void	treat_append(char *file_name, t_program *node)
 {
 	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (node->red.fd_out == -1)
+	{
+		meta()->exitcode = 1;
+		node->red.fd_out = open("temp", O_CREAT, 0644);
 		perror(file_name);
+	}
 }

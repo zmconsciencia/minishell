@@ -6,72 +6,48 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 17:18:05 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:30:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// int	var_len(char *str)
-// {
-// 	int	i;
+char	**sort_alpha(char **arr, int size)
+{
+	int		i;
+	int		swapped;
+	char	*temp;
 
-// 	i = 0;
-// 	while (str[i] != '\0' || str[i] != '=')
-// 		i++;
-// 	return (i);
-// }
-
-// char	*get_var_name(char *str)
-// {
-// 	char	*var;
-// 	int		len;
-// 	int		i;
-// 	int		j;
-
-// 	len = var_len(str);
-// 	var = malloc(sizeof(char) * len + 1);
-// 	i = 0;
-// 	j = 0;
-// 	while (str[i] != '\0' || str[i] != '=')
-// 	{
-// 		var[j] = str[i];
-// 		i++;
-// 		j++;
-// 	}
-// 	var[i] = '\0';
-// 	return (var);
-// }
-
-// char	*get_var_value(char *str)
-// {
-// 	char	*value;
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	j = 0;
-// 	value = malloc(sizeof(char) * (ft_strlen(str) - var_len(str)));
-// 	while (str[i] != '=')
-// 		i++;
-// 	i++;
-// 	while (str[i])
-// 	{
-// 		value[j] = str[i];
-// 		i++;
-// 		j++;
-// 	}
-// 	value[i] = '\0';
-// 	return (value);
-// }
+	swapped = 1;
+	while (swapped)
+	{
+		swapped = 0;
+		i = 0;
+		while (i < size - 1)
+		{
+			if (ft_strncmp(arr[i], arr[i + 1], ft_strlen(arr[i])) > 0)
+			{
+				temp = arr[i];
+				arr[i] = arr[i + 1];
+				arr[i + 1] = temp;
+				swapped = 1;
+			}
+			i++;
+		}
+		size--;
+	}
+	return (arr);
+}
 
 void	print_export(void)
 {
 	char	**env;
 	int		i;
+	int		n;
 
 	i = 0;
-	env = meta()->envp;
+	n = count_strings(meta()->envp);
+	env = sort_alpha(meta()->envp, n);
 	while (env[i])
 	{
 		printf("declare -x %s\n", env[i]);
@@ -103,11 +79,39 @@ void	add_var(char *str)
 	meta()->envp = new_env;
 }
 
+int	export_syntax(char *str)
+{
+	int	i;
+
+	i = 0;
+	meta()->exitcode = 0;
+	if (str[0] != '_' && !ft_isalpha(str[0]))
+	{
+		meta()->exitcode = 1;
+		return (0);
+	}
+	while (str[i] && str[i] != '=')
+	{
+		if (str[i] == '-')
+		{
+			meta()->exitcode = 1;
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	my_export(char **flags)
 {
 	if (count_strings(flags) == 1)
 		print_export();
 	else if (count_strings(flags) == 2)
-		add_var(flags[1]);
+	{
+		if (!export_syntax(flags[1]))
+			ft_putstr_fd(" not a valid identifier", 2);
+		else
+			add_var(flags[1]);
+	}
 	return (1);
 }

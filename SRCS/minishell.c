@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 19:49:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:54:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	start_function(char *g_line)
 		// free_lines(tokens);
 	}
 	execute(); // --> tira se quiseres testar nodes
+	if (meta()->temp)
+		unlink("temp");
 	free(treated);
 	free_lines(nodes);
 }
