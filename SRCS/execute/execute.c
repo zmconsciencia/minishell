@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 13:41:05 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:01:55 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	execute(void)
 	}
 	while (n > 0)
 	{
-		waitpid(-1, &(meta()->exitcode), 0);
+		waitpid(-1, &(meta()->exitcode), WUNTRACED);
+		if (WIFEXITED(meta()->exitcode))
+			meta()->exitcode = WEXITSTATUS(meta()->exitcode);
 		n--;
 	}
 }
