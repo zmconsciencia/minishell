@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:09:29 by jabecass          #+#    #+#             */
-/*   Updated: 2023/06/13 12:05:05 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:40:12 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,23 @@ char	*add_quotes(char *str)
 		}
 		j++;
 	}
+	new[j] = '\0';
+	return (new);
+}
+
+char	*remove_point(char *str)
+{
+	char	*new;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	new = malloc(sizeof(char) * ft_strlen(str));
+	if (str[0] == '.')
+		i++;
+	while (str[i])
+		new[j++] = str[i++];
 	new[j] = '\0';
 	return (new);
 }

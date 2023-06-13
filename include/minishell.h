@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/13 11:50:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:40:33 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int			ft_isalpha(char c);
 char		*ft_strcat(char *s1, char *s2);
 char		**sort_alpha(char **arr, int size);
 char		*add_quotes(char *str);
+char		*remove_point(char *str);
 
 //parse
 int			check_syntax(char *g_line);

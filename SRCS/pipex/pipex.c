@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/13 14:10:15 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:38:24 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,15 @@ void	pipex(t_program *program)
 		if ((execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1) && !check_builtin(curr))
 		{
 			meta()->exitcode = 127;
+			if (access(remove_point(curr->pot.flags[0]), X_OK))
+			{
+				if (!ft_strncmp(curr->pot.flags[0], "./", 2))
+					meta()->exitcode = 126;
+			}
 			perror(curr->pot.program);
-			exit(meta()->exitcode);
+			exit (meta()->exitcode);
 		}
-		else if (check_builtin(curr))
+		if (check_builtin(curr))
 		{
 			do_builtin(curr);
 			exit(0);

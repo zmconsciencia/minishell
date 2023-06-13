@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:09:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 11:44:28 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:39:16 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	my_echo(t_program *curr)
 	fd = 1;
 	if (curr->red.fd_out)
 		fd = curr->red.fd_out;
+	// else if (curr->red.fd[1])
+	// 	fd = curr->red.fd[1];
 	if (curr->pot.flags[i])
 	{
 		if (flag_parse(curr->pot.flags[1], 'n'))
