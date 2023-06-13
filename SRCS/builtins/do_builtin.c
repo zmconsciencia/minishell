@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:52:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 13:53:29 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:34:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	do_builtin(t_program *curr)
 		// exit(0);
 	}
 	else if (is_builtin("export", curr->pot.program))
-		return (my_export(curr->pot.flags));
+		return (my_export(curr->pot.flags, curr));
 	else if (is_builtin("pwd", curr->pot.program)) //ok!?
 		return (my_pwd(curr->pot.flags));
 	else if (is_builtin("unset", curr->pot.program))

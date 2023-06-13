@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 14:38:59 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:49:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	pipex(t_program *program)
 		do_child(curr);
 		if (curr->red.fd_in == -1)
 			exit(1);
-		if (execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1)
+		if ((execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1) && !check_builtin(curr))
 		{
 			meta()->exitcode = 127;
 			perror(curr->pot.program);
