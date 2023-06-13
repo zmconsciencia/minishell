@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_red.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:47:58 by jabecass          #+#    #+#             */
-/*   Updated: 2023/06/09 13:12:52 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 13:42:26 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 void	fill_red(char *token, t_program *node)
 {
 	char	*file_name;
+	char	*no_quotes;
 	char	*op;
 
 	file_name = get_filename(token);
+	if (file_name[0] == '\"')
+	{
+		no_quotes = treat_quotes(file_name);
+		free(file_name);
+		file_name = no_quotes;
+	}
 	op = get_op(token);
 	if (ft_strlen(op) == 1)
 	{

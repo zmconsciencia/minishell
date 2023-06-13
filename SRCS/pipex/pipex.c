@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 10:58:42 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:38:59 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	pipex(t_program *program)
 	if (pid == 0)
 	{
 		do_child(curr);
+		if (curr->red.fd_in == -1)
+			exit(1);
 		if (execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1)
 		{
 			meta()->exitcode = 127;
