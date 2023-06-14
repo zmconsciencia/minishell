@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/13 10:46:20 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:10:31 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	execute(void)
 	while (n > 0)
 	{
 		waitpid(-1, &(meta()->exitcode), WUNTRACED);
-		if (WIFEXITED(meta()->exitcode))
+		// if (WIFEXITED(meta()->exitcode) || 1)
 			meta()->exitcode = WEXITSTATUS(meta()->exitcode);
 		n--;
 	}

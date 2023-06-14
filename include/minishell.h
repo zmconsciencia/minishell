@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/13 15:40:33 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:23:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <limits.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <errno.h>
 
 typedef struct s_pot{
 	char	*path_program;
@@ -86,7 +89,6 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_strnstr(char *big, char *little, size_t n);
-t_program	*get_curr_prog(int id);
 char		*get_filename(char *token);
 char		*get_op(char *token);
 int			is_alpha_num(char c);

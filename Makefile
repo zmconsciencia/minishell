@@ -27,7 +27,6 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/ft_strlen.c \
 		SRCS/utils/ft_strncmp.c \
 		SRCS/utils/ft_strnstr.c \
-		SRCS/utils/get_curr_prog.c \
 		SRCS/utils/is_alpha_num.c \
 		SRCS/utils/lst_utils.c \
 		SRCS/utils/new_strjoin.c \

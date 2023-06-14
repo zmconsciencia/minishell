@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/13 16:39:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:20:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,8 @@ int	my_export(char **flags, t_program *curr)
 	int	fd;
 
 	fd = 1;
-	if (curr->red.fd_out)
+	if (curr->red.fd_out && !curr->program_id && !curr->next)
 		fd = curr->red.fd_out;
-	// else if (curr->red.fd[1])
-	// 	fd = curr->red.fd[1];
 	if (count_strings(flags) == 1)
 		print_export(fd);
 	else if (count_strings(flags) == 2)
