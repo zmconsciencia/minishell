@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:06:48 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:43:21 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ void	before_exec(t_program *curr)
 	struct stat	st;
 
 	if (lstat(curr->pot.path_program, &st) && \
-		ft_strncmp("./", curr->pot.path_program, 2 && curr->pot.path_program[0] != '/'))
+		ft_strncmp("./", curr->pot.path_program, 2 && \
+			curr->pot.path_program[0] != '/'))
 	{
 		perror("");
 		close_all(curr);
 		exit(127);
 	}
 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
-		!ft_strncmp("./", curr->pot.path_program, 2)) && !access(curr->pot.path_program, F_OK))
+		!ft_strncmp("./", curr->pot.path_program, 2)) && \
+			!access(curr->pot.path_program, F_OK))
 	{
 		perror("");
 		close_all(curr);
@@ -83,7 +85,6 @@ void	pipex(t_program *program)
 	int			pid;
 
 	curr = program;
-
 	if (pipe(curr->red.fd) == -1)
 		perror ("Pipe error");
 	pid = fork();
@@ -95,16 +96,14 @@ void	pipex(t_program *program)
 		if (!check_builtin(curr))
 		{	
 			before_exec(curr);
-			if ((execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1))
+			if ((execve(curr->pot.path_program, curr->pot.flags, \
+				meta()->envp) == -1))
 				after_exec(curr);
 		}
 		else
 		{
 			if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
-			{
-				// close_all(curr);
 				exit(1);
-			}
 			do_builtin(curr);
 			exit(0);
 		}

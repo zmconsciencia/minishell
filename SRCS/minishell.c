@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 11:54:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:49:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,33 @@ void	start_function(char *g_line)
 		parse_nodes(tokens, i);
 		// free_lines(tokens);
 	}
-	execute(); // --> tira se quiseres testar nodes
+	execute();
 	if (meta()->temp)
 		unlink("temp");
 	free(treated);
 	free_lines(nodes);
+}
+
+char	**copy_arr(char **str)
+{
+	char	**new_env;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!str || !str[0])
+		return (0);
+	new_env = malloc(sizeof(char *) * (count_strings(str) + 1));
+	while (str[i])
+	{
+		new_env[j] = malloc(sizeof(char) * (ft_strlen(str[i]) + 1));
+		ft_strlcpy(new_env[j], str[i], ft_strlen(str[i]) + 1);
+		j++;
+		i++;
+	}
+	new_env[j] = 0;
+	return (new_env);
 }
 
 t_meta	*meta(void)
@@ -49,7 +71,7 @@ int	main(int ac, char **av, char **envp)
 	char	*g_line;
 
 	(void)av;
-	meta()->envp = envp;
+	meta()->envp = copy_arr(envp);
 	if (ac >= 1)
 	{
 		signal(SIGINT, SIG_DFL);

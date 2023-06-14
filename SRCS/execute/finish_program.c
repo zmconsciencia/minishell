@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnum.c                                         :+:      :+:    :+:   */
+/*   finish_program.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 10:52:17 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/07 12:10:11 by bde-seic         ###   ########.fr       */
+/*   Created: 2023/06/14 15:50:07 by jabecass          #+#    #+#             */
+/*   Updated: 2023/06/14 15:51:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	ft_isnum(char *str)
+void	finish_program(void)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] <= '0' || str[i] >= '9')
-			return (0);
-	}
-	return (1);
+	free_lines(meta()->envp);
 }

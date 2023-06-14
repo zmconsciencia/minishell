@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 12:37:48 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:59:47 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,6 @@ int	count_flags(char **tokens)
 	return (count);
 }
 
-void	print_double_arr(char **arr)
-{
-	int	i;
-
-	i = -1;
-	while (arr[++i])
-		printf("%s\n", arr[i]);
-}
-
 // A FUNCAO EXPANDED_DOLLAR RETORNA UM MALLOC, QUE VAI PRECISAR SER FREED
 void	parse_nodes(char **tokens, int id)
 {
@@ -130,35 +121,4 @@ void	parse_nodes(char **tokens, int id)
 	}
 	add_to_list(node);
 	free_lines(tokens);
-	// print_program(node);
-	// exit (0);
-	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
 }
-
-// void	parse_nodes(char **tokens, int id)
-// {
-// 	int			i;
-// 	int			flag_no;
-// 	t_program	*node;
-
-// 	i = -1;
-// 	flag_no = count_flags(tokens);
-// 	node = new_node(id, flag_no);
-// 	while (tokens[++i])
-// 	{
-// 		if ((ft_strchr(tokens[i], '>') || ft_strchr(tokens[i], '<')) && !ft_strchr(tokens[i], '\"'))
-// 			fill_red(tokens[i], node);
-// 		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
-// 			fill_pot(treat_quotes(tokens[i]), node);
-// 		else
-// 			fill_pot(tokens[i], node);
-// 	}
-// 	if (node->red.here_doc)
-// 	{
-// 		run_heredoc(node->red.limiter, node);
-// 		free(node->red.limiter);
-// 	}
-// 	add_to_list(node);
-// 	//print_program(node);
-// 	//fazer free token list (**), e fazer free de cada token dentro do fill pot ou fill red
-// }

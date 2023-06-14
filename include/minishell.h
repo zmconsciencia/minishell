@@ -6,13 +6,12 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:23:19 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:51:53 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# define H printf("here\n")
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000
@@ -66,6 +65,7 @@ t_meta		*meta(void);
 
 //execute
 void		execute(void);
+void		finish_program(void);
 void		clear_last(void);
 void		run_heredoc(char *file_name, t_program *node);
 
@@ -79,7 +79,6 @@ int			desired_len(char *str, char op);
 void		free_lines(char	**lines);
 long long	ft_atoi(const char *nptr);
 int			ft_is_space(char c);
-int			ft_isnum(char *str);
 void		ft_putstr_fd(char *s, int fd);
 int			ft_return_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
@@ -104,7 +103,6 @@ int			ft_isalpha(char c);
 char		*ft_strcat(char *s1, char *s2);
 char		**sort_alpha(char **arr, int size);
 char		*add_quotes(char *str);
-char		*remove_point(char *str);
 
 //parse
 int			check_syntax(char *g_line);
@@ -144,9 +142,8 @@ char		*trim_path(char *env_var);
 char		*check_access(char **paths, char *arg);
 char		*join_path(char *path, char *arg);
 void		fill_list(t_program **list, int argc, char **argv, char **envp);
-void		free_my_list(t_program *list);
 
 //apagar
-void	print_double_arr(char **arr);
+void		print_double_arr(char **arr);
 
 #endif

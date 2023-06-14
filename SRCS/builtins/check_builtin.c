@@ -6,13 +6,12 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:53:33 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/01 15:41:40 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:41:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// mudar is_builtin para ft_strncmp?
 int	check_builtin(t_program *curr)
 {
 	if (!curr->pot.program)
@@ -20,37 +19,16 @@ int	check_builtin(t_program *curr)
 	if (is_builtin("cd", curr->pot.program))
 		return (1);
 	else if (is_builtin("echo", curr->pot.program))
-		return (1); //nao funcionou com $USER
+		return (1);
 	else if (is_builtin("env", curr->pot.program))
 		return (1);
-	else if (is_builtin("exit", curr->pot.program)) //ok!?
+	else if (is_builtin("exit", curr->pot.program))
 		return (1);
 	else if (is_builtin("export", curr->pot.program))
 		return (1);
-	else if (is_builtin("pwd", curr->pot.program)) //ok!?
+	else if (is_builtin("pwd", curr->pot.program))
 		return (1);
 	else if (is_builtin("unset", curr->pot.program))
 		return (1);
 	return (0);
 }
-
-
-// int	check_builtin(t_program *curr)
-// {
-// 	// if (!ft_strncmp("cd\0", curr->pot.program, ft_strlen(curr->pot.program)))
-// 	if (is_builtin("cd", curr->pot.program))
-// 		return (printf("builtin: cd\n"));
-// 	else if (ft_strncmp("echo", curr->pot.program, ft_strlen(curr->pot.program)))
-// 		return (my_echo(curr->pot.flags));
-// 	else if (ft_strncmp("env", curr->pot.program, ft_strlen(curr->pot.program)))
-// 		return (printf("builtin: env\n"));
-// 	else if (ft_strncmp("exit", curr->pot.program, ft_strlen(curr->pot.program)))
-// 		exit(EXIT_FAILURE); //not this one
-// 	else if (ft_strncmp("export", curr->pot.program, ft_strlen(curr->pot.program)))
-// 		return (printf("builtin: export\n"));
-// 	else if (ft_strncmp("pwd", curr->pot.program, ft_strlen(curr->pot.program)))
-// 		return (my_pwd());
-// 	else if (ft_strncmp("unset", curr->pot.program, ft_strlen(curr->pot.program)))
-// 		return (printf("builtin: unset\n"));
-// 	return (0);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:48 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/06 16:40:39 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:41:59 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	my_env(void)
 	i = 0;
 	while (meta()->envp[i])
 	{
-		printf("%s\n", meta()->envp[i]); //nao esta a imprimir na ordem certa
+		printf("%s\n", meta()->envp[i]);
 		i++;
 	}
 	return (1);

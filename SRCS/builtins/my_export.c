@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:20:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:35:37 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ void	add_var(char *str)
 	i = 0;
 	j = 0;
 	env = meta()->envp;
-	new_env = malloc(sizeof(char **) * count_strings(meta()->envp) + 2);
+	new_env = malloc(sizeof(char *) * (count_strings(meta()->envp) + 2));
 	while (env[i])
 	{
-		new_env[j] = malloc(sizeof(char) * (strlen(env[i]) + 1));
-		strcpy(new_env[j], env[i]);
+		new_env[j] = malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
+		ft_strlcpy(new_env[j], env[i], ft_strlen(env[i]) + 1);
 		j++;
 		i++;
 	}
-	new_env[j] = malloc(sizeof(char) * (strlen(str) + 1));
-	strcpy(new_env[j++], str);
+	new_env[j] = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	ft_strlcpy(new_env[j++], str, ft_strlen(str) + 1);
 	new_env[j] = NULL;
 	meta()->envp = new_env;
 }

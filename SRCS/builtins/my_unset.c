@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:12:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/08 15:03:46 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:23:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ int	my_unset(char **flags)
 	}
 	if (i < count_strings(meta()->envp))
 	{
-		new_env = malloc(sizeof(char **) * count_strings(meta()->envp));
+		new_env = malloc(sizeof(char *) * count_strings(meta()->envp));
 		while (meta()->envp[j])
 		{
 			if (j == i)
 				j++;
 			if (meta()->envp[j])
 			{
-				new_env[k] = malloc(sizeof(char *) * ft_strlen(meta()->envp[j]) + 1);
-				ft_strlcpy(new_env[k++], meta()->envp[j], ft_strlen(meta()->envp[j]) + 1);
+				new_env[k] = malloc(sizeof(char) * \
+					ft_strlen(meta()->envp[j]) + 1);
+				ft_strlcpy(new_env[k++], meta()->envp[j], \
+					ft_strlen(meta()->envp[j]) + 1);
 				j++;
 			}
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_red.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:47:58 by jabecass          #+#    #+#             */
-/*   Updated: 2023/06/12 13:42:26 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:45:32 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	fill_red(char *token, t_program *node)
 	op = get_op(token);
 	if (ft_strlen(op) == 1)
 	{
-		if (op[0] == 5/* ft_strncmp(op, 6, 1) == 0 */)
+		if (op[0] == 5)
 			treat_infiles(file_name, node);
 		else
 			treat_outfiles(file_name, node);
 	}
 	else if (ft_strlen(op) == 2)
 	{
-		if (op[0] == 5/* ft_strncmp(op, 6, 1) == 0 */)
+		if (op[0] == 5)
 		{
 			node->red.limiter = file_name;
 			node->red.here_doc++;

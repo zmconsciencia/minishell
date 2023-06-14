@@ -2,6 +2,7 @@ NAME = $(shell basename $(CURDIR))
 
 SRCS	= SRCS/minishell.c \
 		SRCS/execute/execute.c \
+		SRCS/execute/finish_program.c \
 		SRCS/execute/clear_last.c \
 		SRCS/execute/treat_heredoc.c \
 		SRCS/handle/sighandler.c \
@@ -18,7 +19,6 @@ SRCS	= SRCS/minishell.c \
 		SRCS/utils/free_lines.c \
 		SRCS/utils/ft_atoi.c \
 		SRCS/utils/ft_is_space.c \
-		SRCS/utils/ft_isnum.c \
 		SRCS/utils/ft_putstr_fd.c \
 		SRCS/utils/ft_split.c \
 		SRCS/utils/ft_strchr.c \
@@ -48,8 +48,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/pipex/get_path.c \
 		SRCS/pipex/trim_path.c \
 		SRCS/pipex/join_path.c \
-		SRCS/pipex/check_access.c \
-		SRCS/pipex/free_my_list.c
+		SRCS/pipex/check_access.c
 
 OBJ		= ${SRCS:.c=.o}
 
