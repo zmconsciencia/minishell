@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:00:06 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/03 10:31:10 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:36:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,22 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+char	*ft_strcat(char *s1, char *s2)
+{
+	char	*new;
+	size_t	i;
+	size_t	n;
+
+	i = 0;
+	n = 0;
+	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	while (i < ft_strlen(s1))
+		new[n++] = s1[i++];
+	i = 0;
+	while (i < ft_strlen(s2))
+		new[n++] = s2[i++];
+	new[n] = '\0';
+	return (new);
 }

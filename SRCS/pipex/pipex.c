@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 14:38:59 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:06:48 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,48 @@ void	do_child(t_program *curr)
 	close_all(curr);
 }
 
+void	before_exec(t_program *curr)
+{
+	struct stat	st;
+
+	if (lstat(curr->pot.path_program, &st) && \
+		ft_strncmp("./", curr->pot.path_program, 2 && curr->pot.path_program[0] != '/'))
+	{
+		perror("");
+		close_all(curr);
+		exit(127);
+	}
+	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
+		!ft_strncmp("./", curr->pot.path_program, 2)) && !access(curr->pot.path_program, F_OK))
+	{
+		perror("");
+		close_all(curr);
+		exit(126);
+	}
+	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+	{
+		close_all(curr);
+		exit(1);
+	}
+}
+
+void	after_exec(t_program *curr)
+{
+	if (errno == EACCES)
+	{
+		if (access(curr->pot.flags[0], X_OK) && \
+			!ft_strncmp("./", curr->pot.flags[0], 2))
+		{
+			perror(curr->pot.flags[0]);
+			exit(126);
+		}
+		perror(curr->pot.flags[0]);
+		exit(127);
+	}
+	perror(curr->pot.flags[0]);
+	exit(127);
+}
+
 void	pipex(t_program *program)
 {
 	t_program	*curr;
@@ -50,16 +92,19 @@ void	pipex(t_program *program)
 	if (pid == 0)
 	{
 		do_child(curr);
-		if (curr->red.fd_in == -1)
-			exit(1);
-		if (execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1)
-		{
-			meta()->exitcode = 127;
-			perror(curr->pot.program);
-			exit(meta()->exitcode);
+		if (!check_builtin(curr))
+		{	
+			before_exec(curr);
+			if ((execve(curr->pot.path_program, curr->pot.flags, meta()->envp) == -1))
+				after_exec(curr);
 		}
-		else if (check_builtin(curr))
+		else
 		{
+			if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+			{
+				// close_all(curr);
+				exit(1);
+			}
 			do_builtin(curr);
 			exit(0);
 		}

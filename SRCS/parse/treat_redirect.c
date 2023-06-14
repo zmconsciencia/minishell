@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_redirect.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 14:07:55 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/14 12:44:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	treat_infiles(char *file_name, t_program *node)
 
 void	treat_outfiles(char *file_name, t_program *node)
 {
-	meta()->exitcode = 0;
+	if (meta()->exitcode == 1)
+		return ;
+	// meta()->exitcode = 0;
+	if (node->red.fd_out != 0)
+		close(node->red.fd_out);
 	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (node->red.fd_out == -1)
 	{
@@ -37,6 +41,11 @@ void	treat_outfiles(char *file_name, t_program *node)
 
 void	treat_append(char *file_name, t_program *node)
 {
+	if (meta()->exitcode == 1)
+		return ;
+	// meta()->exitcode = 0;
+	if (node->red.fd_out != 0)
+		close(node->red.fd_out);
 	node->red.fd_out = open(file_name, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (node->red.fd_out == -1)
 	{

@@ -6,40 +6,27 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 11:30:17 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:20:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-char	**sort_alpha(char **arr, int size)
+char	**printable_export(char **arr)
 {
-	int		i;
-	int		swapped;
-	char	*temp;
+	int	i;
 
-	swapped = 1;
-	while (swapped)
+	i = 0;
+	while (arr[i])
 	{
-		swapped = 0;
-		i = 0;
-		while (i < size - 1)
-		{
-			if (ft_strncmp(arr[i], arr[i + 1], ft_strlen(arr[i])) > 0)
-			{
-				temp = arr[i];
-				arr[i] = arr[i + 1];
-				arr[i + 1] = temp;
-				swapped = 1;
-			}
-			i++;
-		}
-		size--;
+		arr[i] = ft_strcat("declare -x ", arr[i]);
+		arr[i] = add_quotes(arr[i]);
+		i++;
 	}
 	return (arr);
 }
 
-void	print_export(void)
+void	print_export(int fd)
 {
 	char	**env;
 	int		i;
@@ -47,10 +34,11 @@ void	print_export(void)
 
 	i = 0;
 	n = count_strings(meta()->envp);
-	env = sort_alpha(meta()->envp, n);
+	env = printable_export(sort_alpha(meta()->envp, n));
 	while (env[i])
 	{
-		printf("declare -x %s\n", env[i]);
+		ft_putstr_fd(env[i], fd);
+		ft_putstr_fd("\n", fd);
 		i++;
 	}
 }
@@ -102,10 +90,15 @@ int	export_syntax(char *str)
 	return (1);
 }
 
-int	my_export(char **flags)
+int	my_export(char **flags, t_program *curr)
 {
+	int	fd;
+
+	fd = 1;
+	if (curr->red.fd_out && !curr->program_id && !curr->next)
+		fd = curr->red.fd_out;
 	if (count_strings(flags) == 1)
-		print_export();
+		print_export(fd);
 	else if (count_strings(flags) == 2)
 	{
 		if (!export_syntax(flags[1]))

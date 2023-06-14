@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/12 11:53:58 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:23:19 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <limits.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <errno.h>
 
 typedef struct s_pot{
 	char	*path_program;
@@ -86,7 +89,6 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_strnstr(char *big, char *little, size_t n);
-t_program	*get_curr_prog(int id);
 char		*get_filename(char *token);
 char		*get_op(char *token);
 int			is_alpha_num(char c);
@@ -99,6 +101,10 @@ int			ft_isprint(int c);
 char		*ft_strdup(const char *s);
 int			has_non_numeric(const char *str);
 int			ft_isalpha(char c);
+char		*ft_strcat(char *s1, char *s2);
+char		**sort_alpha(char **arr, int size);
+char		*add_quotes(char *str);
+char		*remove_point(char *str);
 
 //parse
 int			check_syntax(char *g_line);
@@ -121,7 +127,7 @@ int			my_cd(char **path);
 int			my_echo(t_program *curr);
 int			my_env(void);
 void		my_exit(char **flags);
-int			my_export(char **flags);
+int			my_export(char **flags, t_program *curr);
 int			my_pwd(char	**flags);
 int			my_unset(char **flags);
 

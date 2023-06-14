@@ -2,5 +2,8 @@ minishell_tester
 */*/*.o
 */*.o
 minishell
+<<<<<<< HEAD
 .nfs000000000fb183cf00000374
 .nfs000000000fb180bf000005f1
+=======
+>>>>>>> origin/ze2
