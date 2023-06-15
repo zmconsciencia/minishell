@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 15:49:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:32:06 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ void	start_function(char *g_line)
 	while (nodes[++i] != 0)
 	{
 		tokens = ft_split(nodes[i], 3);
+		free(nodes[i]); //alterado
 		parse_nodes(tokens, i);
 		// free_lines(tokens);
 	}
+	free(nodes); //alterado
 	execute();
 	if (meta()->temp)
 		unlink("temp");
 	free(treated);
-	free_lines(nodes);
+	// free_lines(nodes); //alterado
 }
 
 char	**copy_arr(char **str)
@@ -71,7 +73,7 @@ int	main(int ac, char **av, char **envp)
 	char	*g_line;
 
 	(void)av;
-	meta()->envp = copy_arr(envp);
+	meta()->envp = copy_arr(envp); //alterado (estava por baixo do void av)
 	if (ac >= 1)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -82,12 +84,13 @@ int	main(int ac, char **av, char **envp)
 				g_line = readline("minishell> ");
 		while (g_line)
 		{
+			// if (!meta()->envp) //alterado
 			if (g_line[0] /* && check_syntax(g_line) */)
 			{
 				add_history(g_line);
 				start_function(g_line);
 			}
-			clear_last();
+			// clear_last();
 			// free (g_line);
 			g_line = readline("minishell> ");
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 15:35:37 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:49:01 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	add_var(char *str)
 	new_env[j] = malloc(sizeof(char) * (ft_strlen(str) + 1));
 	ft_strlcpy(new_env[j++], str, ft_strlen(str) + 1);
 	new_env[j] = NULL;
+	free_lines(meta()->envp); //alterado
 	meta()->envp = new_env;
 }
 

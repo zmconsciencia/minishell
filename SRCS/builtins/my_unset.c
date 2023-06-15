@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:12:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 15:23:22 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:52:57 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	my_unset(char **flags)
 			}
 		}
 		new_env[k] = 0;
+		free_lines(meta()->envp);
 		meta()->envp = new_env;
 	}
 	return (1); //ha de ser preciso fazer free disto

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:36:53 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:37:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:15:16 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	my_exit(char **flags)
 		}
 	}
 	clear_last();
+	free_lines(meta()->envp); // alterado
 	printf("exit\n");
 	exit(meta()->exitcode);
 }

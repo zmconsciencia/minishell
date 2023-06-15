@@ -1,0 +1,5 @@
+make && valgrind --show-leak-kinds=all --leak-check=full --track-fds=yes --suppressions=.ignore_readline ./minishell
+
+- alterar pwd se houver cd (facil, posso tratar depois)
+- leak nas flags (??) se tiver pipe (env | grep USER) -> possivelmente e so alterar onde fazer clear last caso haja pipe
+- para ja tem leak no copy arr do envp para o meta, mas e normal. ainda tenho que pensar onde fazer free.

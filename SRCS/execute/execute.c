@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:47:41 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:44:52 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	execute(void)
 		meta()->exitcode = WEXITSTATUS(meta()->exitcode);
 		n--;
 	}
+	clear_last(); //alterado (tirei do minishell.c)
 }

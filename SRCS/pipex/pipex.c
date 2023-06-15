@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:43:21 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:24:26 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	before_exec(t_program *curr)
 	{
 		perror("");
 		close_all(curr);
+		clear_last(); //alterado
+		// free_lines(meta()->envp); // alterado
 		exit(127);
 	}
 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
@@ -53,11 +55,15 @@ void	before_exec(t_program *curr)
 	{
 		perror("");
 		close_all(curr);
+		clear_last(); //alterado
+		// free_lines(meta()->envp); // alterado
 		exit(126);
 	}
 	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
 	{
 		close_all(curr);
+		clear_last(); //alterado
+		// free_lines(meta()->envp); // alterado
 		exit(1);
 	}
 }
