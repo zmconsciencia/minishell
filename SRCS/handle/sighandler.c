@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sighandler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:02:42 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/04/12 05:27:19 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:20:51 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void	sighandler(int signum)
 {
-	printf("Caught signal %d, coming out...\n", signum);
-	// exit(1);
+	if (signum == SIGINT)
+	{
+		ft_putstr_fd("\n", 2);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+	if (signum == SIGQUIT)
+	{
+		ft_putstr_fd("Quit (core dumped)\n", 2);
+		exit (128);
+	}
 }

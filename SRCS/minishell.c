@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 14:32:06 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:47:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int	main(int ac, char **av, char **envp)
 	meta()->envp = copy_arr(envp); //alterado (estava por baixo do void av)
 	if (ac >= 1)
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, sighandler);
+		signal(SIGQUIT, sighandler);
 		g_line = 0;
 		g_line = readline("minishell> ");
 		if (!g_line[0])
