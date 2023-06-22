@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/22 14:08:26 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:13:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ void	execute(void)
 	curr = meta()->head;
 	n = 0;
 	len = lstsize(curr);
+	meta()->exec = 0;
 	while (curr)
 	{
 		if (check_builtin(curr) && len == 1)
-		{
-			
 			do_builtin(curr);
-		}
 		else if (curr->pot.program)
 		{
+			meta()->exec = 1;
 			pipex(curr);
 			n++;
 		}

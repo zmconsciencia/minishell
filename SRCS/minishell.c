@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/20 14:47:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:14:30 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,16 @@ int	main(int ac, char **av, char **envp)
 		signal(SIGQUIT, sighandler);
 		g_line = 0;
 		g_line = readline("minishell> ");
-		if (!g_line[0])
-				g_line = readline("minishell> ");
-		while (g_line)
+		while (1)
 		{
-			// if (!meta()->envp) //alterado
-			if (g_line[0] /* && check_syntax(g_line) */)
+			if (!g_line)
 			{
-				add_history(g_line);
-				start_function(g_line);
+				ft_putstr_fd("exit", 2);
+				free_lines(meta()->envp);
+				exit(0);
 			}
+			add_history(g_line);
+			start_function(g_line);
 			// clear_last();
 			// free (g_line);
 			g_line = readline("minishell> ");
