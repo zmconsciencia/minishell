@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:02 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/08 15:15:18 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:40:41 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	**get_path(char **envp)
 	char	**paths;
 
 	i = 0;
+	if (!envp)
+		return (0);
 	env_var = envp[i];
 	paths = 0;
 	while (env_var && !ft_strnstr(env_var, "PATH=", 5))

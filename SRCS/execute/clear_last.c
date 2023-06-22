@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 23:35:28 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 14:59:14 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:12:20 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	clear_last(void)
 	while (curr)
 	{
 		meta()->head = curr->next;
-		free(curr->pot.program);
-		free(curr->pot.path_program);
-		free_lines(curr->pot.flags);
+		if (curr->pot.program)
+			free(curr->pot.program);
+		if (curr->pot.path_program)
+			free(curr->pot.path_program);
+		if (curr->pot.flags)
+			free_lines(curr->pot.flags);
 		free(curr);
 		curr = meta()->head;
 	}

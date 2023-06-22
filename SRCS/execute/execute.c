@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 14:44:52 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:08:26 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	execute(void)
 	while (curr)
 	{
 		if (check_builtin(curr) && len == 1)
+		{
+			
 			do_builtin(curr);
+		}
 		else if (curr->pot.program)
 		{
 			pipex(curr);

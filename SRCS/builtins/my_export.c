@@ -6,11 +6,42 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:55 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 13:49:01 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:04:43 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+size_t	ft_equal_len(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != '=')
+		i++;
+	return (i);
+}
+
+int	if_exists(char	*str)
+{
+	int		i;
+	char	*add;
+
+	i = 0;
+	while (meta()->envp[i])
+	{
+		if (!ft_strncmp(meta()->envp[i], str, ft_equal_len(str)))
+		{
+			free(meta()->envp[i]);
+			add = malloc(sizeof(char) * ft_strlen(str) + 1);
+			ft_strlcpy(add, str, ft_strlen(str) + 1);
+			meta()->envp[i] = add;
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 char	**printable_export(char **arr)
 {
@@ -104,7 +135,7 @@ int	my_export(char **flags, t_program *curr)
 	{
 		if (!export_syntax(flags[1]))
 			ft_putstr_fd(" not a valid identifier", 2);
-		else
+		else if (!if_exists(flags[1]))
 			add_var(flags[1]);
 	}
 	return (1);

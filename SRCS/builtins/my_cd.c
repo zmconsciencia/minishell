@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:34 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 14:48:54 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:46:56 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,53 @@
 // Return Value: This command returns zero (0) on success. -1 is 
 // returned on an error and errno is set appropriately. 
 
-// melhorar alguns aspectos
+void	change_env_cd(char *cwd)
+{
+	int		i;
+	char	*old;
+	char	*new;
+	char	*buf_new;
+	char	*new_cwd;
+
+	buf_new = 0;
+	old = 0;
+	new = 0;
+	new_cwd = 0;
+	new_cwd = getcwd(buf_new, 0);
+	i = 0;
+	while (meta()->envp[i])
+	{
+		if (!ft_strncmp(meta()->envp[i], "OLDPWD=", 7))
+		{
+			free(meta()->envp[i]);
+			old = ft_strjoin("OLDPWD=", cwd);
+			meta()->envp[i] = old;
+			free(cwd);
+			break ;
+		}
+		i++;
+	}
+	i = 0;
+	while (meta()->envp[i])
+	{
+		if (!ft_strncmp(meta()->envp[i], "PWD=", 4))
+		{
+			free(meta()->envp[i]);
+			new = ft_strjoin("PWD=", new_cwd);
+			meta()->envp[i] = new;
+			break ;
+		}
+		i++;
+	}
+	free(new_cwd);
+}
+
 int	my_cd(char **path)
 {
+	char	*buf;
+	char	*cwd;
+
+	buf = 0;
 	meta()->exitcode = 0;
 	if (count_strings(path) > 2)
 	{
@@ -28,12 +72,17 @@ int	my_cd(char **path)
 	if (path[1] == NULL)
 		if (chdir("/") == 0)
 			return (1);
+	cwd = getcwd(buf, 0);
 	if (chdir(path[1]) == 0)
+	{
+		change_env_cd(cwd);
 		return (1);
+	}
 	else
 	{
 		perror(path[1]);
 		meta()->exitcode = 1;
 	}
+	free(cwd);
 	return (-1);
 }

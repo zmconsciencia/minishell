@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:37:32 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 15:00:47 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:41:29 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*check_access(char **paths, char *arg)
 
 	i = 0;
 	if (!paths)
-		return (arg);
+		return (ft_strdup(arg));
 	temp = join_path(paths[i], arg);
 	while (paths[i] && access(temp, F_OK))
 	{

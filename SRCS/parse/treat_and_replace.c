@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_and_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:47:27 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:48:19 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char	*expand_now(char *g_line, char a)
 	char	*var;
 
 	i = -1;
-	while (g_line[++i])
+	// printf("'%s'\n", g_line);
+	while (g_line && g_line[++i])
 	{
 		while (g_line[i] != a && g_line[i])
 			i++;

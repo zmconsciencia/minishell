@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanded_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:10:59 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/09 12:55:55 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:35:12 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char	*expanded_dollar(char *input)
 		i++;
 	}
 	return (ft_strdup(""));
+	// return (0);
 }
 
 // int	main(int ac, char **av, char **envp)
