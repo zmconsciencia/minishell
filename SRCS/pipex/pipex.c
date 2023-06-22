@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 14:24:26 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:31:58 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ void	before_exec(t_program *curr)
 {
 	struct stat	st;
 
+	// fprintf(stderr, "%s\n", curr->pot.program);
+	// free_lines(meta()->envp); // alterado
+	if (!ft_strlen(curr->pot.program))
+	{
+		close_all(curr);
+		clear_last(); //alterado
+		free_lines(meta()->envp); // alterado
+		exit(0);
+	}
 	if (lstat(curr->pot.path_program, &st) && \
 		ft_strncmp("./", curr->pot.path_program, 2 && \
 			curr->pot.path_program[0] != '/'))
@@ -46,7 +55,7 @@ void	before_exec(t_program *curr)
 		perror("");
 		close_all(curr);
 		clear_last(); //alterado
-		// free_lines(meta()->envp); // alterado
+		free_lines(meta()->envp); // alterado
 		exit(127);
 	}
 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
@@ -56,20 +65,23 @@ void	before_exec(t_program *curr)
 		perror("");
 		close_all(curr);
 		clear_last(); //alterado
-		// free_lines(meta()->envp); // alterado
+		free_lines(meta()->envp); // alterado
 		exit(126);
 	}
 	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
 	{
 		close_all(curr);
 		clear_last(); //alterado
-		// free_lines(meta()->envp); // alterado
+		free_lines(meta()->envp); // alterado
 		exit(1);
 	}
 }
 
 void	after_exec(t_program *curr)
 {
+	fprintf(stderr, "aqui\n");
+	ft_putstr_fd("aqui\n", 2);
+	free_lines(meta()->envp);
 	if (errno == EACCES)
 	{
 		if (access(curr->pot.flags[0], X_OK) && \
@@ -82,6 +94,7 @@ void	after_exec(t_program *curr)
 		exit(127);
 	}
 	perror(curr->pot.flags[0]);
+	clear_last();
 	exit(127);
 }
 
@@ -105,12 +118,15 @@ void	pipex(t_program *program)
 			if ((execve(curr->pot.path_program, curr->pot.flags, \
 				meta()->envp) == -1))
 				after_exec(curr);
+			free_lines(meta()->envp);
 		}
 		else
 		{
 			if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
 				exit(1);
 			do_builtin(curr);
+			free_lines(meta()->envp); // alterado
+			clear_last();
 			exit(0);
 		}
 	}

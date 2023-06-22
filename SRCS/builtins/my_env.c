@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:48 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:41:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:32:30 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ int	my_env(void)
 	int	i;
 
 	i = 0;
-	while (meta()->envp[i])
+	if (meta()->envp)
 	{
-		printf("%s\n", meta()->envp[i]);
-		i++;
+		while (meta()->envp[i])
+		{
+			printf("%s\n", meta()->envp[i]);
+			i++;
+		}
+		return (1);
 	}
 	return (1);
 }
