@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:09:29 by jabecass          #+#    #+#             */
-/*   Updated: 2023/06/14 14:35:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:49:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	flag_parse(char *flag, char type)
 	int	i;
 
 	i = 1;
-	if (flag[0] == '-')
+	if (flag[0] == '-' && flag[1] == 'n')
 	{
 		while (flag[i])
 		{

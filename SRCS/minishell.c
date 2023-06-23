@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/23 12:18:12 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:47:20 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int ac, char **av, char **envp)
 		{
 			if (!g_line)
 			{
-				ft_putstr_fd("exit", 2);
+				ft_putstr_fd("exit", 1);
 				free_lines(meta()->envp);
 				exit(0);
 			}

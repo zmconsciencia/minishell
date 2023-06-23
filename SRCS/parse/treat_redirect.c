@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:43:33 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:24:06 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	treat_infiles(char *file_name, t_program *node)
 	node->red.fd_in = open(file_name, O_RDONLY);
 	if (node->red.fd_in == -1)
 	{
+		if (meta()->exitcode != 1)
+			perror(file_name);
 		meta()->exitcode = 1;
-		perror(file_name);
 	}
 }
 

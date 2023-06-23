@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:01:46 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/22 15:31:58 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:44:00 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	before_exec(t_program *curr)
 
 void	after_exec(t_program *curr)
 {
-	fprintf(stderr, "aqui\n");
-	ft_putstr_fd("aqui\n", 2);
 	free_lines(meta()->envp);
 	if (errno == EACCES)
 	{
