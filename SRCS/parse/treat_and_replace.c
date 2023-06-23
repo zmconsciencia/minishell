@@ -6,7 +6,7 @@
 /*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/22 15:48:19 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:11:39 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_var(char *g_line, int s)
 	i = s;
 	while (ft_isprint(g_line[++i]) && g_line[i] != ' ')
 		;
-	var_name = malloc(sizeof(char) * (i - s) + 2);
+	var_name = malloc(sizeof(char) * (i - s) + 1); // troquei de +2 para +1
 	while (++s < i && g_line[s] != '\"')
 		var_name[v++] = g_line[s];
 	var_name[v] = '=';
@@ -50,13 +50,16 @@ char	*insert_var(char *g_line, int s, char *var)
 	else
 		e += 2;
 	joined = malloc(sizeof(char) * (ft_strlen(g_line) - (e - s)) \
-	+ ft_strlen(var) + 1);
+	+ ft_strlen(var) + 1); //talvez aqui
+	if (!joined)
+		return (NULL);
 	i = -1;
 	while (++i < s)
 		joined[i] = g_line[i];
 	v = 0;
-	while (var[v])
-		joined[i++] = var[v++];
+	if (var[0])
+		while (var[v])
+			joined[i++] = var[v++];
 	while (g_line[e])
 		joined[i++] = g_line[e++];
 	joined[i] = 0;
@@ -70,8 +73,8 @@ char	*expand_now(char *g_line, char a)
 	char	*var;
 
 	i = -1;
-	// printf("'%s'\n", g_line);
-	while (g_line && g_line[++i])
+	var = 0;
+	while (g_line[++i])
 	{
 		while (g_line[i] != a && g_line[i])
 			i++;
@@ -90,7 +93,7 @@ char	*expand_now(char *g_line, char a)
 				free(var);
 			}
 		}
-		else if (!g_line[i])
+		if (!g_line[i])
 			break ;
 	}
 	return (g_line);

@@ -7,5 +7,3 @@ echo $?
 
 # Should skip the empty argument, and print hello after spaces
 echo - "" "  " hello
-
-- para ja tem leak no copy arr do envp para o meta, mas e normal. ainda tenho que pensar onde fazer free.

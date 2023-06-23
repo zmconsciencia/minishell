@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/22 17:14:30 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:18:12 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	start_function(char *g_line)
 		// free_lines(tokens);
 	}
 	free(nodes); //alterado
+	free(treated);
 	execute();
 	if (meta()->temp)
 		unlink("temp");
-	free(treated);
 	// free_lines(nodes); //alterado
 }
 
