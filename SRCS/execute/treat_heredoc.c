@@ -6,11 +6,23 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:44:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/03 14:13:20 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 22:28:38 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+static int	hc_ctrld(char *file_name)
+{
+	int	i;
+	
+	i = 0;
+	ft_putstr_fd("minishell: warning: here-document delimited by end-of-file (wanted `", 2);
+	while (file_name[i])
+		write(2, file_name[i++], 2);
+	ft_putstr_fd(")\'\n", 2);
+	return (1);
+}
 
 void	run_heredoc(char *file_name, t_program *node)
 {
@@ -24,7 +36,7 @@ void	run_heredoc(char *file_name, t_program *node)
 	while (1 && ft_return_putstr_fd("> ", 1))
 	{
 		str = get_next_line(0);
-		if (!str)
+		if (!str && hc_ctrld(file_name))
 			break ;
 		if (!ft_strncmp(str, limiter, ft_strlen(limiter)))
 			break ;

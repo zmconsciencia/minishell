@@ -6,30 +6,54 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:02:42 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/03 15:18:11 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:37:07 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+void	sighandlerquit(int signum)
+{
+	if (!meta()->hc)
+	{	
+		if (signum == SIGQUIT && meta()->exec)
+		{
+			ft_putstr_fd("Quit (core dumped)\n", 2);
+			meta()->exitcode = 131;
+			return ;
+		}
+		else if (signum == SIGQUIT && !meta()->exec)
+			SIG_IGN ;
+	}
+}
+
 void	sighandler(int signum)
 {
-	if (signum == SIGINT)
+	if (!meta()->hc)
 	{
-		ft_putstr_fd("\n", 2);
-		if (meta()->exec)
-			return ;
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		if (meta()->hc)
-			exit(2);
+		meta()->exitcode = 130;
+		if (signum == SIGINT)
+		{
+			ft_putstr_fd("\n", 2);
+			if (meta()->exec)
+				return ;
+			rl_replace_line("", 0);
+			rl_on_new_line();
+			rl_redisplay();
+		}
 	}
-	if (signum == SIGQUIT)
-	{
-		if (meta()->exec)
-			ft_putstr_fd("Quit (core dumped)\n", 2);
-		else
-			SIG_DFL ;
+}
+
+void	sighandlerhc(int signum)
+{
+	if (meta()->hc)
+	{	
+		if (signum == SIGINT)
+		{
+			ft_putstr_fd("\n", 2);
+			exit(1);
+		}
+		if (signum == SIGQUIT)
+			SIG_IGN ;
 	}
 }

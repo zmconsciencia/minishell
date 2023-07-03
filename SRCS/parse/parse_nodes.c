@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/03 14:20:29 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:23:05 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,18 @@ void	parse_nodes(char **tokens, int id)
 		pid = fork();
 		if (!pid)
 		{
+			signal(SIGQUIT, SIG_IGN);
+			signal(SIGINT, sighandlerhc);
 			run_heredoc(node->red.limiter, node);
 			free(node->red.limiter);
+			exit(0);
 		}
 		else
 		{
 			waitpid(0, 0, 0);
 			free(node->red.limiter);
+			signal(SIGINT, sighandler);
+			signal(SIGQUIT, sighandlerquit);			
 		}
 	}
 	add_to_list(node);

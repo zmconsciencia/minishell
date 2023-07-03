@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/03 15:35:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:22:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void		run_heredoc(char *file_name, t_program *node);
 
 //handle
 void		sighandler(int signum);
-void		sighandler2(int signum);
+void		sighandlerhc(int signum);
+void		sighandlerquit(int signum);
 
 //utils
 int			count_strings(char **strings);
