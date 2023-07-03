@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/11 11:04:14 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:30:03 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	red_syntax(char	*g_line)
 	{
 		if (g_line[i] == '<')
 		{
+			if (g_line[i + 1] == '>')
+				return (0);
 			while (g_line[i++] == '<')
 				counter++;
 			if (counter > 2)
@@ -30,6 +32,8 @@ int	red_syntax(char	*g_line)
 		}
 		else if (g_line[i] == '>')
 		{
+			if (g_line[i + 1] == '<')
+				return (0);
 			while (g_line[i++] == '>')
 				counter++;
 			if (counter > 2)
@@ -60,9 +64,10 @@ int	check_syntax(char *g_line)
 	int	sum;
 
 	sum = pipe_syntax(g_line) + red_syntax(g_line);
-	if (sum != 2)
+	if (sum != 2 || g_line[0] == '|' || g_line[ft_strlen(g_line) - 1] == '|')
 	{
 		printf("Syntax error. \n");
+		meta()->exitcode = 2;
 		return (0);
 	}
 	return (1);

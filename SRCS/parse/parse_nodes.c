@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:59:47 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:20:29 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,14 @@ int	count_flags(char **tokens)
 // A FUNCAO EXPANDED_DOLLAR RETORNA UM MALLOC, QUE VAI PRECISAR SER FREED
 void	parse_nodes(char **tokens, int id)
 {
+	int			pid;
 	int			i;
 	int			flag_no;
 	char		*temp;
 	t_program	*node;
 
 	i = -1;
+	meta()->hc = 0;
 	flag_no = count_flags(tokens);
 	node = new_node(id, flag_no);
 	while (tokens[++i])
@@ -116,8 +118,18 @@ void	parse_nodes(char **tokens, int id)
 	}
 	if (node->red.here_doc)
 	{
-		run_heredoc(node->red.limiter, node);
-		free(node->red.limiter);
+		meta()->hc = 1;
+		pid = fork();
+		if (!pid)
+		{
+			run_heredoc(node->red.limiter, node);
+			free(node->red.limiter);
+		}
+		else
+		{
+			waitpid(0, 0, 0);
+			free(node->red.limiter);
+		}
 	}
 	add_to_list(node);
 	free_lines(tokens);

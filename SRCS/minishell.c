@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/23 13:47:20 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:08:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	start_function(char *g_line)
 	free(nodes); //alterado
 	free(treated);
 	execute();
-	if (meta()->temp)
-		unlink("temp");
 	// free_lines(nodes); //alterado
 }
 
@@ -88,8 +86,11 @@ int	main(int ac, char **av, char **envp)
 				free_lines(meta()->envp);
 				exit(0);
 			}
-			add_history(g_line);
-			start_function(g_line);
+			if (check_syntax(g_line))
+			{
+				add_history(g_line);
+				start_function(g_line);
+			}
 			// clear_last();
 			// free (g_line);
 			g_line = readline("minishell> ");

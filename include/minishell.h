@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/22 17:12:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:35:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ typedef struct s_program{
 
 typedef struct s_meta{
 	int					exec;
-	int					temp;
+	int					hc;
+	int					synerr;
 	int					exitcode;
 	char				**envp;
 	struct s_program	*head;
