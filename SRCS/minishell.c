@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/03 23:36:16 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:07:14 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@ void	start_function(char *g_line)
 	int			i;
 
 	i = -1;
+	meta()->synerr = 0;
 	treated = treat_and_replace(g_line);
-	nodes = ft_split(treated, 2);
-	if (!nodes)
-		return ;
-	while (nodes[++i] != 0)
+	if (check_syntax(treated))
 	{
-		tokens = ft_split(nodes[i], 3);
-		free(nodes[i]); //alterado
-		parse_nodes(tokens, i);
-		// free_lines(tokens);
+		nodes = ft_split(treated, 2);
+		if (!nodes)
+			return ;
+		while (nodes[++i] != 0)
+		{
+			tokens = ft_split(nodes[i], 3);
+			free(nodes[i]); //alterado
+			parse_nodes(tokens, i);
+			// free_lines(tokens);
+		}
+		free(nodes); //alterado
+		free(treated);
+		execute();
+		// free_lines(nodes); //alterado
 	}
-	free(nodes); //alterado
-	free(treated);
-	execute();
-	// free_lines(nodes); //alterado
 }
 
 char	**copy_arr(char **str)
@@ -74,6 +78,7 @@ int	main(int ac, char **av, char **envp)
 	meta()->envp = copy_arr(envp); //alterado (estava por baixo do void av)
 	if (ac >= 1)
 	{
+		rl_catch_signals = 0;
 		signal(SIGINT, sighandler);
 		signal(SIGQUIT, sighandlerquit);
 		g_line = 0;
@@ -86,11 +91,8 @@ int	main(int ac, char **av, char **envp)
 				free_lines(meta()->envp);
 				exit(0);
 			}
-			if (check_syntax(g_line))
-			{
-				add_history(g_line);
-				start_function(g_line);
-			}
+			add_history(g_line);
+			start_function(g_line);
 			// clear_last();
 			// free (g_line);
 			g_line = readline("minishell> ");

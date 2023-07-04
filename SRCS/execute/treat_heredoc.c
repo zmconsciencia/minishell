@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:44:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/03 22:28:38 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:38:08 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static int	hc_ctrld(char *file_name)
 {
 	int	i;
-	
+
 	i = 0;
 	ft_putstr_fd("minishell: warning: here-document delimited by end-of-file (wanted `", 2);
 	while (file_name[i])
-		write(2, file_name[i++], 2);
-	ft_putstr_fd(")\'\n", 2);
+		write(2, &file_name[i++], 1);
+	ft_putstr_fd("\')\n", 2);
 	return (1);
 }
 

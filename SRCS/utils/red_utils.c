@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:50:51 by jabecass          #+#    #+#             */
-/*   Updated: 2023/06/14 14:42:19 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:03:50 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ char	*get_filename(char *token)
 	i = 1;
 	j = 0;
 	file_name = malloc(sizeof(char) * desired_len(token, token[0]) + 1);
+	if (!file_name)
+	{
+		meta()->synerr = 1;
+		return (NULL);
+	}
 	while (ft_is_space(token[i]) || token[i] == token[0])
 		i++;
 	while ((token[i] != '\0') || ft_is_space(token[i]))

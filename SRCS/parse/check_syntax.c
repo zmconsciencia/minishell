@@ -6,13 +6,13 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/03 15:30:03 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:00:17 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	red_syntax(char	*g_line)
+static void	red_syntax(char	*g_line)
 {
 	int	i;
 	int	counter;
@@ -21,54 +21,40 @@ int	red_syntax(char	*g_line)
 	counter = 0;
 	while (g_line[i])
 	{
-		if (g_line[i] == '<')
-		{
-			if (g_line[i + 1] == '>')
-				return (0);
-			while (g_line[i++] == '<')
-				counter++;
-			if (counter > 2)
-				return (0);
-		}
-		else if (g_line[i] == '>')
-		{
-			if (g_line[i + 1] == '<')
-				return (0);
-			while (g_line[i++] == '>')
-				counter++;
-			if (counter > 2)
-				return (0);
-		}
+		if (g_line[i] == '<' && g_line[i + 1] == '>')
+			meta()->synerr = 1;
+		else if (g_line[i] == '>' && g_line[i + 1] == '<')
+			meta()->synerr = 1;
 		i++;
 	}
-	return (1);
 }
 
-int	pipe_syntax(char *g_line)
+static void	pipe_syntax(char *g_line)
 {
 	int	i;
 
 	i = 0;
+	if (g_line[0] == 2 || g_line[ft_strlen(g_line) - 1] == 2)
+		meta()->synerr = 1;
 	while (g_line[i])
 	{
-		if (g_line[i] == '|')
-			if (g_line[++i] == '|')
-				return (0);
+		if (g_line[i] == 2)
+			if (g_line[++i] == 2)
+				meta()->synerr = 1;
 		i++;
 	}
-	return (1);
 }
 
 int	check_syntax(char *g_line)
 {
-	int	sum;
-
-	sum = pipe_syntax(g_line) + red_syntax(g_line);
-	if (sum != 2 || g_line[0] == '|' || g_line[ft_strlen(g_line) - 1] == '|')
+	red_syntax(g_line);
+	pipe_syntax(g_line);
+	if (meta()->synerr)
 	{
-		printf("Syntax error. \n");
+		ft_putstr_fd("minishell: syntax error near unexpected token `\n", 2);
 		meta()->exitcode = 2;
 		return (0);
 	}
-	return (1);
+	else
+		return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:02:42 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/03 23:37:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:24:56 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sighandlerquit(int signum)
 {
 	if (!meta()->hc)
-	{	
+	{
 		if (signum == SIGQUIT && meta()->exec)
 		{
 			ft_putstr_fd("Quit (core dumped)\n", 2);
@@ -34,7 +34,7 @@ void	sighandler(int signum)
 		meta()->exitcode = 130;
 		if (signum == SIGINT)
 		{
-			ft_putstr_fd("\n", 2);
+			ft_putstr_fd("^C\n", 2);
 			if (meta()->exec)
 				return ;
 			rl_replace_line("", 0);
@@ -47,10 +47,10 @@ void	sighandler(int signum)
 void	sighandlerhc(int signum)
 {
 	if (meta()->hc)
-	{	
+	{
 		if (signum == SIGINT)
 		{
-			ft_putstr_fd("\n", 2);
+			ft_putstr_fd("^C\n", 2);
 			exit(1);
 		}
 		if (signum == SIGQUIT)
