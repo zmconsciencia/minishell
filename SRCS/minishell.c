@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/04 15:07:14 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/08 21:31:14 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	start_function(char *g_line)
 	int			i;
 
 	i = -1;
-	meta()->synerr = 0;
 	treated = treat_and_replace(g_line);
 	if (check_syntax(treated))
 	{
@@ -39,6 +38,8 @@ void	start_function(char *g_line)
 		execute();
 		// free_lines(nodes); //alterado
 	}
+	else
+		free(treated);
 }
 
 char	**copy_arr(char **str)
