@@ -141,13 +141,16 @@ char	*treat_and_replace(char *g_line)
 				;
 		if (g_line[i] == '<' || g_line[i] == '>')
 		{
-			g_line = add_three(g_line, i);
-			while (g_line[++i] == '<' || g_line[i] == '>')
+			g_line = add_three(g_line, i++); //aqui
+			while (g_line[i] == '<' || g_line[i] == '>')
 			{
 				if (g_line[i] == '<')
 					g_line[i] = 5;
 				else if (g_line[i] == '>')
 					g_line[i] = 6;
+				i++;
+				if (!g_line[i]) //aqui
+					i--;
 			}
 			if (g_line[i] == ' ')
 				while (ft_is_space(g_line[++i]) && \
