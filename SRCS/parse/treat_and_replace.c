@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_and_replace.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 09:40:04 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/23 12:11:39 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:14:47 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,12 @@ char	*treat_and_replace(char *g_line)
 			g_line[i] = 4;
 		if (g_line[i] == '\"')
 			while (g_line[++i] != '\"' && g_line[i] != 0)
+			{
 				if (g_line[i] == '$')
 					g_line[i] = 4;
+				if ((i == ft_strlen(g_line) - 1) && (g_line[i] != '\"'))
+					break ;
+			}
 		if (g_line[i] == '\'')
 			while (g_line[++i] != '\'' && g_line[i] != 0)
 				;

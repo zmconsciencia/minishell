@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/08 22:34:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:58:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@ static void	red_syntax(char	*g_line)
 	{
 		if (g_line[i] == '\"')
 			while (g_line[++i] && g_line[i] != '\"')
-				;
+			{
+				if ((i == ft_strlen(g_line) - 1) && (g_line[i] != '\"'))
+				{
+					meta()->synerr = 1;
+					return ;
+				}
+			}
 		if (g_line[i] == 5 && g_line[i + 1] == 6)
 			meta()->synerr = 1;
 		else if (g_line[i] == 6 && g_line[i + 1] == 5)
@@ -61,7 +67,13 @@ static void	pipe_syntax(char *g_line)
 	{
 		if (g_line[i] == '\"')
 			while (g_line[++i] && g_line[i] != '\"')
-				;
+			{
+				if ((i == ft_strlen(g_line) - 1) && (g_line[i] != '\"'))
+				{
+					meta()->synerr = 1;
+					return ;
+				}
+			}
 		if (g_line[i] == 2)
 			if (g_line[++i] == 2)
 				meta()->synerr = 1;

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:02:42 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/04 14:24:56 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:03:46 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	sighandlerhc(int signum)
 		if (signum == SIGINT)
 		{
 			ft_putstr_fd("^C\n", 2);
+			clear_last();
 			exit(1);
 		}
 		if (signum == SIGQUIT)
