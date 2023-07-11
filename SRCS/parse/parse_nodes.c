@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/04 13:56:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:03:11 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,14 @@ int	count_flags(char **tokens)
 }
 
 // A FUNCAO EXPANDED_DOLLAR RETORNA UM MALLOC, QUE VAI PRECISAR SER FREED
-void	parse_nodes(char **tokens, int id)
+void	parse_nodes(char **tokens, int id, char **nodes, char *treated)
 {
 	int			pid;
 	int			i;
 	int			flag_no;
 	char		*temp;
 	t_program	*node;
+	int			status;
 
 	i = -1;
 	meta()->hc = 0;
@@ -116,26 +117,37 @@ void	parse_nodes(char **tokens, int id)
 		else
 			fill_pot(tokens[i], node);
 	}
+	add_to_list(node);
 	if (node->red.here_doc)
 	{
+		int	fd[2];
 		meta()->hc = 1;
+		if (pipe(fd) == -1)
+			perror("");
 		pid = fork();
 		if (!pid)
 		{
 			signal(SIGQUIT, SIG_IGN);
 			signal(SIGINT, sighandlerhc);
-			run_heredoc(node->red.limiter, node);
+			run_heredoc(node->red.limiter, node, fd);
 			free(node->red.limiter);
+			clear_last();
+			free_lines(meta()->envp);
+			free_lines(nodes);
+			free_lines(tokens);
+			free(nodes);
+			free(treated);
 			exit(0);
 		}
 		else
 		{
-			waitpid(0, 0, 0);
+			close(fd[1]);
+			waitpid(0, &status, 0);
+			node->red.fd_in = fd[0];
 			free(node->red.limiter);
 			signal(SIGINT, sighandler);
 			signal(SIGQUIT, sighandlerquit);
 		}
 	}
-	add_to_list(node);
 	free_lines(tokens);
 }

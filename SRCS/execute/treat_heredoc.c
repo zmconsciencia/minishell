@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:44:57 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/04 13:38:08 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:55:09 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@ static int	hc_ctrld(char *file_name)
 	return (1);
 }
 
-void	run_heredoc(char *file_name, t_program *node)
+void	run_heredoc(char *file_name, t_program *node, int here_fds[2])
 {
 	char	*str;
 	char	*limiter;
-	int		here_fds[2];
 
 	limiter = ft_strjoin(file_name, "\n");
-	if (pipe(here_fds) == -1)
-		perror("");
 	while (1 && ft_return_putstr_fd("> ", 1))
 	{
 		str = get_next_line(0);
@@ -47,9 +44,9 @@ void	run_heredoc(char *file_name, t_program *node)
 			free(str);
 		}
 	}
+	free(limiter);
 	if (str)
 		free(str);
-	node->red.fd_in = dup(here_fds[0]);
 	close(here_fds[1]);
 	close(here_fds[0]);
 }

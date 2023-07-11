@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/04 14:57:21 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:02:33 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_meta		*meta(void);
 void		execute(void);
 void		finish_program(void);
 void		clear_last(void);
-void		run_heredoc(char *file_name, t_program *node);
+void		run_heredoc(char *file_name, t_program *node, int here_fds[2]);
 
 //handle
 void		sighandler(int signum);
@@ -113,7 +113,7 @@ char		*expanded_dollar(char *input);
 char		*expand_now(char *g_line, char a);
 void		fill_pot(char *token, t_program *node);
 void		fill_red(char *token, t_program *node);
-void		parse_nodes(char **tokens, int node_id);
+void		parse_nodes(char **tokens, int node_id, char **nodes, char *treated);
 char		*treat_and_replace(char *g_line);
 char		*treat_quotes(char *token);
 void		treat_infiles(char *file_name, t_program *node);
