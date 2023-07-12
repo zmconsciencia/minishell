@@ -7,6 +7,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/execute/treat_heredoc.c \
 		SRCS/handle/sighandler.c \
 		SRCS/parse/check_syntax.c \
+		SRCS/parse/expand_now.c \
 		SRCS/parse/expanded_dollar.c \
 		SRCS/parse/fill_pot.c \
 		SRCS/parse/fill_red.c \

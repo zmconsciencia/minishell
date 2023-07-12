@@ -119,6 +119,10 @@ char		*treat_quotes(char *token);
 void		treat_infiles(char *file_name, t_program *node);
 void		treat_outfiles(char *file_name, t_program *node);
 void		treat_append(char *file_name, t_program *node);
+char		*get_var(char *g_line, int s);
+int			get_e(char *g_line, int s);
+char		*insert_var(char *g_line, int s, char *var);
+char		*expand_now(char *g_line, char a);
 
 //builtins
 int			check_builtin(t_program *curr);
