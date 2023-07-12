@@ -53,7 +53,8 @@ int	my_cd(char **path)
 		return (-1);
 	}
 	cwd = getcwd(buf, 0);
-	if (path[1] == NULL && chdir("/") == 0 && change_env_cd(cwd, getcwd(buf, 0)))
+	if (path[1] == NULL && chdir("/") == 0 && \
+		change_env_cd(cwd, getcwd(buf, 0)))
 		return (1);
 	if (chdir(path[1]) == 0 && change_env_cd(cwd, getcwd(buf, 0)))
 		return (1);
