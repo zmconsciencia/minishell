@@ -12,6 +12,16 @@
 
 #include "../../include/minishell.h"
 
+void	my_waitpid(int n)
+{
+	while (n > 0)
+	{
+		waitpid(-1, &(meta()->exitcode), WUNTRACED);
+		meta()->exitcode = WEXITSTATUS(meta()->exitcode);
+		n--;
+	}
+}
+
 void	execute(void)
 {
 	t_program	*curr;
@@ -36,11 +46,6 @@ void	execute(void)
 		}
 		curr = curr->next;
 	}
-	while (n > 0)
-	{
-		waitpid(-1, &(meta()->exitcode), WUNTRACED);
-		meta()->exitcode = WEXITSTATUS(meta()->exitcode);
-		n--;
-	}
-	clear_last(); //alterado (tirei do minishell.c)
+	my_waitpid(n);
+	clear_last();
 }
