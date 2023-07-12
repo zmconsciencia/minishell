@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:36:53 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/15 13:15:16 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:27:20 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int	has_non_numeric(const char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	sai_daqui(void)
+{
+	clear_last();
+	free_lines(meta()->envp);
+	printf("exit\n");
+	exit(meta()->exitcode);
 }
 
 void	my_exit(char **flags)
@@ -51,8 +59,5 @@ void	my_exit(char **flags)
 			meta()->exitcode = code;
 		}
 	}
-	clear_last();
-	free_lines(meta()->envp); // alterado
-	printf("exit\n");
-	exit(meta()->exitcode);
+	sai_daqui();
 }
