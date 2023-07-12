@@ -17,8 +17,10 @@ int	change_env_cd(char *cwd)
 	int		i;
 	char	*buf_new;
 	char	*new_cwd;
+	char	*old;
 
 	buf_new = 0;
+	old = ft_strjoin("OLDPWD=", cwd);
 	new_cwd = getcwd(buf_new, 0);
 	i = -1;
 	while (meta()->envp[++i])
@@ -26,7 +28,7 @@ int	change_env_cd(char *cwd)
 		if (!ft_strncmp(meta()->envp[i], "OLDPWD=", 7))
 		{
 			free(meta()->envp[i]);
-			meta()->envp[i] = ft_strjoin("OLDPWD=", cwd);
+			meta()->envp[i] = old;
 			free(cwd);
 		}
 		else if (!ft_strncmp(meta()->envp[i], "PWD=", 4))
