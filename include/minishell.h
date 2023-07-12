@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/11 20:02:33 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:33:31 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,11 @@ void		my_exit(char **flags);
 int			my_export(char **flags, t_program *curr);
 int			my_pwd(char	**flags);
 int			my_unset(char **flags);
+size_t		ft_equal_len(const char *s);
+int			if_exists(char	*str);
+char		**printable_export(char **arr);
+void		print_export(int fd);
+void		add_var(char *str);
 
 //gnl
 char		*get_next_line(int fd);

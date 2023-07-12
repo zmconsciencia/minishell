@@ -38,6 +38,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/builtins/my_cd.c \
 		SRCS/builtins/my_echo.c \
 		SRCS/builtins/my_env.c \
+		SRCS/builtins/my_export_utils.c \
 		SRCS/builtins/my_export.c \
 		SRCS/builtins/my_exit.c \
 		SRCS/builtins/my_pwd.c \
