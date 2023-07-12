@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:34 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/22 13:46:56 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:27:16 by bde-seic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-// Return Value: This command returns zero (0) on success. -1 is 
-// returned on an error and errno is set appropriately. 
 
 void	change_env_cd(char *cwd)
 {
@@ -54,6 +51,37 @@ void	change_env_cd(char *cwd)
 		i++;
 	}
 	free(new_cwd);
+}
+
+int	my_cd(char **path)
+{
+	char	*buf;
+	char	*cwd;
+
+	buf = 0;
+	meta()->exitcode = 0;
+	if (count_strings(path) > 2)
+	{
+		ft_putstr_fd(" too many arguments\n", 2);
+		meta()->exitcode = 1;
+		return (-1);
+	}
+	if (path[1] == NULL)
+		if (chdir("/") == 0)
+			return (1);
+	cwd = getcwd(buf, 0);
+	if (chdir(path[1]) == 0)
+	{
+		change_env_cd(cwd);
+		return (1);
+	}
+	else
+	{
+		perror(path[1]);
+		meta()->exitcode = 1;
+	}
+	free(cwd);
+	return (-1);
 }
 
 int	my_cd(char **path)
