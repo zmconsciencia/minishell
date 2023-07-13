@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/11 20:13:58 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:47:40 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	execute(void)
 	curr = meta()->head;
 	n = 0;
 	len = lstsize(curr);
-	meta()->exec = 0;
 	if (!curr)
 		meta()->exitcode = 0;
 	while (curr)
 	{
-		if (check_builtin(curr) && len == 1)
+		if (check_builtin(curr) && (len == 1 && (!(curr->red.fd_in && \
+			curr->red.fd_out) || !ft_strncmp("cd", curr->pot.program, 2))))
 			do_builtin(curr);
 		else if (curr->pot.program)
 		{
@@ -47,5 +47,6 @@ void	execute(void)
 		curr = curr->next;
 	}
 	my_waitpid(n);
+	meta()->exec = 0;
 	clear_last();
 }

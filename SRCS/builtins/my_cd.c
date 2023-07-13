@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:34 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/12 14:27:16 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:17:25 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,5 @@ int	my_cd(char **path)
 	free(cwd);
 	return (-1);
 }
+
+

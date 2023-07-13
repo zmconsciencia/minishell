@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 15:02:22 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:44:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,27 @@
 
 void	start_function(char *g_line)
 {
-	char		*treated;
-	char		**nodes;
 	char		**tokens;
 	int			i;
 
 	i = -1;
-	treated = treat_and_replace(g_line);
-	if (check_syntax(treated))
+	meta()->treated = treat_and_replace(g_line);
+	if (check_syntax(meta()->treated))
 	{
-		nodes = ft_split(treated, 2);
-		if (!nodes)
+		(meta())->nodes = ft_split(meta()->treated, 2);
+		if (!meta()->nodes)
 			return ;
-		while (nodes[++i] != 0)
+		while (meta()->nodes[++i] != 0)
 		{
-			tokens = ft_split(nodes[i], 3);
-			free(nodes[i]);
-			parse_nodes(tokens, i, nodes, treated);
+			tokens = ft_split(meta()->nodes[i], 3);
+			parse_nodes(tokens, i);
 		}
-		free(nodes);
-		free(treated);
+		free_lines(meta()->nodes);
+		free(meta()->treated);
 		execute();
 	}
 	else
-		free(treated);
+		free(meta()->treated);
 }
 
 char	**copy_arr(char **str)

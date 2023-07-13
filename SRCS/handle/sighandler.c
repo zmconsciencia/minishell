@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:02:42 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/10 17:03:46 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:58:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ void	sighandler(int signum)
 		meta()->exitcode = 130;
 		if (signum == SIGINT)
 		{
-			ft_putstr_fd("^C\n", 2);
 			if (meta()->exec)
+			{
+				ft_putstr_fd("\n", 2);
 				return ;
+			}
+			ft_putstr_fd("^C\n", 2);
 			rl_replace_line("", 0);
 			rl_on_new_line();
 			rl_redisplay();

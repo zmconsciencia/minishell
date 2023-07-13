@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 13:19:43 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:11:07 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ typedef struct s_program{
 }	t_program;
 
 typedef struct s_meta{
+	char				**nodes;
+	char				*op;
+	char				*treated;
 	int					exec;
 	int					hc;
 	int					synerr;
@@ -106,14 +109,15 @@ int			ft_isalpha(char c);
 char		*ft_strcat(char *s1, char *s2);
 char		**sort_alpha(char **arr, int size);
 char		*add_quotes(char *str);
+char		**copy_arr(char **str);
 
 //parse
 int			check_syntax(char *g_line);
 char		*expanded_dollar(char *input);
 char		*expand_now(char *g_line, char a);
 void		fill_pot(char *token, t_program *node);
-void		fill_red(char *token, t_program *node, char **tokens, char **nodes, char *treated);
-void		parse_nodes(char **tokens, int node_id, char **nodes, char *treated);
+void		fill_red(char *token, t_program *node, char **tokens);
+void		parse_nodes(char **tokens, int node_id);
 char		*treat_and_replace(char *g_line);
 char		*treat_quotes(char *token);
 void		treat_infiles(char *file_name, t_program *node);

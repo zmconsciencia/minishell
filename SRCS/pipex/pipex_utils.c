@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:15:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 13:15:28 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:59:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	close_all(t_program *curr, int flag, int exitcode)
 {
 	if (curr->red.fd[0] > 2)
 		close(curr->red.fd[0]);
-	if (curr->red.fd[0] > 2)
+	if (curr->red.fd[1] > 2)
 		close(curr->red.fd[1]);
 	if (curr->red.fd_in > 2)
 		close(curr->red.fd_in);
@@ -24,6 +24,7 @@ void	close_all(t_program *curr, int flag, int exitcode)
 		close(curr->red.fd_out);
 	if (flag == 1)
 	{
+		close(1);
 		clear_last();
 		free_lines(meta()->envp);
 		if (exitcode)

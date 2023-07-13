@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:29:19 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/12 16:33:35 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:15:55 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@ int	if_exists(char	*str)
 
 char	**printable_export(char **arr)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (arr[i])
 	{
+		tmp = arr[i];
 		arr[i] = ft_strcat("declare -x ", arr[i]);
+		free(tmp);
+		tmp = arr[i];
 		arr[i] = add_quotes(arr[i]);
+		free(tmp);
 		i++;
 	}
 	return (arr);
@@ -62,16 +67,19 @@ void	print_export(int fd)
 	char	**env;
 	int		i;
 	int		n;
+	char	**copy;
 
 	i = 0;
+	copy = copy_arr(meta()->envp);
 	n = count_strings(meta()->envp);
-	env = printable_export(sort_alpha(meta()->envp, n));
+	env = printable_export(sort_alpha(copy, n));
 	while (env[i])
 	{
 		ft_putstr_fd(env[i], fd);
 		ft_putstr_fd("\n", fd);
 		i++;
 	}
+	free_lines(copy);
 }
 
 void	add_var(char *str)
