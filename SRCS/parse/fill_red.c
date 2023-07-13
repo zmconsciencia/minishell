@@ -6,17 +6,19 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:47:58 by jabecass          #+#    #+#             */
-/*   Updated: 2023/06/14 14:45:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:38:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	fill_red(char *token, t_program *node)
+void	fill_red(char *token, t_program *node, char **tokens, char **nodes, char *treated)
 {
 	char	*file_name;
 	char	*no_quotes;
 	char	*op;
+	int			status;
+	int			pid;
 
 	file_name = get_filename(token);
 	if (file_name[0] == '\"')
@@ -37,13 +39,39 @@ void	fill_red(char *token, t_program *node)
 	{
 		if (op[0] == 5)
 		{
-			node->red.limiter = file_name;
-			node->red.here_doc++;
+			int	fd[2];
+			meta()->hc = 1;
+			if (pipe(fd) == -1)
+				perror("");
+			pid = fork();
+			if (!pid)
+			{
+				signal(SIGQUIT, SIG_IGN);
+				signal(SIGINT, sighandlerhc);
+				run_heredoc(file_name, node, fd);
+				free_lines(nodes);
+				free_lines(meta()->envp);
+				free_lines(tokens);
+				free(treated);
+				free_lines(node->pot.flags);
+				free(node);
+				free(file_name);
+				free(op);
+				clear_last();
+				exit(0);
+			}
+			else
+			{
+				close(fd[1]);
+				waitpid(0, &status, 0);
+				node->red.fd_in = fd[0];
+				signal(SIGINT, sighandler);
+				signal(SIGQUIT, sighandlerquit);
+			}
 		}
 		else
 			treat_append(file_name, node);
 	}
-	if (!node->red.here_doc)
-		free(file_name);
+	free(file_name);
 	free(op);
 }

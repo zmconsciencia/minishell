@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/12 17:44:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:36:33 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_program	*new_node(int id, int flag_no)
 
 	i = 0;
 	node = malloc(sizeof(t_program));
+	if (!node)
+		return (NULL);
 	node->program_id = id;
 	node->pot.program = 0;
 	node->pot.path_program = 0;
@@ -93,12 +95,12 @@ int	count_flags(char **tokens)
 // A FUNCAO EXPANDED_DOLLAR RETORNA UM MALLOC, QUE VAI PRECISAR SER FREED
 void	parse_nodes(char **tokens, int id, char **nodes, char *treated)
 {
-	int			pid;
+	// int			pid;
 	int			i;
 	int			flag_no;
 	char		*temp;
 	t_program	*node;
-	int			status;
+	// int			status;
 
 	i = -1;
 	meta()->hc = 0;
@@ -107,7 +109,7 @@ void	parse_nodes(char **tokens, int id, char **nodes, char *treated)
 	while (tokens[++i])
 	{
 		if (ft_strchr(tokens[i], 6) || ft_strchr(tokens[i], 5))
-			fill_red(tokens[i], node);
+			fill_red(tokens[i], node, tokens, nodes, treated);
 		else if (ft_strchr(tokens[i], '\"') || ft_strchr(tokens[i], '\''))
 		{
 			temp = treat_quotes(tokens[i]);
@@ -118,36 +120,36 @@ void	parse_nodes(char **tokens, int id, char **nodes, char *treated)
 			fill_pot(tokens[i], node);
 	}
 	add_to_list(node);
-	if (node->red.here_doc)
-	{
-		int	fd[2];
-		meta()->hc = 1;
-		if (pipe(fd) == -1)
-			perror("");
-		pid = fork();
-		if (!pid)
-		{
-			signal(SIGQUIT, SIG_IGN);
-			signal(SIGINT, sighandlerhc);
-			run_heredoc(node->red.limiter, node, fd);
-			free(node->red.limiter);
-			free_lines(nodes);
-			free_lines(meta()->envp);
-			free_lines(tokens);
-			free(treated);
-			clear_last();
-			// free_lines(nodes);
-			exit(0);
-		}
-		else
-		{
-			close(fd[1]);
-			waitpid(0, &status, 0);
-			node->red.fd_in = fd[0];
-			free(node->red.limiter);
-			signal(SIGINT, sighandler);
-			signal(SIGQUIT, sighandlerquit);
-		}
-	}
+	// if (node->red.here_doc)
+	// {
+	// 	int	fd[2];
+	// 	meta()->hc = 1;
+	// 	if (pipe(fd) == -1)
+	// 		perror("");
+	// 	pid = fork();
+	// 	if (!pid)
+	// 	{
+	// 		signal(SIGQUIT, SIG_IGN);
+	// 		signal(SIGINT, sighandlerhc);
+	// 		run_heredoc(node->red.limiter, node, fd);
+	// 		free(node->red.limiter);
+	// 		free_lines(nodes);
+	// 		free_lines(meta()->envp);
+	// 		free_lines(tokens);
+	// 		free(treated);
+	// 		clear_last();
+	// 		// free_lines(nodes);
+	// 		exit(0);
+	// 	}
+	// 	else
+	// 	{
+	// 		close(fd[1]);
+	// 		waitpid(0, &status, 0);
+	// 		node->red.fd_in = fd[0];
+	// 		free(node->red.limiter);
+	// 		signal(SIGINT, sighandler);
+	// 		signal(SIGQUIT, sighandlerquit);
+	// 	}
+	// }
 	free_lines(tokens);
 }
