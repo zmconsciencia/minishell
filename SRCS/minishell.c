@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/12 17:47:44 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:02:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ void	start_function(char *g_line)
 		while (nodes[++i] != 0)
 		{
 			tokens = ft_split(nodes[i], 3);
+			free(nodes[i]);
 			parse_nodes(tokens, i, nodes, treated);
-			free(nodes[i]); //alterado
-			// free_lines(tokens);
 		}
-		free(nodes); //alterado
+		free(nodes);
 		free(treated);
 		execute();
-		// free_lines(nodes); //alterado
 	}
 	else
 		free(treated);
@@ -76,7 +74,7 @@ int	main(int ac, char **av, char **envp)
 	char	*g_line;
 
 	(void)av;
-	meta()->envp = copy_arr(envp); //alterado (estava por baixo do void av)
+	meta()->envp = copy_arr(envp);
 	if (ac >= 1)
 	{
 		rl_catch_signals = 0;
@@ -94,8 +92,6 @@ int	main(int ac, char **av, char **envp)
 			}
 			add_history(g_line);
 			start_function(g_line);
-			// clear_last();
-			// free (g_line);
 			g_line = readline("minishell> ");
 		}
 	}

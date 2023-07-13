@@ -88,7 +88,7 @@ char		**ft_split(char const *s, char c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strjoin(char const *s1, char const *s2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
-size_t		ft_strlen(const char *s);
+int			ft_strlen(const char *s);
 int			ft_strncmp(char *s1, char *s2, size_t n);
 char		*ft_strnstr(char *big, char *little, size_t n);
 char		*get_filename(char *token);
@@ -119,6 +119,10 @@ char		*treat_quotes(char *token);
 void		treat_infiles(char *file_name, t_program *node);
 void		treat_outfiles(char *file_name, t_program *node);
 void		treat_append(char *file_name, t_program *node);
+char		*get_var(char *g_line, int s);
+int			get_e(char *g_line, int s);
+char		*insert_var(char *g_line, int s, char *var);
+char		*expand_now(char *g_line, char a);
 
 //builtins
 int			check_builtin(t_program *curr);
@@ -150,6 +154,11 @@ char		*trim_path(char *env_var);
 char		*check_access(char **paths, char *arg);
 char		*join_path(char *path, char *arg);
 void		fill_list(t_program **list, int argc, char **argv, char **envp);
+void		close_all(t_program *curr, int flag, int exitcode);
+void		do_child(t_program *curr);
+void		before_exec(t_program *curr);
+void		after_exec(t_program *curr);
+
 
 //apagar
 void		print_double_arr(char **arr);

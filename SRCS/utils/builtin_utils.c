@@ -59,8 +59,8 @@ char	**sort_alpha(char **arr, int size)
 
 char	*add_quotes(char *str)
 {
-	size_t		i;
-	size_t		j;
+	int			i;
+	int			j;
 	char		*new;
 	int			flag;
 

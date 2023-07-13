@@ -7,6 +7,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/execute/treat_heredoc.c \
 		SRCS/handle/sighandler.c \
 		SRCS/parse/check_syntax.c \
+		SRCS/parse/expand_now.c \
 		SRCS/parse/expanded_dollar.c \
 		SRCS/parse/fill_pot.c \
 		SRCS/parse/fill_red.c \
@@ -46,6 +47,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/gnl/get_next_line.c \
 		SRCS/gnl/get_next_line_utils.c \
 		SRCS/pipex/pipex.c \
+		SRCS/pipex/pipex_utils.c \
 		SRCS/pipex/get_path.c \
 		SRCS/pipex/trim_path.c \
 		SRCS/pipex/join_path.c \

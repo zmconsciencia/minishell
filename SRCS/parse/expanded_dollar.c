@@ -12,13 +12,6 @@
 
 #include "../../include/minishell.h"
 
-// t_meta	*meta(void)
-// {
-// 	static t_meta	meta;
-
-// 	return (&meta);
-// }
-
 char	*trim_input(char *scroll, char *input)
 {
 	int		i;
@@ -63,7 +56,6 @@ char	*expanded_dollar(char *input)
 		i++;
 	}
 	return (ft_strdup(""));
-	// return (0);
 }
 
 // int	main(int ac, char **av, char **envp)

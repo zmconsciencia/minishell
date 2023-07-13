@@ -21,7 +21,8 @@ void	fill_pot(char *token, t_program *node)
 	{
 		node->pot.program = ft_strdup(token);
 		if (meta()->envp)
-			node->pot.path_program = check_access(get_path(meta()->envp), token);
+			node->pot.path_program = \
+			check_access(get_path(meta()->envp), token);
 		else
 			node->pot.path_program = 0;
 		node->pot.flags[0] = ft_strdup(token);
