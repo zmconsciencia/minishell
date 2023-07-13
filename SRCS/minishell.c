@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/11 19:48:59 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:47:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	start_function(char *g_line)
 		while (nodes[++i] != 0)
 		{
 			tokens = ft_split(nodes[i], 3);
-			free(nodes[i]); //alterado
 			parse_nodes(tokens, i, nodes, treated);
+			free(nodes[i]); //alterado
 			// free_lines(tokens);
 		}
 		free(nodes); //alterado

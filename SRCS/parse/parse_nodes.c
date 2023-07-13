@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/11 20:03:11 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:44:45 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,12 @@ void	parse_nodes(char **tokens, int id, char **nodes, char *treated)
 			signal(SIGINT, sighandlerhc);
 			run_heredoc(node->red.limiter, node, fd);
 			free(node->red.limiter);
-			clear_last();
-			free_lines(meta()->envp);
 			free_lines(nodes);
+			free_lines(meta()->envp);
 			free_lines(tokens);
-			free(nodes);
 			free(treated);
+			clear_last();
+			// free_lines(nodes);
 			exit(0);
 		}
 		else
