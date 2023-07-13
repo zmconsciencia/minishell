@@ -31,67 +31,36 @@ char	*add_three(char *g_line, int i)
 	free(g_line);
 	return (new);
 }
-char	*cut_lines_treat2(char *g_line, int i)
+
+int	cut_lines_treat2(char *g_line, int i)
 {
-	if (g_line[i] == '<' || g_line[i] == '>')
+	while (g_line[i] == '<' || g_line[i] == '>')
 	{
-		g_line = add_three(g_line, i++);
-		while (g_line[i] == '<' || g_line[i] == '>')
-		{
-			if (g_line[i] == '<')
-				g_line[i] = 5;
-			else if (g_line[i] == '>')
-				g_line[i] = 6;
-			i++;
-			if (!g_line[i])
-				i--;
-		}
-		if (g_line[i] == ' ')
-			while (ft_is_space(g_line[++i]) && \
-				(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
-				;
-		if (g_line[i] == '\"' || g_line[i] == '\'')
+		if (g_line[i] == '<')
+			g_line[i] = 5;
+		else if (g_line[i] == '>')
+			g_line[i] = 6;
+		i++;
+		if (!g_line[i])
 			i--;
 	}
-	return (g_line);
-}
-
-char	*cut_lines_treat(char *g_line, int i)
-{
-	if (g_line[i] == '|')
-		g_line[i] = 2;
 	if (g_line[i] == ' ')
-		g_line[i] = 3;
-	if (g_line[i] == '$')
-		g_line[i] = 4;
-	if (g_line[i] == '\"')
-	{
-		while (g_line[++i] != '\"' && g_line[i] != 0)
-		{
-			if (g_line[i] == '$')
-				g_line[i] = 4;
-			if ((i == ft_strlen(g_line) - 1) && (g_line[i] != '\"'))
-				break ;
-		}
-	}
-	if (g_line[i] == '\'')
-		while (g_line[++i] != '\'' && g_line[i] != 0)
+		while (ft_is_space(g_line[++i]) && \
+			(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
 			;
-	return (g_line);
+	if (g_line[i] == '\"' || g_line[i] == '\'')
+		i--;
+	return (i);
 }
 
 char	return_nbr(char c)
 {
 	if (c == '|')
 		return (2);
-	else if (c == ' ')
+	if (c == ' ')
 		return (3);
-	else if (c == '$')
+	if (c == '$')
 		return (4);
-	else if (c == '<')
-		return (5);
-	else if (c == '>')
-		return (6);
 	else
 		return (c);
 }
@@ -104,78 +73,27 @@ char	*treat_and_replace(char *g_line)
 	while (g_line[++i])
 	{
 		g_line[i] = return_nbr(g_line[i]);
-		// if (g_line[i] == '|')
-		// 	g_line[i] = 2;
-		// if (g_line[i] == ' ')
-		// 	g_line[i] = 3;
-		// if (g_line[i] == '$')
-		// 	g_line[i] = 4;
 		if (g_line[i] == '\"')
+		{
 			while (g_line[++i] != '\"' && g_line[i] != 0)
 			{
-				g_line[i] = return_nbr(g_line[i]);
+				if (g_line[i] == '$')
+					g_line[i] = 4;
 				if ((i == ft_strlen(g_line) - 1) && (g_line[i] != '\"'))
 					break ;
 			}
+		}
 		if (g_line[i] == '\'')
 			while (g_line[++i] != '\'' && g_line[i] != 0)
 				;
 		if (g_line[i] == '<' || g_line[i] == '>')
 		{
-			g_line = add_three(g_line, i++); //aqui
-			while (g_line[i] == '<' || g_line[i] == '>')
-			{
-				g_line[i] = return_nbr(g_line[i]);
-				i++;
-				if (!g_line[i]) //aqui
-					i--;
-			}
-			if (g_line[i] == ' ')
-				while (ft_is_space(g_line[++i]) && \
-					(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
-					;
-			if (g_line[i] == '\"' || g_line[i] == '\'')
-				i--;
+			g_line = add_three(g_line, i++);
+			i = cut_lines_treat2(g_line, i);
 		}
 	}
-	g_line = expand_now(g_line, 4);
-	return (g_line);
+	return (expand_now(g_line, 4));
 }
-
-
-// char	*treat_and_replace(char *g_line)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (g_line[++i])
-// 	{
-// 		g_line = cut_lines_treat(g_line, i);
-// 		// g_line = cut_lines_treat2(g_line, i);
-// 		if (g_line[i] == '<' || g_line[i] == '>')
-// 		{
-// 			g_line = add_three(g_line, i++);
-// 			while (g_line[i] == '<' || g_line[i] == '>')
-// 			{
-// 				if (g_line[i] == '<')
-// 					g_line[i] = 5;
-// 				else if (g_line[i] == '>')
-// 					g_line[i] = 6;
-// 				i++;
-// 				if (!g_line[i])
-// 					i--;
-// 			}
-// 			if (g_line[i] == ' ')
-// 				while (ft_is_space(g_line[++i]) && \
-// 					(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
-// 					;
-// 			if (g_line[i] == '\"' || g_line[i] == '\'')
-// 				i--;
-// 		}
-// 	}
-// 	g_line = expand_now(g_line, 4);
-// 	return (g_line);
-// }
 
 /* ---------- ORIGINAL NAO MEXER ----------- */
 // char	*treat_and_replace(char *g_line)
@@ -223,6 +141,6 @@ char	*treat_and_replace(char *g_line)
 // 			i--;
 // 	}
 // }
-// 	g_line = expand_now(g_line, 4);
-// 	return (g_line);
+// g_line = expand_now(g_line, 4);
+// return (g_line);
 // }
