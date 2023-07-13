@@ -81,10 +81,8 @@ char	*do_it_do_it(char *g_line, int i)
 char	*expand_now(char *g_line, char a)
 {
 	int		i;
-	char	*var;
 
 	i = -1;
-	var = 0;
 	while (g_line[++i])
 	{
 		while (g_line[i] != a && g_line[i])
@@ -94,44 +92,10 @@ char	*expand_now(char *g_line, char a)
 			if (g_line[i + 1] == ' ' || g_line[i + 1] == '\"' || !g_line[i + 1])
 				g_line[i] = '$';
 			else
-			{
 				g_line = do_it_do_it(g_line, i);
-			}
 		}
 		if (!g_line[i])
 			break ;
 	}
 	return (g_line);
 }
-
-// char	*expand_now(char *g_line, char a)
-// {
-// 	int		i;
-// 	char	*var;
-
-// 	i = -1;
-// 	var = 0;
-// 	while (g_line[++i])
-// 	{
-// 		while (g_line[i] != a && g_line[i])
-// 			i++;
-// 		if (g_line[i] == a)
-// 		{
-// 			if (g_line[i + 1] == ' ' || g_line[i + 1] == '\"' || !g_line[i + 1])
-// 				g_line[i] = '$';
-// 			else
-// 			{
-// 				if (g_line[i + 1] == '?')
-// 					var = ft_itoa(meta()->exitcode);
-// 				else
-// 					var = get_var(g_line, i);
-// 				if (var)
-// 					g_line = insert_var(g_line, i, var);
-// 				free(var);
-// 			}
-// 		}
-// 		if (!g_line[i])
-// 			break ;
-// 	}
-// 	return (g_line);
-// }

@@ -13,7 +13,7 @@
 #include "../../include/minishell.h"
 
 //tamanho da string.
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -26,8 +26,8 @@ size_t	ft_strlen(const char *s)
 char	*ft_strcat(char *s1, char *s2)
 {
 	char	*new;
-	size_t	i;
-	size_t	n;
+	int		i;
+	int		n;
 
 	i = 0;
 	n = 0;

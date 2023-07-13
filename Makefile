@@ -47,6 +47,7 @@ SRCS	= SRCS/minishell.c \
 		SRCS/gnl/get_next_line.c \
 		SRCS/gnl/get_next_line_utils.c \
 		SRCS/pipex/pipex.c \
+		SRCS/pipex/pipex_utils.c \
 		SRCS/pipex/get_path.c \
 		SRCS/pipex/trim_path.c \
 		SRCS/pipex/join_path.c \

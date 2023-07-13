@@ -7,3 +7,210 @@ echo $?
 
 # Should skip the empty argument, and print hello after spaces
 echo - "" "  " hello
+
+
+treat and replace original:
+/* ---------- ORIGINAL NAO MEXER ----------- */
+// char	*treat_and_replace(char *g_line)
+// {
+// 	int	i;
+
+// i = -1;
+// while (g_line[++i])
+// {
+// 	if (g_line[i] == '|')
+// 		g_line[i] = 2;
+// 	if (g_line[i] == ' ')
+// 		g_line[i] = 3;
+// 	if (g_line[i] == '$')
+// 		g_line[i] = 4;
+// 	if (g_line[i] == '\"')
+// 		while (g_line[++i] != '\"' && g_line[i] != 0)
+// 		{
+// 			if (g_line[i] == '$')
+// 				g_line[i] = 4;
+// 			if ((i == ft_strlen(g_line) - 1) && (g_line[i] != '\"'))
+// 				break ;
+// 		}
+// 	if (g_line[i] == '\'')
+// 		while (g_line[++i] != '\'' && g_line[i] != 0)
+// 			;
+// 	if (g_line[i] == '<' || g_line[i] == '>')
+// 	{
+// 		g_line = add_three(g_line, i++); //aqui
+// 		while (g_line[i] == '<' || g_line[i] == '>')
+// 		{
+// 			if (g_line[i] == '<')
+// 				g_line[i] = 5;
+// 			else if (g_line[i] == '>')
+// 				g_line[i] = 6;
+// 			i++;
+// 			if (!g_line[i]) //aqui
+// 				i--;
+// 		}
+// 		if (g_line[i] == ' ')
+// 			while (ft_is_space(g_line[++i]) && \
+// 				(g_line[i + 1] != '<' && g_line[i + 1] != '>'))
+// 				;
+// 		if (g_line[i] == '\"' || g_line[i] == '\'')
+// 			i--;
+// 	}
+// }
+// g_line = expand_now(g_line, 4);
+// return (g_line);
+// }
+
+expand now original:
+
+// char	*expand_now(char *g_line, char a)
+// {
+// 	int		i;
+// 	char	*var;
+
+// 	i = -1;
+// 	var = 0;
+// 	while (g_line[++i])
+// 	{
+// 		while (g_line[i] != a && g_line[i])
+// 			i++;
+// 		if (g_line[i] == a)
+// 		{
+// 			if (g_line[i + 1] == ' ' || g_line[i + 1] == '\"' || !g_line[i + 1])
+// 				g_line[i] = '$';
+// 			else
+// 			{
+// 				if (g_line[i + 1] == '?')
+// 					var = ft_itoa(meta()->exitcode);
+// 				else
+// 					var = get_var(g_line, i);
+// 				if (var)
+// 					g_line = insert_var(g_line, i, var);
+// 				free(var);
+// 			}
+// 		}
+// 		if (!g_line[i])
+// 			break ;
+// 	}
+// 	return (g_line);
+// }
+
+FICHEIRO PIPEX ORIGINAL
+
+// void	close_all(t_program *curr)
+// {
+// 	if (curr->red.fd[0] > 2)
+// 		close(curr->red.fd[0]);
+// 	if (curr->red.fd[0] > 2)
+// 		close(curr->red.fd[1]);
+// 	if (curr->red.fd_in > 2)
+// 		close(curr->red.fd_in);
+// 	if (curr->red.fd_out > 2)
+// 		close(curr->red.fd_out);
+// }
+
+// void	do_child(t_program *curr)
+// {
+// 	if (curr->red.fd_in)
+// 		dup2(curr->red.fd_in, 0);
+// 	if (curr->red.fd_out)
+// 		dup2(curr->red.fd_out, 1);
+// 	else if (curr->next)
+// 		dup2(curr->red.fd[1], 1);
+// 	close_all(curr);
+// }
+
+// void	before_exec(t_program *curr)
+// {
+// 	struct stat	st;
+
+// 	if (!ft_strlen(curr->pot.program))
+// 	{
+// 		close_all(curr);
+// 		clear_last();
+// 		free_lines(meta()->envp);
+// 		exit(0);
+// 	}
+// 	if (lstat(curr->pot.path_program, &st) && \
+// 		ft_strncmp("./", curr->pot.path_program, 2 && \
+// 			curr->pot.path_program[0] != '/'))
+// 	{
+// 		perror("");
+// 		close_all(curr);
+// 		clear_last();
+// 		free_lines(meta()->envp);
+// 		exit(127);
+// 	}
+// 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
+// 		!ft_strncmp("./", curr->pot.path_program, 2)) && \
+// 			!access(curr->pot.path_program, F_OK))
+// 	{
+// 		perror("");
+// 		close_all(curr);
+// 		clear_last();
+// 		free_lines(meta()->envp);
+// 		exit(126);
+// 	}
+// 	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+// 	{
+// 		close_all(curr);
+// 		clear_last();
+// 		free_lines(meta()->envp);
+// 		exit(1);
+// 	}
+// }
+
+// void	after_exec(t_program *curr)
+// {
+// 	free_lines(meta()->envp);
+// 	if (errno == EACCES)
+// 	{
+// 		if (access(curr->pot.flags[0], X_OK) && \
+// 			!ft_strncmp("./", curr->pot.flags[0], 2))
+// 		{
+// 			perror(curr->pot.flags[0]);
+// 			exit(126);
+// 		}
+// 		perror(curr->pot.flags[0]);
+// 		exit(127);
+// 	}
+// 	perror(curr->pot.flags[0]);
+// 	clear_last();
+// 	exit(127);
+// }
+
+// void	pipex(t_program *program)
+// {
+// 	t_program	*curr;
+// 	int			pid;
+
+// 	curr = program;
+// 	if (pipe(curr->red.fd) == -1)
+// 		perror ("Pipe error");
+// 	pid = fork();
+// 	if (pid == -1)
+// 		perror ("Fork error");
+// 	if (pid == 0)
+// 	{
+// 		do_child(curr);
+// 		if (!check_builtin(curr))
+// 		{
+// 			before_exec(curr);
+// 			if ((execve(curr->pot.path_program, curr->pot.flags, \
+// 				meta()->envp) == -1))
+// 				after_exec(curr);
+// 			free_lines(meta()->envp);
+// 		}
+// 		else
+// 		{
+// 			if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+// 				exit(1);
+// 			do_builtin(curr);
+// 			free_lines(meta()->envp);
+// 			clear_last();
+// 			exit(0);
+// 		}
+// 	}
+// 	if (curr->next && !curr->next->red.fd_in)
+// 		curr->next->red.fd_in = dup(curr->red.fd[0]);
+// 	close_all(curr);
+// }
