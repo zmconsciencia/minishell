@@ -12,88 +12,23 @@
 
 #include "../../include/minishell.h"
 
-void	close_all(t_program *curr)
+void	do_this(t_program *curr)
 {
-	if (curr->red.fd[0] > 2)
-		close(curr->red.fd[0]);
-	if (curr->red.fd[0] > 2)
-		close(curr->red.fd[1]);
-	if (curr->red.fd_in > 2)
-		close(curr->red.fd_in);
-	if (curr->red.fd_out > 2)
-		close(curr->red.fd_out);
-}
-
-void	do_child(t_program *curr)
-{
-	if (curr->red.fd_in)
-		dup2(curr->red.fd_in, 0);
-	if (curr->red.fd_out)
-		dup2(curr->red.fd_out, 1);
-	else if (curr->next)
-		dup2(curr->red.fd[1], 1);
-	close_all(curr);
-}
-
-void	before_exec(t_program *curr)
-{
-	struct stat	st;
-
-	// fprintf(stderr, "%s\n", curr->pot.program);
-	// free_lines(meta()->envp); // alterado
-	if (!ft_strlen(curr->pot.program))
-	{
-		close_all(curr);
-		clear_last(); //alterado
-		free_lines(meta()->envp); // alterado
-		exit(0);
-	}
-	if (lstat(curr->pot.path_program, &st) && \
-		ft_strncmp("./", curr->pot.path_program, 2 && \
-			curr->pot.path_program[0] != '/'))
-	{
-		perror("");
-		close_all(curr);
-		clear_last(); //alterado
-		free_lines(meta()->envp); // alterado
-		exit(127);
-	}
-	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
-		!ft_strncmp("./", curr->pot.path_program, 2)) && \
-			!access(curr->pot.path_program, F_OK))
-	{
-		perror("");
-		close_all(curr);
-		clear_last(); //alterado
-		free_lines(meta()->envp); // alterado
-		exit(126);
-	}
-	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
-	{
-		close_all(curr);
-		clear_last(); //alterado
-		free_lines(meta()->envp); // alterado
-		exit(1);
-	}
-}
-
-void	after_exec(t_program *curr)
-{
+	before_exec(curr);
+	if ((execve(curr->pot.path_program, curr->pot.flags, \
+		meta()->envp) == -1))
+		after_exec(curr);
 	free_lines(meta()->envp);
-	if (errno == EACCES)
-	{
-		if (access(curr->pot.flags[0], X_OK) && \
-			!ft_strncmp("./", curr->pot.flags[0], 2))
-		{
-			perror(curr->pot.flags[0]);
-			exit(126);
-		}
-		perror(curr->pot.flags[0]);
-		exit(127);
-	}
-	perror(curr->pot.flags[0]);
+}
+
+void	do_that(t_program *curr)
+{
+	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+		exit(1);
+	do_builtin(curr);
+	free_lines(meta()->envp);
 	clear_last();
-	exit(127);
+	exit(0);
 }
 
 void	pipex(t_program *program)
@@ -111,26 +46,11 @@ void	pipex(t_program *program)
 	{
 		do_child(curr);
 		if (!check_builtin(curr))
-		{	
-			before_exec(curr);
-			if ((execve(curr->pot.path_program, curr->pot.flags, \
-				meta()->envp) == -1))
-				after_exec(curr);
-			free_lines(meta()->envp);
-		}
+			do_this(curr);
 		else
-		{
-			if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
-				exit(1);
-			do_builtin(curr);
-			free_lines(meta()->envp); // alterado
-			clear_last();
-			exit(0);
-		}
+			do_that(curr);
 	}
 	if (curr->next && !curr->next->red.fd_in)
 		curr->next->red.fd_in = dup(curr->red.fd[0]);
-	close_all(curr);
+	close_all(curr, 0, 0);
 }
-
-// fprintf(stderr, "%d %d\n", curr->red.fd[0], curr->red.fd[1]);
