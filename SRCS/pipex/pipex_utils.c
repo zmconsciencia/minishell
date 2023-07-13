@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 13:15:12 by bde-seic          #+#    #+#             */
+/*   Updated: 2023/07/13 13:15:28 by bde-seic         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minishell.h"
 
 void	close_all(t_program *curr, int flag, int exitcode)
@@ -27,7 +39,7 @@ void	do_child(t_program *curr)
 		dup2(curr->red.fd_out, 1);
 	else if (curr->next)
 		dup2(curr->red.fd[1], 1);
-	close_all(curr);
+	close_all(curr, 0, 0);
 }
 
 void	before_exec(t_program *curr)
