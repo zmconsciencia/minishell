@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:16:59 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/11 20:11:09 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:26:36 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ static void	pipe_syntax(char *g_line)
 int	check_syntax(char *g_line)
 {
 	meta()->synerr = 0;
+	if (!g_line[0])
+		return (1);
 	pipe_syntax(g_line);
 	red_syntax(g_line);
 	if (meta()->synerr)

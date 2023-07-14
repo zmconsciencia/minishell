@@ -214,3 +214,53 @@ FICHEIRO PIPEX ORIGINAL
 // 		curr->next->red.fd_in = dup(curr->red.fd[0]);
 // 	close_all(curr);
 // }
+
+ERROS:
+'/bin/ls ola'
+==85710== Conditional jump or move depends on uninitialised value(s)
+
+
+
+
+Try ctrl-\ in a prompt after you wrote some stuff should quit minishell --> RELAUNCH! -- bash faz igual a nos
+
+
+
+cat <<ola
+> yo
+> bro
+> ola
+==86484== 
+==86484== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==86484== 
+==86484== HEAP SUMMARY:
+==86484==     in use at exit: 208,229 bytes in 227 blocks
+==86484==   total heap usage: 551 allocs, 324 frees, 233,909 bytes allocated
+==86484== 
+==86484== 4 bytes in 1 blocks are definitely lost in loss record 1 of 68
+==86484==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86484==    by 0x10C94B: ft_strdup (ft_itoa.c:21)
+==86484==    by 0x10A89C: fill_pot (fill_pot.c:22)
+==86484==    by 0x10B119: parse_nodes (parse_nodes.c:118)
+==86484==    by 0x109560: start_function (minishell.c:30)
+==86484==    by 0x1097FD: main (minishell.c:91)
+==86484== 
+==86484== 13 bytes in 1 blocks are definitely lost in loss record 10 of 68
+==86484==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==86484==    by 0x10E85C: str_trim (join_path.c:24)
+==86484==    by 0x10E927: join_path (join_path.c:41)
+==86484==    by 0x10EA08: check_access (check_access.c:33)
+==86484==    by 0x10A8D5: fill_pot (fill_pot.c:25)
+==86484==    by 0x10B119: parse_nodes (parse_nodes.c:118)
+==86484==    by 0x109560: start_function (minishell.c:30)
+==86484==    by 0x1097FD: main (minishell.c:91)
+==86484== 
+==86484== LEAK SUMMARY:
+==86484==    definitely lost: 17 bytes in 2 blocks
+==86484==    indirectly lost: 0 bytes in 0 blocks
+==86484==      possibly lost: 0 bytes in 0 blocks
+==86484==    still reachable: 0 bytes in 0 blocks
+==86484==         suppressed: 208,212 bytes in 225 blocks
+==86484== 
+==86484== For lists of detected and suppressed errors, rerun with: -s
+==86484== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
