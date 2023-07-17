@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:09:29 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/17 16:07:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:45:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,14 @@ char	*add_quotes(char *str)
 	}
 	new[++j] = '\0';
 	return (new);
+}
+
+int	count_back(char *str, int i, char c)
+{
+	int	counter;
+
+	counter = 0;
+	while (str && i > 0 && str[--i] == c)
+		counter++;
+	return (counter % 2);
 }
