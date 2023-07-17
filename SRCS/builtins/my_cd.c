@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:11:34 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 19:17:25 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:38:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,3 @@ int	my_cd(char **path)
 	free(cwd);
 	return (-1);
 }
-
-

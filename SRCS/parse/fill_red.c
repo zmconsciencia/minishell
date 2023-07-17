@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:47:58 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/17 10:22:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:04:32 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	child_hc(t_program *node, char *file_name, int fd[2], char **tokens)
 {
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sighandlerhc);
-	run_heredoc(file_name, node, fd);
+	run_heredoc(file_name, fd);
 	free_lines(meta()->nodes);
 	free_lines(meta()->envp);
 	free_lines(tokens);
@@ -58,7 +58,7 @@ void	process_hc(t_program *node, char **tokens, char *op, char *file_name)
 char	*treat_filename(char *file_name)
 {
 	char	*no_quotes;
-	
+
 	if (file_name[0] == '\"')
 	{
 		no_quotes = treat_quotes(file_name);
@@ -72,7 +72,7 @@ void	fill_red(char *token, t_program *node, char **tokens)
 {
 	char	*file_name;
 	char	*op;
-	
+
 	file_name = get_filename(token);
 	file_name = treat_filename(file_name);
 	op = get_op(token);

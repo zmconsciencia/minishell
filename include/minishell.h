@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 17:11:07 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:05:27 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_meta		*meta(void);
 void		execute(void);
 void		finish_program(void);
 void		clear_last(void);
-void		run_heredoc(char *file_name, t_program *node, int here_fds[2]);
+void		run_heredoc(char *file_name, int here_fds[2]);
 
 //handle
 void		sighandler(int signum);
@@ -162,9 +162,5 @@ void		close_all(t_program *curr, int flag, int exitcode);
 void		do_child(t_program *curr);
 void		before_exec(t_program *curr);
 void		after_exec(t_program *curr);
-
-
-//apagar
-void		print_double_arr(char **arr);
 
 #endif

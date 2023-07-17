@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:25:01 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/14 14:35:12 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:41:16 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	execute(void)
 	curr = meta()->head;
 	n = 0;
 	len = lstsize(curr);
-	// if (!curr)
-		meta()->exitcode = 0;
+	meta()->exitcode = 0;
 	while (curr)
 	{
 		if (check_builtin(curr) && (len == 1 && (!(curr->red.fd_in && \

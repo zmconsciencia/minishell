@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:15:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 17:59:45 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:00:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,53 +43,27 @@ void	do_child(t_program *curr)
 	close_all(curr, 0, 0);
 }
 
-void before_exec(t_program *curr)
+void	before_exec(t_program *curr)
 {
-    struct stat st;
+	struct stat	st;
 
-    if (!ft_strlen(curr->pot.program))
-        close_all(curr, 1, 0);
-
-    if (lstat(curr->pot.path_program, &st) == -1) {
-        perror("");
-        close_all(curr, 1, 127);
-    }
-
-    if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
-        !ft_strncmp("./", curr->pot.path_program, 2)) && \
-            !access(curr->pot.path_program, F_OK))
-    {
-        perror("");
-        close_all(curr, 1, 126);
-    }
-
-    if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
-        close_all(curr, 1, 1);
+	if (!ft_strlen(curr->pot.program))
+		close_all(curr, 1, 0);
+	if (lstat(curr->pot.path_program, &st) == -1)
+	{
+		perror("");
+		close_all(curr, 1, 127);
+	}
+	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
+		ft_strncmp("./", curr->pot.path_program, 2)) && \
+			!access(curr->pot.path_program, F_OK))
+	{
+		perror("");
+		close_all(curr, 1, 126);
+	}
+	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+		close_all(curr, 1, 1);
 }
-
-// void	before_exec(t_program *curr)
-// {
-// 	struct stat	st;
-
-// 	if (!ft_strlen(curr->pot.program))
-// 		close_all(curr, 1, 0);
-// 	if (lstat(curr->pot.path_program, &st) && \
-// 		ft_strncmp("./", curr->pot.path_program, 2 && \
-// 			curr->pot.path_program[0] != '/'))
-// 	{
-// 		perror("");
-// 		close_all(curr, 1, 127);
-// 	}
-// 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
-// 		!ft_strncmp("./", curr->pot.path_program, 2)) && \
-// 			!access(curr->pot.path_program, F_OK))
-// 	{
-// 		perror("");
-// 		close_all(curr, 1, 126);
-// 	}
-// 	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
-// 		close_all(curr, 1, 1);
-// }
 
 void	after_exec(t_program *curr)
 {
