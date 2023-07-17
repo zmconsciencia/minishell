@@ -1,0 +1,79 @@
+#include "../../include/minishell.h"
+
+static int	put_error(void)
+{
+	ft_putstr_fd(" numeric argument required\n", 2);
+	return (2);
+}
+
+int	return_sign(const char *nptr)
+{
+	int	sign;
+
+	sign = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == 45)
+		sign *= -1;
+	return (sign);
+}
+
+//retorna o primeiro conjunto de numeros encontrados na string como int.
+long long	ft_atoi(const char *nptr)
+{
+	long long	y;
+	long		n;
+	int			sign;
+
+	y = 0;
+	sign = return_sign(nptr);
+	if (*nptr == 0 || \
+		!ft_strncmp("-9223372036854775808", (char *)nptr, ft_strlen(nptr)))
+		return (0);
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32 || \
+		*nptr == 45 || *nptr == 43)
+		nptr++;
+	while (*nptr >= 48 && *nptr <= 57)
+	{
+		n = y;
+		y = y * 10 + *nptr - '0';
+		if (y < n || has_non_numeric(nptr))
+			put_error();
+		nptr++;
+	}
+	return (y * sign);
+}
+
+
+__________________________
+
+
+
+char	*add_quotes(char *str)
+{
+	int			i;
+	int			j;
+	char		*new;
+	int			flag;
+
+	i = -1;
+	j = 0;
+	flag = 0;
+	new = malloc(sizeof(char) * ft_strlen(str) + 3);
+	while (++i < (ft_strlen(str) + 3))
+	{
+		new[j++] = str[i];
+		if (str[i] == '=' && flag == 0)
+		{
+			new[j++] = '"';
+			flag = 1;
+		}
+		if (i == ft_strlen(str))
+		{
+			new[--j] = '"';
+			break ;
+		}
+	}
+	new[++j] = '\0';
+	return (new);
+}
