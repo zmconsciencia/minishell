@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 18:44:36 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:47:40 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	start_function(char *g_line)
 
 	i = -1;
 	meta()->treated = treat_and_replace(g_line);
+	meta()->exitcode = 0;
 	if (check_syntax(meta()->treated))
 	{
 		(meta())->nodes = ft_split(meta()->treated, 2);

@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:52:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/14 14:40:26 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:34:40 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	do_builtin(t_program *curr)
 {
+	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)
+		meta()->exitcode = 1;
 	if (is_builtin("cd", curr->pot.program))
 		return (my_cd(curr->pot.flags));
 	else if (is_builtin("echo", curr->pot.program))

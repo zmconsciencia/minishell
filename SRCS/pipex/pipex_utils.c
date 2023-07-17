@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:15:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/17 11:00:13 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:41:49 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ void	before_exec(t_program *curr)
 
 	if (!ft_strlen(curr->pot.program))
 		close_all(curr, 1, 0);
-	if (lstat(curr->pot.path_program, &st) == -1)
+	if (lstat(curr->pot.path_program, &st) && \
+		ft_strncmp("./", curr->pot.path_program, 2 && \
+			curr->pot.path_program[0] != '/'))
 	{
 		perror("");
 		close_all(curr, 1, 127);
 	}
 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
-		ft_strncmp("./", curr->pot.path_program, 2)) && \
+		!ft_strncmp("./", curr->pot.path_program, 2)) && \
 			!access(curr->pot.path_program, F_OK))
 	{
 		perror("");

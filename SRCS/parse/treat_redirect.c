@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 10:02:36 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 18:35:49 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:48:03 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	treat_infiles(char *file_name, t_program *node)
 {
-	if (node->red.fd_in != 0)
+	if (node->red.fd_in != 0 && node->red.fd_in != -1)
 		close(node->red.fd_in);
 	node->red.fd_in = open(file_name, O_RDONLY);
 	if (node->red.fd_in == -1)

@@ -264,3 +264,7 @@ cat <<ola
 ==86484== 
 ==86484== For lists of detected and suppressed errors, rerun with: -s
 ==86484== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+
+
+echo <"./test_files/infile" <missing <"./test_files/infile"	
