@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:29:42 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/11 14:20:34 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:50:44 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*remove_quotes(char	*token, char c)
 		if (token[i] == c)
 			x++;
 	unquoted = malloc(sizeof(char) * (i - x) + 1);
+	if (!unquoted)
+		return (NULL);
 	i = 0;
 	j = -1;
 	while (token[++j])

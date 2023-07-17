@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expanded_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:10:59 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/06/23 11:30:20 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:49:57 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*trim_input(char *scroll, char *input)
 	i = ft_strlen(input);
 	j = 0;
 	trimed = malloc(sizeof(char) * (ft_strlen(scroll) - i + 1));
+	if (!trimed)
+		return (NULL);
 	while (scroll[i])
 		trimed[j++] = scroll[i++];
 	trimed[j] = '\0';
@@ -36,6 +38,8 @@ char	*remove_dollar(char *input)
 	i = ft_strlen(input);
 	j = 0;
 	no_dollar = malloc(sizeof(char) * i);
+	if (!no_dollar)
+		return (NULL);
 	no_dollar[i - 1] = 0;
 	i = 1;
 	while (input[i])

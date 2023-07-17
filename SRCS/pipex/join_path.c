@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 11:51:24 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/05/23 11:42:11 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:50:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*str_trim(char *string)
 	{
 	}
 	complete = malloc(sizeof(char) * i + 1);
+	if (!complete)
+		return (NULL);
 	i = -1;
 	while (string[++i] && string[i] != ' ')
 		complete[i] = string[i];

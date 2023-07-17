@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:12:09 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/12 17:04:03 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:01:28 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	unset_me(int i)
 			j++;
 		if (meta()->envp[j])
 		{
-			new_env[k] = malloc(sizeof(char) * \
-				ft_strlen(meta()->envp[j]) + 1);
+			new_env[k] = ft_calloc(ft_strlen(meta()->envp[j]) + 1);
 			ft_strlcpy(new_env[k++], meta()->envp[j], \
 				ft_strlen(meta()->envp[j]) + 1);
 			j++;

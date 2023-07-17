@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:31:50 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/17 18:41:02 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:57:27 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ char		**sort_alpha(char **arr, int size);
 char		*add_quotes(char *str);
 char		**copy_arr(char **str);
 int			count_back(char *str, int i, char c);
+void		*ft_calloc(size_t size);
 
 //parse
 int			check_syntax(char *g_line);

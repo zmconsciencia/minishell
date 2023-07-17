@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:15:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/17 17:41:49 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:03:52 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	before_exec(t_program *curr)
 		ft_strncmp("./", curr->pot.path_program, 2 && \
 			curr->pot.path_program[0] != '/'))
 	{
-		perror("");
+		ft_putstr_fd(" command not found\n", 2);
 		close_all(curr, 1, 127);
 	}
 	if (S_ISDIR(st.st_mode) && (curr->pot.path_program[0] == '/' || \
 		!ft_strncmp("./", curr->pot.path_program, 2)) && \
 			!access(curr->pot.path_program, F_OK))
 	{
-		perror("");
+		ft_putstr_fd(" Is a directory\n", 2);
 		close_all(curr, 1, 126);
 	}
 	if (curr->red.fd_in == -1 || curr->red.fd_out == -1)

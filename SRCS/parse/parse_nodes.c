@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 19:42:40 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 16:15:53 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:50:30 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_program	*new_node(int id, int flag_no)
 	node->pot.program = 0;
 	node->pot.path_program = 0;
 	node->pot.flags = malloc(sizeof(char *) * (flag_no + 1));
+	if (!node->pot.flags)
+		return (NULL);
 	node->pot.flags[flag_no] = 0;
 	while (i < flag_no)
 		node->pot.flags[i++] = 0;
@@ -92,7 +94,6 @@ int	count_flags(char **tokens)
 	return (count);
 }
 
-// A FUNCAO EXPANDED_DOLLAR RETORNA UM MALLOC, QUE VAI PRECISAR SER FREED
 void	parse_nodes(char **tokens, int id)
 {
 	int			i;

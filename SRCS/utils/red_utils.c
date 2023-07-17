@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:50:51 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/04 15:03:50 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:52:22 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ char	*get_op(char *token)
 	while (token[i] == token[0])
 		i++;
 	op = malloc(sizeof(char) * i + 1);
+	if (!op)
+	{
+		meta()->synerr = 1;
+		return (NULL);
+	}
 	while (j < i)
 	{
 		op[j] = token[0];

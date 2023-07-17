@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 10:54:05 by jabecass          #+#    #+#             */
-/*   Updated: 2023/05/16 13:42:32 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:49:26 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*ft_strjoin_gnl(char *str1, char *str2)
 	size_t	i;
 
 	ret = malloc(ft_strlen_gnl(str1) + ft_strlen_gnl(str2) + 1);
+	if (!ret)
+		return (NULL);
 	if (!ret)
 		return (NULL);
 	i = -1;

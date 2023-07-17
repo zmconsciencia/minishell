@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 08:11:18 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/17 17:47:40 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:47:12 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,13 @@ char	**copy_arr(char **str)
 	if (!str || !str[0])
 		return (0);
 	new_env = malloc(sizeof(char *) * (count_strings(str) + 1));
+	if (!new_env)
+		return (0);
 	while (str[i])
 	{
 		new_env[j] = malloc(sizeof(char) * (ft_strlen(str[i]) + 1));
+		if (!new_env[j])
+			return (0);
 		ft_strlcpy(new_env[j], str[i], ft_strlen(str[i]) + 1);
 		j++;
 		i++;

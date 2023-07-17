@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 16:29:19 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 17:15:55 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:59:13 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	if_exists(char	*str)
 		{
 			free(meta()->envp[i]);
 			add = malloc(sizeof(char) * ft_strlen(str) + 1);
+			if (!add)
+				return (0);
 			ft_strlcpy(add, str, ft_strlen(str) + 1);
 			meta()->envp[i] = add;
 			return (1);
@@ -93,14 +95,18 @@ void	add_var(char *str)
 	j = 0;
 	env = meta()->envp;
 	new_env = malloc(sizeof(char *) * (count_strings(meta()->envp) + 2));
+	if (!new_env)
+		return ;
 	while (env[i])
 	{
 		new_env[j] = malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
+		if (!new_env[j])
+			return ;
 		ft_strlcpy(new_env[j], env[i], ft_strlen(env[i]) + 1);
 		j++;
 		i++;
 	}
-	new_env[j] = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	new_env[j] = ft_calloc((ft_strlen(str) + 1));
 	ft_strlcpy(new_env[j++], str, ft_strlen(str) + 1);
 	new_env[j] = NULL;
 	free_lines(meta()->envp);

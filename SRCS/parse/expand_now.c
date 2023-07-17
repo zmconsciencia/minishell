@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_now.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bde-seic <bde-seic@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:14:58 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/13 13:14:59 by bde-seic         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:49:34 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*get_var(char *g_line, int s)
 	while (ft_isprint(g_line[++i]) && g_line[i] != ' ')
 		;
 	var_name = malloc(sizeof(char) * (i - s) + 1);
+	if (!var_name)
+		return (NULL);
 	while (++s < i && g_line[s] != '\"')
 		var_name[v++] = g_line[s];
 	var_name[v] = '=';

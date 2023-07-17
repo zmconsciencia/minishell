@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:09:29 by jabecass          #+#    #+#             */
-/*   Updated: 2023/07/17 18:45:57 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/17 18:56:49 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*add_quotes(char *str)
 	i = -1;
 	j = 0;
 	flag = 0;
-	new = malloc(sizeof(char) * ft_strlen(str) + 3);
+	new = ft_calloc(ft_strlen(str) + 3);
 	while (++i < (ft_strlen(str) + 3))
 	{
 		new[j++] = str[i];
