@@ -1,4 +1,4 @@
-NAME = $(shell basename $(CURDIR))
+NAME = minishell
 
 SRCS	= SRCS/minishell.c \
 		SRCS/execute/execute.c \
