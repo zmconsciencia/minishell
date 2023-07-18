@@ -6,7 +6,7 @@
 /*   By: jabecass <jabecass@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:15:12 by bde-seic          #+#    #+#             */
-/*   Updated: 2023/07/17 19:03:52 by jabecass         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:32:18 by jabecass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	close_all(t_program *curr, int flag, int exitcode)
 	if (flag == 1)
 	{
 		close(1);
+		close(0);
 		clear_last();
 		free_lines(meta()->envp);
 		if (exitcode)
